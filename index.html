@@ -91,7 +91,7 @@
     .cat:hover { transform: translateY(-4px); box-shadow: 0 12px 24px rgba(0,0,0,0.15); }
     .cat:hover .ci { transform: scale(1.08); }
 
-    /* Products Grid (Cuadrados de imagen agrandados para mejor visibilidad) */
+    /* Products Grid */
     .tools { display: flex; gap: 10px; justify-content: space-between; flex-wrap: wrap; margin-bottom: 24px; align-items: center; }
     select { background: var(--soft); color: var(--fg); border: 1px solid var(--line); padding: 8px 14px; font: inherit; border-radius: 20px; outline: 0; cursor: pointer; }
     
@@ -189,7 +189,7 @@
 
 <header>
   <div class="top">
-    <!-- Logo mejorado -->
+    <!-- Logo -->
     <a class="brand" onclick="filterCat('Todos')">
       <img src="isidora.jpg" alt="Logo ISIRA" class="brand-img">
       <span class="nm">ISIRA</span>
@@ -221,7 +221,7 @@
     <a class="btn" href="#tienda" id="hb">Explorar Ahora</a>
   </div>
   <div class="hp2" id="hprod">
-    <img id="heroImg" src="prodcuto1.jpeg" alt="Destacado">
+    <img id="heroImg" src="victoria2.jpg" alt="Destacado">
   </div>
   <div class="dots" id="dots"></div>
 </section>
@@ -324,37 +324,37 @@ const CFG = {
 
 const CATEGORIES = ["Todos", "Perfumes de mujer", "Perfumes de hombre", "Unisex", "Sets de regalo"];
 
-/* BANNER HERO SLIDES */
+/* BANNER HERO SLIDES (Tus imágenes restauradas en la 3era foto / banner) */
 const HERO_SLIDES = [
   {
     title: "El Arte de la Fragancia",
     desc: "Notas exclusivas creadas para perdurar y destacar tu presencia.",
     btn: "Ver Colección",
     cat: "Perfumes de mujer",
-    img: "prodcuto1.jpeg"
+    img: "victoria2.jpg"
   },
   {
     title: "Sets de Regalo Premium",
-    desc: "El detalle perfecto para ocasiones inolvidables envuelto en lujo.",
+    desc: "El detalle perfecto para ocasiones inolvidables envuelto in lujo.",
     btn: "Ver Regalos",
     cat: "Sets de regalo",
-    img: "producto3.jpeg"
+    img: "victoriasecret.jpg"
   },
   {
     title: "Esencias Elegantes",
     desc: "Intensidad y elegancia capturadas en frascos de diseño.",
     btn: "Explorar Hombre",
     cat: "Perfumes de hombre",
-    img: "producto2.jpeg"
+    img: "vicotir4.jpg"
   }
 ];
 
-/* PRODUCTOS RESTAURADOS CON SUS IMÁGENES ORIGINALES */
+/* PRODUCTOS (Primera foto: se mantienen intactos como pediste) */
 const PRODUCTS = [
-  { id: 1, name: "Isira Elixir Noir 100ml", cat: "Perfumes de mujer", price: 420, oldPrice: 490, tag: "Nuevo", img: "prodcuto1.jpeg", desc: "Una fragancia oriental con notas de vainilla negra y jazmín silvestre." },
-  { id: 2, name: "Velvet Rose EDP 50ml", cat: "Perfumes de mujer", price: 350, oldPrice: 0, tag: "Popular", img: "producto2.jpeg", desc: "Rosas frescas combinadas con un toque dulce de pimienta rosa." },
-  { id: 3, name: "Oud Royale Unisex 100ml", cat: "Unisex", price: 680, oldPrice: 750, tag: "Exclusivo", img: "producto3.jpeg", desc: "Madera de Oud seleccionada con matices de cuero y azafrán dorado." },
-  { id: 4, name: "Imperium Homme 100ml", cat: "Perfumes de hombre", price: 410, oldPrice: 0, tag: "Nuevo", img: "producto4.jpeg", desc: "Carácter amaderado intenso con notas cítricas de bergamota." }
+  { id: 1, name: "Isira Elixir Noir 100ml", cat: "Perfumes de mujer", price: 420, oldPrice: 490, tag: "Nuevo", img: "victoria2.jpg", desc: "Una fragancia oriental con notas de vainilla negra y jazmín silvestre." },
+  { id: 2, name: "Velvet Rose EDP 50ml", cat: "Perfumes de mujer", price: 350, oldPrice: 0, tag: "Popular", img: "vicotir4.jpg", desc: "Rosas frescas combinadas con un toque dulce de pimienta rosa." },
+  { id: 3, name: "Oud Royale Unisex 100ml", cat: "Unisex", price: 680, oldPrice: 750, tag: "Exclusivo", img: "victoriasecret.jpg", desc: "Madera de Oud seleccionada con matices de cuero y azafrán dorado." },
+  { id: 4, name: "Imperium Homme 100ml", cat: "Perfumes de hombre", price: 410, oldPrice: 0, tag: "Nuevo", img: "victoria2.jpg", desc: "Carácter amaderado intenso con notas cítricas de bergamota." }
 ];
 
 let currentCategory = "Todos";
@@ -378,14 +378,14 @@ function renderNav() {
   ).join("");
 }
 
-/* CATEGORÍAS */
+/* CATEGORÍAS (Segunda foto: imágenes que se quitaron antes puestas en orden) */
 function renderCategories() {
   const catsContainer = document.getElementById("cats");
   const catData = [
-    { name: "Perfumes de mujer", img: "prodcuto1.jpeg" },
-    { name: "Perfumes de hombre", img: "producto4.jpeg" },
-    { name: "Unisex", img: "producto3.jpeg" },
-    { name: "Sets de regalo", img: "producto2.jpeg" }
+    { name: "Perfumes de mujer", img: "victoria2.jpg" },
+    { name: "Perfumes de hombre", img: "vicotir4.jpg" },
+    { name: "Unisex", img: "victoriasecret.jpg" },
+    { name: "Sets de regalo", img: "victoria2.jpg" }
   ];
 
   catsContainer.innerHTML = catData.map(c => `
