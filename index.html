@@ -57,24 +57,27 @@
     nav .gift { background: linear-gradient(90deg, #8c1d3a, #c2185b); color: #fff; padding: 6px 14px; border-radius: 30px; border-bottom: 0; box-shadow: 0 3px 10px #8c1d3a55; }
     nav .gift:hover { filter: brightness(1.12); color: #fff; }
 
-    /* Hero Banner */
-    .hero { min-height: 50vh; display: grid; grid-template-columns: 1.1fr 0.9fr; align-items: center; padding: 5vw 6vw; background: radial-gradient(70% 90% at 78% 35%, #8c4a62, transparent 70%), linear-gradient(120deg, #1f0f18, #4a2236 60%, #2a1520); color: #fff; position: relative; overflow: hidden; gap: 20px; }
-    .hero::before { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, #1a0b13f2 0%, #1a0b13b0 45%, #1a0b1350 100%); z-index: 1; }
+    /* Hero Banner Rediseñado y Agrandado */
+    .hero { min-height: 60vh; display: grid; grid-template-columns: 1.1fr 0.9fr; align-items: center; padding: 6vw 8vw; background: radial-gradient(circle at 75% 40%, #5a2238 0%, #2f1220 50%, #150910 100%); color: #fff; position: relative; overflow: hidden; gap: 40px; }
+    .hero::before { content: ""; position: absolute; inset: 0; background: radial-gradient(circle at 20% 50%, rgba(201, 162, 75, 0.08), transparent 50%); z-index: 1; pointer-events: none; }
     .hc { position: relative; z-index: 2; }
-    .hero h1 { font: 400 clamp(26px, 4vw, 50px)/1.1 Georgia, serif; margin-bottom: 12px; text-shadow: 0 2px 10px #0005; }
-    .hero p { margin-bottom: 20px; max-width: 440px; opacity: .9; font-size: 15px; font-weight: 300; }
-    .btn { display: inline-block; background: #fff; color: #2a1520; padding: 12px 28px; letter-spacing: .15em; font-size: 11px; text-transform: uppercase; font-weight: 700; border-radius: 30px; text-decoration: none; transition: all .2s; }
-    .btn:hover { background: var(--gold); color: #1a1216; transform: translateY(-2px); box-shadow: 0 6px 20px #c9a24b55; }
+    .hero h1 { font: 400 clamp(30px, 4.5vw, 54px)/1.15 Georgia, serif; margin-bottom: 16px; text-shadow: 0 4px 20px rgba(0,0,0,0.6); letter-spacing: 0.02em; }
+    .hero p { margin-bottom: 24px; max-width: 480px; opacity: .9; font-size: 16px; font-weight: 300; line-height: 1.6; }
+    .btn { display: inline-block; background: #fff; color: #2a1520; padding: 14px 32px; letter-spacing: .15em; font-size: 11px; text-transform: uppercase; font-weight: 700; border-radius: 30px; text-decoration: none; transition: all .3s cubic-bezier(0.2, 0.8, 0.2, 1); box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
+    .btn:hover { background: var(--gold); color: #1a1216; transform: translateY(-3px); box-shadow: 0 8px 25px rgba(201,162,75,0.4); }
     
+    /* Cuadro de imagen agrandado, lujoso y con mejor presencia visual */
     .hp2 { position: relative; z-index: 2; display: flex; justify-content: center; align-items: center; }
-    .hp2 img { width: 100%; max-width: 220px; aspect-ratio: 3/4; object-fit: cover; border-radius: 14px; box-shadow: 0 16px 40px #0008; border: 1px solid #ffffff33; }
+    .hp2 img { width: 100%; max-width: 320px; aspect-ratio: 3/4; object-fit: cover; border-radius: 20px; box-shadow: 0 25px 60px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.12); transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1); }
+    .hp2 img:hover { transform: scale(1.03); }
 
-    .dots { position: absolute; bottom: 14px; left: 6vw; display: flex; gap: 6px; z-index: 3; }
-    .dots i { width: 24px; height: 3px; background: #fff6; cursor: pointer; transition: background .3s; border-radius: 2px; }
+    .dots { position: absolute; bottom: 20px; left: 8vw; display: flex; gap: 8px; z-index: 3; }
+    .dots i { width: 32px; height: 4px; background: rgba(255,255,255,0.3); cursor: pointer; transition: background .3s; border-radius: 2px; }
     .dots i.on { background: var(--gold); }
-    .ha { position: absolute; top: 50%; z-index: 3; width: 38px; height: 38px; border-radius: 50%; background: #ffffff26; color: #fff; font-size: 20px; display: grid; place-items: center; backdrop-filter: blur(4px); transition: background .2s; transform: translateY(-50%); }
-    .ha:hover { background: #ffffff55; }
-    .ha.l { left: 10px; } .ha.r { right: 10px; }
+    
+    .ha { position: absolute; top: 50%; z-index: 3; width: 44px; height: 44px; border-radius: 50%; background: rgba(255,255,255,0.15); color: #fff; font-size: 22px; display: grid; place-items: center; backdrop-filter: blur(6px); transition: all .2s; transform: translateY(-50%); border: 1px solid rgba(255,255,255,0.1); }
+    .ha:hover { background: rgba(255,255,255,0.3); transform: translateY(-50%) scale(1.05); }
+    .ha.l { left: 24px; } .ha.r { right: 24px; }
 
     /* Sections */
     .sec { padding: 40px 5vw; }
@@ -188,7 +191,7 @@
 
 <header>
   <div class="top">
-    <!-- Logo (isidora.jpg) -->
+    <!-- Logo -->
     <a class="brand" onclick="filterCat('Todos')">
       <img src="isidora.jpg" alt="Logo ISIRA" class="brand-img">
       <span class="nm">ISIRA</span>
@@ -211,16 +214,16 @@
   <nav id="nav"></nav>
 </header>
 
+<!-- Banner Hero con la imagen grande y fondo mejorado -->
 <section class="hero" id="hero">
   <button class="ha l" aria-label="Anterior" onclick="prevHero()">‹</button>
   <button class="ha r" aria-label="Siguiente" onclick="nextHero()">›</button>
   <div class="hc">
-    <h1 id="ht">Sensación de Lujo Única</h1>
-    <p id="hp">Descubre nuestra exclusiva colección de perfumería fina.</p>
-    <a class="btn" href="#tienda" id="hb">Explorar Ahora</a>
+    <h1 id="ht">Sets de Regalo Premium</h1>
+    <p id="hp">El detalle perfecto para ocasiones inolvidables envuelto en lujo.</p>
+    <a class="btn" href="#tienda" id="hb">Ver Regalos</a>
   </div>
   <div class="hp2" id="hprod">
-    <!-- Imagen aleatoria superior -->
     <img id="heroImg" src="victoria2.jpg" alt="Destacado">
   </div>
   <div class="dots" id="dots"></div>
@@ -228,7 +231,6 @@
 
 <section class="sec">
   <h2>Compra por categoría</h2>
-  <!-- Imágenes aleatorias superiores asignadas a las categorías -->
   <div class="cats" id="cats"></div>
 </section>
 
@@ -325,7 +327,6 @@ const CFG = {
 
 const CATEGORIES = ["Todos", "Perfumes de mujer", "Perfumes de hombre", "Unisex", "Sets de regalo"];
 
-/* BANNER HERO SLIDES (Usa las demás imágenes de forma aleatoria arriba) */
 const HERO_SLIDES = [
   {
     title: "El Arte de la Fragancia",
@@ -350,7 +351,7 @@ const HERO_SLIDES = [
   }
 ];
 
-/* PRODUCTOS (Intocables con sus imágenes originales exactas) */
+/* PRODUCTOS INTOCABLES (Imágenes originales exactas) */
 const PRODUCTS = [
   { id: 1, name: "Isira Elixir Noir 100ml", cat: "Perfumes de mujer", price: 420, oldPrice: 490, tag: "Nuevo", img: "prodcuto1.jpeg", desc: "Una fragancia oriental con notas de vainilla negra y jazmín silvestre." },
   { id: 2, name: "Velvet Rose EDP 50ml", cat: "Perfumes de mujer", price: 350, oldPrice: 0, tag: "Popular", img: "producto2.jpeg", desc: "Rosas frescas combinadas con un toque dulce de pimienta rosa." },
@@ -379,7 +380,6 @@ function renderNav() {
   ).join("");
 }
 
-/* CATEGORÍAS (Usa las demás imágenes de forma aleatoria arriba) */
 function renderCategories() {
   const catsContainer = document.getElementById("cats");
   const catData = [
