@@ -4,6 +4,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>ISIRA | Alta Perfumería & Cosmetica</title>
+  <!-- Aquí se agrega el logo a la pestaña (favicon) -->
+  <link rel="icon" href="isidora.jpg" type="image/jpeg">
+  
   <style>
     :root {
       --bg: #ffffff;
@@ -207,6 +210,7 @@
 <header>
   <div class="top">
     <a class="brand" onclick="filterCat('Todos')">
+      <!-- Logo mantenido con el texto -->
       <img src="isidora.jpg" alt="Logo" class="brand-img">
       <span class="nm">ISIRA</span>
     </a>
@@ -362,16 +366,12 @@ const HERO_SLIDES = [
   }
 ];
 
-/* PRODUCTOS DE EJEMPLO */
+/* PRODUCTOS ACTUALIZADOS (SOLO 4 Y CON LAS IMÁGENES SOLICITADAS) */
 const PRODUCTS = [
-  { id: 1, name: "Isira Elixir Noir 100ml", cat: "Perfumes de mujer", price: 420, oldPrice: 490, tag: "Nuevo", img: "https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=500&q=80", desc: "Una fragancia oriental con notas de vainilla negra, jazmín silvestre y ámbar." },
-  { id: 2, name: "Velvet Rose EDP 50ml", cat: "Perfumes de mujer", price: 350, oldPrice: 0, tag: "Popular", img: "https://images.unsplash.com/photo-1588405748880-12d1d2a59f75?auto=format&fit=crop&w=500&q=80", desc: "Rosas frescas de Grasse combinadas con un toque dulce de pimienta rosa." },
-  { id: 3, name: "Oud Royale Unisex 100ml", cat: "Unisex", price: 680, oldPrice: 750, tag: "Exclusivo", img: "https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=500&q=80", desc: "Madera de Oud seleccionada con matices de cuero y azafrán dorado." },
-  { id: 4, name: "Imperium Homme 100ml", cat: "Perfumes de hombre", price: 410, oldPrice: 0, tag: "Nuevo", img: "https://images.unsplash.com/photo-1523293182086-7651a899d37f?auto=format&fit=crop&w=500&q=80", desc: "Carácter amaderado intenso con notas cítricas de bergamota y vetiver." },
-  { id: 5, name: "Set Regalo Isira Gold Edition", cat: "Sets de regalo", price: 590, oldPrice: 650, tag: "Regalos", img: "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=500&q=80", desc: "Incluye Perfume 100ml + Loción Corporal 200ml + Mini de Viaje 10ml." },
-  { id: 6, name: "Body Mist Sparkle Berry 250ml", cat: "Body mist", price: 140, oldPrice: 180, tag: "Rebajas", img: "https://images.unsplash.com/photo-1595425970377-c9703cf48b6d?auto=format&fit=crop&w=500&q=80", desc: "Bruma corporal refrescante con aroma a frutos rojos y peonías nocturnas." },
-  { id: 7, name: "Loción Corporal Silk Hydration", cat: "Lociones corporales", price: 160, oldPrice: 0, tag: "Esencial", img: "https://images.unsplash.com/photo-1608248597261-833258657640?auto=format&fit=crop&w=500&q=80", desc: "Hidratación profunda con manteca de karité y extracto de orquídea pura." },
-  { id: 8, name: "Golden Amber Unisex EDP", cat: "Unisex", price: 480, oldPrice: 520, tag: "Rebajas", img: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=500&q=80", desc: "Cálido y envolvente, resina de ámbar puro con sándalo y pachulí." }
+  { id: 1, name: "Isira Elixir Noir 100ml", cat: "Perfumes de mujer", price: 420, oldPrice: 490, tag: "Nuevo", img: "prodcuto1.jpeg", desc: "Una fragancia oriental con notas de vainilla negra, jazmín silvestre y ámbar." },
+  { id: 2, name: "Velvet Rose EDP 50ml", cat: "Perfumes de mujer", price: 350, oldPrice: 0, tag: "Popular", img: "producto2.jpeg", desc: "Rosas frescas de Grasse combinadas con un toque dulce de pimienta rosa." },
+  { id: 3, name: "Oud Royale Unisex 100ml", cat: "Unisex", price: 680, oldPrice: 750, tag: "Exclusivo", img: "producto3.jpeg", desc: "Madera de Oud seleccionada con matices de cuero y azafrán dorado." },
+  { id: 4, name: "Imperium Homme 100ml", cat: "Perfumes de hombre", price: 410, oldPrice: 0, tag: "Nuevo", img: "producto4.jpeg", desc: "Carácter amaderado intenso con notas cítricas de bergamota y vetiver." }
 ];
 
 /* ESTADO DE LA APLICACIÓN */
