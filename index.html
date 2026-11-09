@@ -32,11 +32,10 @@
     .promo button { border: 1px solid var(--fg); padding: 4px 12px; font-size: 11px; letter-spacing: .06em; border-radius: 20px; transition: all .2s; }
     .promo button:hover { background: var(--fg); color: var(--bg); }
 
-    /* Header & Nav Móvil y Escritorio */
+    /* Header & Nav */
     header { border-bottom: 1px solid var(--line); position: sticky; top: env(safe-area-inset-top, 0px); background: var(--bg); z-index: 20; backdrop-filter: blur(8px); }
     .top { display: flex; justify-content: space-between; align-items: center; padding: 12px 5vw; gap: 10px; }
     
-    /* Logo adaptado y limpio */
     .brand { display: flex; align-items: center; gap: 10px; cursor: pointer; text-decoration: none; color: inherit; }
     .brand-img { height: 44px; width: auto; object-fit: contain; border-radius: 50%; border: 1.5px solid var(--gold); box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
     .brand .nm { font: 500 20px Georgia, serif; letter-spacing: .25em; text-transform: uppercase; color: var(--fg); }
@@ -83,7 +82,7 @@
     .sec h2 { font: 400 26px Georgia, serif; text-align: center; margin-bottom: 28px; position: relative; }
     .sec h2::after { content: ""; display: block; width: 45px; height: 2px; background: var(--gold); margin: 12px auto 0; }
 
-    /* Categories Grid (Con tus imágenes nuevas incorporadas) */
+    /* Categories Grid */
     .cats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
     .cat { aspect-ratio: 4/5; background: var(--card); border-radius: 16px; position: relative; overflow: hidden; color: #fff; display: flex; align-items: flex-end; padding: 16px; letter-spacing: .1em; text-transform: uppercase; font-size: 11px; cursor: pointer; border: 0; transition: transform .3s, box-shadow .3s; }
     .cat .ci { position: absolute; inset: 0; background-size: cover; background-position: center; transition: transform .5s; }
@@ -92,30 +91,30 @@
     .cat:hover { transform: translateY(-4px); box-shadow: 0 12px 24px rgba(0,0,0,0.15); }
     .cat:hover .ci { transform: scale(1.08); }
 
-    /* Products Grid */
+    /* Products Grid (Cuadrados de imagen agrandados para mejor visibilidad) */
     .tools { display: flex; gap: 10px; justify-content: space-between; flex-wrap: wrap; margin-bottom: 24px; align-items: center; }
     select { background: var(--soft); color: var(--fg); border: 1px solid var(--line); padding: 8px 14px; font: inherit; border-radius: 20px; outline: 0; cursor: pointer; }
     
-    .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
-    .p { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 12px; position: relative; transition: all .3s ease; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 4px 12px rgba(0,0,0,0.03); }
-    .p:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(0,0,0,0.08); border-color: var(--gold); }
+    .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    .p { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 14px; position: relative; transition: all .3s ease; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 4px 15px rgba(0,0,0,0.04); }
+    .p:hover { transform: translateY(-5px); box-shadow: 0 14px 35px rgba(0,0,0,0.1); border-color: var(--gold); }
     
-    .ph { aspect-ratio: 3/4; background: var(--soft); border-radius: 10px; overflow: hidden; position: relative; cursor: pointer; margin-bottom: 10px; }
+    .ph { aspect-ratio: 3/4; background: var(--soft); border-radius: 12px; overflow: hidden; position: relative; cursor: pointer; margin-bottom: 12px; }
     .ph img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s; }
     .p:hover .ph img { transform: scale(1.06); }
-    .ph::after { content: "Ver"; position: absolute; left: 50%; bottom: 10px; transform: translate(-50%, 10px); background: #ffffffcc; color: #1a1216; font-size: 10px; letter-spacing: .1em; text-transform: uppercase; padding: 5px 12px; border-radius: 15px; opacity: 0; transition: all .25s; pointer-events: none; white-space: nowrap; font-weight: 700; }
+    .ph::after { content: "Ver"; position: absolute; left: 50%; bottom: 12px; transform: translate(-50%, 10px); background: #ffffffcc; color: #1a1216; font-size: 10px; letter-spacing: .1em; text-transform: uppercase; padding: 6px 14px; border-radius: 15px; opacity: 0; transition: all .25s; pointer-events: none; white-space: nowrap; font-weight: 700; }
     .p:hover .ph::after { opacity: 1; transform: translate(-50%, 0); }
 
-    .tag { position: absolute; top: 18px; left: 18px; z-index: 2; background: linear-gradient(90deg, #8c1d3a, #c2185b); color: #fff; font-size: 9px; letter-spacing: .08em; padding: 3px 8px; border-radius: 20px; font-weight: 700; text-transform: uppercase; }
-    .heart { position: absolute; top: 18px; right: 18px; z-index: 2; font-size: 16px; background: #ffffff; color: #1a1216; border-radius: 50%; width: 30px; height: 30px; display: grid; place-items: center; box-shadow: 0 2px 6px rgba(0,0,0,0.1); transition: transform .2s, color .2s; }
+    .tag { position: absolute; top: 20px; left: 20px; z-index: 2; background: linear-gradient(90deg, #8c1d3a, #c2185b); color: #fff; font-size: 9px; letter-spacing: .08em; padding: 3px 9px; border-radius: 20px; font-weight: 700; text-transform: uppercase; }
+    .heart { position: absolute; top: 20px; right: 20px; z-index: 2; font-size: 16px; background: #ffffff; color: #1a1216; border-radius: 50%; width: 32px; height: 32px; display: grid; place-items: center; box-shadow: 0 2px 6px rgba(0,0,0,0.1); transition: transform .2s, color .2s; }
     .heart:hover { transform: scale(1.15); }
     .heart.on { color: #c2185b; }
 
-    .p h3 { font: 400 14px/1.3 Georgia, serif; margin-top: 4px; color: var(--fg); }
-    .p .pr { font-size: 15px; font-weight: 700; margin-top: 6px; color: var(--gold); }
+    .p h3 { font: 400 15px/1.3 Georgia, serif; margin-top: 4px; color: var(--fg); }
+    .p .pr { font-size: 16px; font-weight: 700; margin-top: 6px; color: var(--gold); }
     .p .old { text-decoration: line-through; color: var(--mut); font-weight: 400; font-size: 12px; margin-left: 4px; }
     
-    .add { width: 100%; border-radius: 10px; background: var(--acc); color: var(--bg); border: 0; padding: 10px; margin-top: 12px; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; font-weight: 700; transition: all .2s; }
+    .add { width: 100%; border-radius: 12px; background: var(--acc); color: var(--bg); border: 0; padding: 11px; margin-top: 14px; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; font-weight: 700; transition: all .2s; }
     .add:hover { background: var(--gold); color: #1a1216; }
 
     /* WhatsApp Channel Sec */
@@ -162,7 +161,7 @@
 
     @media(min-width: 768px) {
       .cats { grid-template-columns: repeat(4, 1fr); }
-      .grid { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 20px; }
+      .grid { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 24px; }
       .qvb { grid-template-columns: 1fr 1fr; gap: 24px; padding: 24px; max-width: 720px; }
       footer { grid-template-columns: repeat(4, 1fr); }
       .brand-img { height: 50px; }
@@ -190,7 +189,7 @@
 
 <header>
   <div class="top">
-    <!-- Logo mejorado y estético -->
+    <!-- Logo mejorado -->
     <a class="brand" onclick="filterCat('Todos')">
       <img src="isidora.jpg" alt="Logo ISIRA" class="brand-img">
       <span class="nm">ISIRA</span>
@@ -222,7 +221,7 @@
     <a class="btn" href="#tienda" id="hb">Explorar Ahora</a>
   </div>
   <div class="hp2" id="hprod">
-    <img id="heroImg" src="victoria2.jpg" alt="Destacado">
+    <img id="heroImg" src="prodcuto1.jpeg" alt="Destacado">
   </div>
   <div class="dots" id="dots"></div>
 </section>
@@ -325,37 +324,37 @@ const CFG = {
 
 const CATEGORIES = ["Todos", "Perfumes de mujer", "Perfumes de hombre", "Unisex", "Sets de regalo"];
 
-/* BANNER HERO SLIDES (Integrando tus imágenes nuevas) */
+/* BANNER HERO SLIDES */
 const HERO_SLIDES = [
   {
     title: "El Arte de la Fragancia",
     desc: "Notas exclusivas creadas para perdurar y destacar tu presencia.",
     btn: "Ver Colección",
     cat: "Perfumes de mujer",
-    img: "victoria2.jpg"
+    img: "prodcuto1.jpeg"
   },
   {
     title: "Sets de Regalo Premium",
     desc: "El detalle perfecto para ocasiones inolvidables envuelto en lujo.",
     btn: "Ver Regalos",
     cat: "Sets de regalo",
-    img: "victoriasecret.jpg"
+    img: "producto3.jpeg"
   },
   {
     title: "Esencias Elegantes",
     desc: "Intensidad y elegancia capturadas en frascos de diseño.",
     btn: "Explorar Hombre",
     cat: "Perfumes de hombre",
-    img: "vicotir4.jpg"
+    img: "producto2.jpeg"
   }
 ];
 
-/* PRODUCTOS */
+/* PRODUCTOS RESTAURADOS CON SUS IMÁGENES ORIGINALES */
 const PRODUCTS = [
-  { id: 1, name: "Isira Elixir Noir 100ml", cat: "Perfumes de mujer", price: 420, oldPrice: 490, tag: "Nuevo", img: "victoria2.jpg", desc: "Una fragancia oriental con notas de vainilla negra y jazmín silvestre." },
-  { id: 2, name: "Velvet Rose EDP 50ml", cat: "Perfumes de mujer", price: 350, oldPrice: 0, tag: "Popular", img: "victoriasecret.jpg", desc: "Rosas frescas combinadas con un toque dulce de pimienta rosa." },
-  { id: 3, name: "Oud Royale Unisex 100ml", cat: "Unisex", price: 680, oldPrice: 750, tag: "Exclusivo", img: "vicotir4.jpg", desc: "Madera de Oud seleccionada con matices de cuero y azafrán dorado." },
-  { id: 4, name: "Imperium Homme 100ml", cat: "Perfumes de hombre", price: 410, oldPrice: 0, tag: "Nuevo", img: "victoria2.jpg", desc: "Carácter amaderado intenso con notas cítricas de bergamota." }
+  { id: 1, name: "Isira Elixir Noir 100ml", cat: "Perfumes de mujer", price: 420, oldPrice: 490, tag: "Nuevo", img: "prodcuto1.jpeg", desc: "Una fragancia oriental con notas de vainilla negra y jazmín silvestre." },
+  { id: 2, name: "Velvet Rose EDP 50ml", cat: "Perfumes de mujer", price: 350, oldPrice: 0, tag: "Popular", img: "producto2.jpeg", desc: "Rosas frescas combinadas con un toque dulce de pimienta rosa." },
+  { id: 3, name: "Oud Royale Unisex 100ml", cat: "Unisex", price: 680, oldPrice: 750, tag: "Exclusivo", img: "producto3.jpeg", desc: "Madera de Oud seleccionada con matices de cuero y azafrán dorado." },
+  { id: 4, name: "Imperium Homme 100ml", cat: "Perfumes de hombre", price: 410, oldPrice: 0, tag: "Nuevo", img: "producto4.jpeg", desc: "Carácter amaderado intenso con notas cítricas de bergamota." }
 ];
 
 let currentCategory = "Todos";
@@ -379,14 +378,14 @@ function renderNav() {
   ).join("");
 }
 
-/* CATEGORÍAS CON TUS NUEVAS IMÁGENES COLOCADAS EN SU ZONA */
+/* CATEGORÍAS */
 function renderCategories() {
   const catsContainer = document.getElementById("cats");
   const catData = [
-    { name: "Perfumes de mujer", img: "victoria2.jpg" },
-    { name: "Perfumes de hombre", img: "vicotir4.jpg" },
-    { name: "Unisex", img: "victoriasecret.jpg" },
-    { name: "Sets de regalo", img: "victoria2.jpg" }
+    { name: "Perfumes de mujer", img: "prodcuto1.jpeg" },
+    { name: "Perfumes de hombre", img: "producto4.jpeg" },
+    { name: "Unisex", img: "producto3.jpeg" },
+    { name: "Sets de regalo", img: "producto2.jpeg" }
   ];
 
   catsContainer.innerHTML = catData.map(c => `
