@@ -57,7 +57,7 @@
     nav .gift { background: linear-gradient(90deg, #8c1d3a, #c2185b); color: #fff; padding: 6px 14px; border-radius: 30px; border-bottom: 0; box-shadow: 0 3px 10px #8c1d3a55; }
     nav .gift:hover { filter: brightness(1.12); color: #fff; }
 
-    /* Hero Banner Rediseñado y Agrandado */
+    /* Hero Banner */
     .hero { min-height: 60vh; display: grid; grid-template-columns: 1.1fr 0.9fr; align-items: center; padding: 6vw 8vw; background: radial-gradient(circle at 75% 40%, #5a2238 0%, #2f1220 50%, #150910 100%); color: #fff; position: relative; overflow: hidden; gap: 40px; }
     .hero::before { content: ""; position: absolute; inset: 0; background: radial-gradient(circle at 20% 50%, rgba(201, 162, 75, 0.08), transparent 50%); z-index: 1; pointer-events: none; }
     .hc { position: relative; z-index: 2; }
@@ -66,7 +66,6 @@
     .btn { display: inline-block; background: #fff; color: #2a1520; padding: 14px 32px; letter-spacing: .15em; font-size: 11px; text-transform: uppercase; font-weight: 700; border-radius: 30px; text-decoration: none; transition: all .3s cubic-bezier(0.2, 0.8, 0.2, 1); box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
     .btn:hover { background: var(--gold); color: #1a1216; transform: translateY(-3px); box-shadow: 0 8px 25px rgba(201,162,75,0.4); }
     
-    /* Cuadro de imagen agrandado, lujoso y con mejor presencia visual */
     .hp2 { position: relative; z-index: 2; display: flex; justify-content: center; align-items: center; }
     .hp2 img { width: 100%; max-width: 320px; aspect-ratio: 3/4; object-fit: cover; border-radius: 20px; box-shadow: 0 25px 60px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.12); transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1); }
     .hp2 img:hover { transform: scale(1.03); }
@@ -161,6 +160,26 @@
     .qvb h3 { font: 400 22px Georgia, serif; margin-bottom: 6px; }
     .qvx { position: absolute; top: 10px; right: 14px; font-size: 22px; color: var(--mut); }
 
+    /* --- NUEVO: Welcome Modal (Pop-Up Inicial) --- */
+    .wm-ov { position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 100; display: none; place-items: center; padding: 20px; backdrop-filter: blur(4px); opacity: 0; transition: opacity 0.4s ease; }
+    .wm-ov.show { display: grid; opacity: 1; }
+    .wm-box { background: var(--bg); max-width: 800px; width: 100%; max-height: 90vh; border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; position: relative; box-shadow: 0 25px 50px rgba(0,0,0,0.3); }
+    .wm-close { position: absolute; top: 16px; right: 16px; font-size: 20px; color: var(--mut); z-index: 10; background: #fff; width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center; box-shadow: 0 2px 8px rgba(0,0,0,0.1); cursor: pointer; border: none; }
+    .wm-img { display: none; }
+    .wm-content { padding: 40px 30px; overflow-y: auto; flex: 1; display: flex; flex-direction: column; }
+    .wm-content h2 { font: 800 32px/1.2 "Helvetica Neue", Arial, sans-serif; margin-bottom: 12px; color: #111; letter-spacing: -0.02em; }
+    .wm-sub { font-size: 13px; color: var(--mut); margin-bottom: 24px; line-height: 1.5; }
+    .wm-content label { font-size: 14px; font-weight: 600; margin-bottom: 8px; display: block; color: #111; }
+    .wm-content input { width: 100%; border: 1px solid var(--line); padding: 12px 14px; border-radius: 6px; font-size: 14px; margin-bottom: 16px; outline: none; transition: border-color 0.2s; }
+    .wm-content input:focus { border-color: var(--gold); }
+    .wm-msg { font-size: 12px; color: var(--mut); margin-bottom: 16px; }
+    .wm-phone { display: flex; gap: 10px; margin-bottom: 24px; }
+    .wm-phone select { border: 1px solid var(--line); padding: 0 10px; border-radius: 6px; background: #fff; outline: none; font-size: 14px; color: var(--fg); cursor: pointer; }
+    .wm-desc { font: 700 18px/1.3 "Helvetica Neue", Arial, sans-serif; margin-bottom: 12px; color: #111; }
+    .wm-legal { font-size: 10px; color: var(--mut); margin-bottom: 24px; font-style: italic; }
+    .wm-btn { background: #e26a7e; color: #fff; font-weight: 700; font-size: 15px; padding: 16px; border-radius: 6px; width: 100%; transition: background 0.2s; border: none; cursor: pointer; }
+    .wm-btn:hover { background: #c55365; }
+
     @media(min-width: 768px) {
       .cats { grid-template-columns: repeat(4, 1fr); }
       .grid { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 24px; }
@@ -168,6 +187,12 @@
       footer { grid-template-columns: repeat(4, 1fr); }
       .brand-img { height: 50px; }
       .brand .nm { font-size: 24px; }
+      
+      /* Ajuste responsive para el nuevo Modal */
+      .wm-box { flex-direction: row; }
+      .wm-img { display: block; flex: 1; background: #f0f0f0; position: relative; }
+      .wm-img img { width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0; }
+      .wm-content { flex: 1.2; padding: 50px 40px; }
     }
 
     /* Floating WhatsApp Button */
@@ -308,6 +333,39 @@
   </div>
 </div>
 
+<!-- NUEVO: Welcome Modal (Suscripción/Promo al Entrar) -->
+<div class="wm-ov" id="welcomeModal" onclick="if(event.target===this)closeWelcomeModal()">
+  <div class="wm-box">
+    <button class="wm-close" onclick="closeWelcomeModal()">✕</button>
+    <!-- Usa una imagen que ya tienes en el proyecto -->
+    <div class="wm-img">
+      <img src="mujeralas.jpg" alt="Promo de Bienvenida ISIRA">
+    </div>
+    <div class="wm-content">
+      <h2>Obtén 15 % OFF en tu pedido</h2>
+      <p class="wm-sub">Al registrarte con tu correo electrónico. Solo para nuevos suscriptores. Aplican exclusiones.</p>
+      
+      <label>Correo Electrónico *</label>
+      <input type="email" placeholder="john.doe@example.com">
+      
+      <p class="wm-msg">Recibe mensajes de textos sobre ofertas y novedades</p>
+      
+      <label>Teléfono</label>
+      <div class="wm-phone">
+        <select><option>🇵🇪 +51</option></select>
+        <input type="tel" placeholder="Tu número de teléfono">
+      </div>
+      
+      <!-- Se ha adaptado el texto para incluir Tecnología y Perfumes -->
+      <h3 class="wm-desc">Descubre una nueva forma de comprar tu Tecnología y Perfumes favoritos online.</h3>
+      
+      <p class="wm-legal">Aplican Términos de uso, Política de privacidad y Aviso de incentivo financiero.</p>
+      
+      <button class="wm-btn" onclick="closeWelcomeModal()">Obtener código de descuento</button>
+    </div>
+  </div>
+</div>
+
 <!-- Floating WhatsApp Button -->
 <a class="wa" id="wa" href="#" onclick="openWhatsAppContact(event)" aria-label="WhatsApp">
   <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2zm5.2 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.8s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.6c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.1 1 2 1.3 2.3 1.4.3.1.5.1.6-.1l.9-1.1c.2-.2.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.2.1.8-.1 1.4z"/></svg>
@@ -371,7 +429,19 @@ document.addEventListener("DOMContentLoaded", () => {
   renderHero();
   render();
   setInterval(nextHero, 6000);
+  
+  // NUEVO: Lógica para mostrar el modal de bienvenida solo una vez
+  if (!localStorage.getItem('isiraWelcomeShown')) {
+    setTimeout(() => {
+      document.getElementById('welcomeModal').classList.add('show');
+    }, 1500); // Aparece después de 1.5 segundos de entrar
+  }
 });
+
+function closeWelcomeModal() {
+  document.getElementById('welcomeModal').classList.remove('show');
+  localStorage.setItem('isiraWelcomeShown', 'true'); // Guarda que ya se mostró
+}
 
 function renderNav() {
   const nav = document.getElementById("nav");
