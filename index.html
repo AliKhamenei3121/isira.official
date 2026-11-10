@@ -4,9 +4,10 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   
-  <!-- Título acortado y llamada a un PNG transparente para corregir el logo de la pestaña -->
-  <title>ISIRA | Alta Perfumería</title>
-  <link rel="icon" href="logo.png" type="image/png">
+  <!-- Logo corregido para que aparezca en la pestaña -->
+  <title>ISIRA | Alta Perfumería & Tecnología</title>
+  <link rel="icon" href="isidora.jpg" type="image/jpeg">
+  <link rel="apple-touch-icon" href="isidora.jpg">
   
   <style>
     :root {
@@ -59,7 +60,7 @@
     nav .gift { background: linear-gradient(90deg, #8c1d3a, #c2185b); color: #fff; padding: 6px 14px; border-radius: 30px; border-bottom: 0; box-shadow: 0 3px 10px #8c1d3a55; }
     nav .gift:hover { filter: brightness(1.12); color: #fff; }
 
-    /* Hero Banner Modificado con Video de Fondo */
+    /* Hero Banner - Video Fondo */
     .hero { min-height: 60vh; display: grid; grid-template-columns: 1.1fr 0.9fr; align-items: center; padding: 6vw 8vw; background: #1a0a12; color: #fff; position: relative; overflow: hidden; gap: 40px; }
     
     .hero-vid { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; pointer-events: none; }
@@ -83,14 +84,17 @@
     .ha:hover { background: rgba(255,255,255,0.4); transform: translateY(-50%) scale(1.05); }
     .ha.l { left: 16px; } .ha.r { right: 16px; }
 
-    /* Ajuste del Hero para celulares */
+    /* FIX MÓVIL: Diseño completamente ordenado para que no se superponga */
     @media(max-width: 767px) {
-      .hero { grid-template-columns: 1fr; padding: 25vw 5vw 12vw; text-align: center; gap: 25px; }
-      .hc { order: 2; }
-      .hp2 { order: 1; }
-      .hp2 img { max-width: 220px; }
+      .hero { grid-template-columns: 1fr; padding: 120px 5vw 80px; text-align: center; gap: 30px; align-items: flex-start; }
+      /* Ponemos el texto arriba */
+      .hc { order: 1; margin-bottom: 10px; }
+      /* Ponemos la imagen abajo */
+      .hp2 { order: 2; width: 100%; }
+      .hp2 img { max-width: 240px; margin: 0 auto; }
       .hero p { margin-left: auto; margin-right: auto; }
       .dots { left: 50%; transform: translateX(-50%); bottom: 15px; }
+      .ha { top: 70%; } /* Baja las flechas del slider en móvil */
     }
 
     /* Sections */
@@ -209,7 +213,7 @@
       .wm-content { flex: 1.2; padding: 50px 40px; }
     }
 
-    /* REDES SOCIALES FLOTANTES MEJORADAS PARA MÓVIL */
+    /* REDES SOCIALES FLOTANTES */
     .floating-socials { position: fixed; right: 16px; bottom: 16px; display: flex; flex-direction: column; gap: 12px; z-index: 50; }
     .fs-icon { width: 52px; height: 52px; border-radius: 50%; display: grid; place-items: center; color: #fff; box-shadow: 0 4px 16px rgba(0,0,0,0.2); transition: transform .2s; text-decoration: none; }
     .fs-icon svg { width: 24px; height: 24px; }
@@ -220,9 +224,9 @@
     .fs-icon.wa::after { content: ""; position: absolute; inset: 0; border-radius: 50%; border: 2px solid #25d366; animation: pl 2.2s infinite; }
     @keyframes pl { 0% { transform: scale(1); opacity: .7; } 100% { transform: scale(1.6); opacity: 0; } }
 
-    /* Ajustes específicos para que en celular se vean estilizados y no estorben */
+    /* Fix Redes Sociales en Celular para que no tapen la barra del navegador */
     @media(max-width: 767px) {
-      .floating-socials { right: 12px; bottom: 12px; gap: 10px; }
+      .floating-socials { right: 12px; bottom: 80px; gap: 10px; }
       .fs-icon { width: 44px; height: 44px; }
       .fs-icon svg { width: 20px; height: 20px; }
     }
@@ -263,10 +267,9 @@
   <nav id="nav"></nav>
 </header>
 
-<!-- Banner Hero con Video de Fondo -->
+<!-- Banner Hero con Video de Fondo (Ahora adaptado para celular con webkit-playsinline) -->
 <section class="hero" id="hero">
-  <!-- El video se reproduce solo, en silencio, en bucle y adaptado a móviles -->
-  <video autoplay muted loop playsinline class="hero-vid">
+  <video autoplay muted loop playsinline webkit-playsinline class="hero-vid">
     <source src="videosecret.mp4" type="video/mp4">
   </video>
   <div class="hero-overlay"></div>
@@ -363,7 +366,7 @@
   </div>
 </div>
 
-<!-- Welcome Modal (Aparece una sola vez por sesión) -->
+<!-- Welcome Modal (Aparece al entrar, no molesta más, vuelve a salir si cierran y abren de nuevo la web) -->
 <div class="wm-ov" id="welcomeModal" onclick="if(event.target===this)closeWelcomeModal()">
   <div class="wm-box">
     <button class="wm-close" onclick="closeWelcomeModal()">✕</button>
@@ -467,7 +470,7 @@ document.addEventListener("DOMContentLoaded", () => {
   render();
   setInterval(nextHero, 6000);
   
-  // SOLUCIÓN AL POP-UP: Mostrar solo una vez por sesión para que no moleste
+  // SOLUCIÓN AL POP-UP: Mostrar solo la primera vez que se entra en la sesión
   if (!sessionStorage.getItem('isiraWelcomeShown')) {
     setTimeout(() => {
       document.getElementById('welcomeModal').classList.add('show');
