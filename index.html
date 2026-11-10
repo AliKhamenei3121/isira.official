@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -23,9 +22,22 @@
       padding-top: env(safe-area-inset-top, 0px);
       padding-bottom: env(safe-area-inset-bottom, 0px);
     }
+
+    /* MODO NOCHE (DARK MODE) */
+    body.dark-mode {
+      --bg: #120b0f;
+      --fg: #f3eef1;
+      --mut: #a89aa0;
+      --line: #2d1e26;
+      --soft: #1c1218;
+      --acc: #c9a24b;
+      --gold: #dfbc63;
+      --card: #191016;
+    }
+
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; scroll-padding-top: 80px; }
-    body { background: var(--bg); color: var(--fg); font: 15px/1.5 "Helvetica Neue", Arial, sans-serif; }
+    body { background: var(--bg); color: var(--fg); font: 15px/1.5 "Helvetica Neue", Arial, sans-serif; transition: background 0.3s, color 0.3s; }
     button { font: inherit; color: inherit; cursor: pointer; background: none; border: 0; }
 
     /* Promo Bar */
@@ -35,14 +47,14 @@
     .promo button:hover { background: var(--fg); color: var(--bg); }
 
     /* Header & Nav */
-    header { border-bottom: 1px solid var(--line); position: sticky; top: env(safe-area-inset-top, 0px); background: var(--bg); z-index: 20; backdrop-filter: blur(8px); }
+    header { border-bottom: 1px solid var(--line); position: sticky; top: env(safe-area-inset-top, 0px); background: var(--bg); z-index: 20; backdrop-filter: blur(8px); transition: background 0.3s, border-color 0.3s; }
     .top { display: flex; justify-content: space-between; align-items: center; padding: 12px 5vw; gap: 10px; }
     
     .brand { display: flex; align-items: center; gap: 10px; cursor: pointer; text-decoration: none; color: inherit; }
     .brand-img { height: 44px; width: auto; object-fit: contain; border-radius: 50%; border: 1.5px solid var(--gold); box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
     .brand .nm { font: 500 20px Georgia, serif; letter-spacing: .25em; text-transform: uppercase; color: var(--fg); }
     
-    .right { display: flex; gap: 8px; align-items: center; }
+    .right { display: flex; gap: 6px; align-items: center; }
     .search { display: flex; align-items: center; background: var(--soft); border: 1px solid var(--line); border-radius: 30px; padding: 6px 12px; gap: 8px; transition: all .2s; }
     .search svg { color: var(--mut); flex: none; }
     .search input { border: 0; background: none; outline: 0; color: var(--fg); width: 100px; font: inherit; transition: width .25s; }
@@ -60,9 +72,8 @@
     nav .gift { background: linear-gradient(90deg, #8c1d3a, #c2185b); color: #fff; padding: 6px 14px; border-radius: 30px; border-bottom: 0; box-shadow: 0 3px 10px #8c1d3a55; }
     nav .gift:hover { filter: brightness(1.12); color: #fff; }
 
-    /* Hero Banner - Video Fondo 1 (VICOTRIAAA7) */
+    /* Hero Banner - Video Fondo 1 (VICOTRIAAA7.mp4) */
     .hero { min-height: 60vh; display: grid; grid-template-columns: 1.1fr 0.9fr; align-items: center; padding: 6vw 8vw; background: #1a0a12; color: #fff; position: relative; overflow: hidden; gap: 40px; }
-    
     .hero-vid { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; pointer-events: none; }
     .hero-overlay { position: absolute; inset: 0; background: rgba(21, 9, 16, 0.65); z-index: 1; pointer-events: none; }
     
@@ -96,7 +107,7 @@
 
     /* Sections */
     .sec { padding: 40px 5vw; }
-    .sec h2 { font: 400 26px Georgia, serif; text-align: center; margin-bottom: 28px; position: relative; }
+    .sec h2 { font: 400 26px Georgia, serif; text-align: center; margin-bottom: 28px; position: relative; color: var(--fg); }
     .sec h2::after { content: ""; display: block; width: 45px; height: 2px; background: var(--gold); margin: 12px auto 0; }
 
     /* Categories Grid */
@@ -148,7 +159,7 @@
     .chan .wb:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(37,211,102,0.6); }
 
     /* Footer */
-    footer { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; padding: 40px 5vw; font-size: 12px; color: var(--mut); border-top: 1px solid var(--line); background: var(--soft); }
+    footer { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; padding: 40px 5vw; font-size: 12px; color: var(--mut); border-top: 1px solid var(--line); background: var(--soft); transition: background 0.3s; }
     footer h4 { color: var(--fg); letter-spacing: .12em; font-size: 11px; margin-bottom: 10px; text-transform: uppercase; font-weight: 700; }
     footer p { margin-bottom: 6px; cursor: pointer; transition: color .2s; }
     footer p:hover { color: var(--gold); }
@@ -156,7 +167,7 @@
     /* Drawer / Cart */
     .ov { position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 100; display: none; backdrop-filter: blur(2px); }
     .ov.on { display: block; }
-    .drawer { position: fixed; top: 0; right: -100%; width: min(380px, 100%); height: 100%; background: var(--bg); z-index: 110; transition: right .3s ease; display: flex; flex-direction: column; box-shadow: -5px 0 25px rgba(0,0,0,0.1); }
+    .drawer { position: fixed; top: 0; right: -100%; width: min(380px, 100%); height: 100%; background: var(--bg); color: var(--fg); z-index: 110; transition: right .3s ease, background 0.3s; display: flex; flex-direction: column; box-shadow: -5px 0 25px rgba(0,0,0,0.1); }
     .drawer.on { right: 0; }
     .dh { display: flex; justify-content: space-between; padding: 18px; border-bottom: 1px solid var(--line); font: 20px Georgia, serif; color: var(--fg); }
     .items { flex: 1; overflow-y: auto; padding: 16px; }
@@ -174,7 +185,7 @@
     /* Quickview Modal */
     .qvw { position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 120; display: none; place-items: center; padding: 12px; backdrop-filter: blur(4px); }
     .qvw.on { display: grid; }
-    .qvb { background: var(--bg); max-width: 600px; width: 100%; max-height: 90vh; overflow-y: auto; display: grid; grid-template-columns: 1fr; gap: 16px; padding: 20px; position: relative; border-radius: 16px; box-shadow: 0 15px 40px rgba(0,0,0,0.2); border: 1px solid var(--line); }
+    .qvb { background: var(--bg); color: var(--fg); max-width: 600px; width: 100%; max-height: 90vh; overflow-y: auto; display: grid; grid-template-columns: 1fr; gap: 16px; padding: 20px; position: relative; border-radius: 16px; box-shadow: 0 15px 40px rgba(0,0,0,0.2); border: 1px solid var(--line); }
     .qvb img { width: 100%; aspect-ratio: 3/4; object-fit: cover; border-radius: 10px; }
     .qvb h3 { font: 400 22px Georgia, serif; margin-bottom: 6px; }
     .qvx { position: absolute; top: 10px; right: 14px; font-size: 22px; color: var(--mut); }
@@ -182,19 +193,19 @@
     /* Welcome Modal */
     .wm-ov { position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 150; display: none; place-items: center; padding: 20px; backdrop-filter: blur(4px); opacity: 0; transition: opacity 0.4s ease; }
     .wm-ov.show { display: grid; opacity: 1; }
-    .wm-box { background: var(--bg); max-width: 800px; width: 100%; max-height: 90vh; border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; position: relative; box-shadow: 0 25px 50px rgba(0,0,0,0.3); }
-    .wm-close { position: absolute; top: 16px; right: 16px; font-size: 20px; color: var(--mut); z-index: 10; background: #fff; width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center; box-shadow: 0 2px 8px rgba(0,0,0,0.1); cursor: pointer; border: none; }
+    .wm-box { background: var(--bg); color: var(--fg); max-width: 800px; width: 100%; max-height: 90vh; border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; position: relative; box-shadow: 0 25px 50px rgba(0,0,0,0.3); }
+    .wm-close { position: absolute; top: 16px; right: 16px; font-size: 20px; color: var(--mut); z-index: 10; background: var(--soft); width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center; box-shadow: 0 2px 8px rgba(0,0,0,0.1); cursor: pointer; border: none; }
     .wm-img { display: none; }
     .wm-content { padding: 40px 30px; overflow-y: auto; flex: 1; display: flex; flex-direction: column; }
-    .wm-content h2 { font: 800 32px/1.2 "Helvetica Neue", Arial, sans-serif; margin-bottom: 12px; color: #111; letter-spacing: -0.02em; }
+    .wm-content h2 { font: 800 32px/1.2 "Helvetica Neue", Arial, sans-serif; margin-bottom: 12px; color: var(--fg); letter-spacing: -0.02em; }
     .wm-sub { font-size: 13px; color: var(--mut); margin-bottom: 24px; line-height: 1.5; }
-    .wm-content label { font-size: 14px; font-weight: 600; margin-bottom: 8px; display: block; color: #111; }
-    .wm-content input { width: 100%; border: 1px solid var(--line); padding: 12px 14px; border-radius: 6px; font-size: 14px; margin-bottom: 16px; outline: none; transition: border-color 0.2s; }
+    .wm-content label { font-size: 14px; font-weight: 600; margin-bottom: 8px; display: block; color: var(--fg); }
+    .wm-content input { width: 100%; border: 1px solid var(--line); background: var(--soft); color: var(--fg); padding: 12px 14px; border-radius: 6px; font-size: 14px; margin-bottom: 16px; outline: none; transition: border-color 0.2s; }
     .wm-content input:focus { border-color: var(--gold); }
     .wm-msg { font-size: 12px; color: var(--mut); margin-bottom: 16px; }
     .wm-phone { display: flex; gap: 10px; margin-bottom: 24px; }
-    .wm-phone select { border: 1px solid var(--line); padding: 0 10px; border-radius: 6px; background: #fff; outline: none; font-size: 14px; color: var(--fg); cursor: pointer; }
-    .wm-desc { font: 700 18px/1.3 "Helvetica Neue", Arial, sans-serif; margin-bottom: 12px; color: #111; }
+    .wm-phone select { border: 1px solid var(--line); padding: 0 10px; border-radius: 6px; background: var(--soft); outline: none; font-size: 14px; color: var(--fg); cursor: pointer; }
+    .wm-desc { font: 700 18px/1.3 "Helvetica Neue", Arial, sans-serif; margin-bottom: 12px; color: var(--fg); }
     .wm-legal { font-size: 10px; color: var(--mut); margin-bottom: 24px; font-style: italic; }
     .wm-btn { background: #e26a7e; color: #fff; font-weight: 700; font-size: 15px; padding: 16px; border-radius: 6px; width: 100%; transition: background 0.2s; border: none; cursor: pointer; }
     .wm-btn:hover { background: #c55365; }
@@ -206,7 +217,6 @@
       footer { grid-template-columns: repeat(4, 1fr); }
       .brand-img { height: 50px; }
       .brand .nm { font-size: 24px; }
-      
       .wm-box { flex-direction: row; }
       .wm-img { display: block; flex: 1; background: #f0f0f0; position: relative; }
       .wm-img img { width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0; }
@@ -253,6 +263,10 @@
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
         <input id="q" placeholder="Buscar..." oninput="render()">
       </div>
+      <!-- Botón Modo Noche -->
+      <button class="ic" id="darkModeBtn" title="Cambiar Modo Noche/Día" onclick="toggleDarkMode()">
+        <svg id="moonIcon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+      </button>
       <button class="ic" title="Favoritos" onclick="toggleFavFilter()">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 20.5s-7.5-4.7-9.2-9.4A5.3 5.3 0 0 1 12 6.2a5.3 5.3 0 0 1 9.2 4.9c-1.7 4.7-9.2 9.4-9.2 9.4z"/></svg>
         <span class="badge" id="fc">0</span>
@@ -373,7 +387,7 @@
   </div>
 </div>
 
-<!-- Welcome Modal (Aparece al entrar, no molesta más en la misma sesión) -->
+<!-- Welcome Modal -->
 <div class="wm-ov" id="welcomeModal" onclick="if(event.target===this)closeWelcomeModal()">
   <div class="wm-box">
     <button class="wm-close" onclick="closeWelcomeModal()">✕</button>
@@ -404,17 +418,14 @@
   </div>
 </div>
 
-<!-- CONTENEDOR REDES SOCIALES FLOTANTES -->
+<!-- REDES SOCIALES FLOTANTES -->
 <div class="floating-socials">
-  <!-- Instagram -->
   <a class="fs-icon ig" href="https://www.instagram.com/isiraoffical/?hl=es" target="_blank" aria-label="Instagram">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
   </a>
-  <!-- TikTok -->
   <a class="fs-icon tk" href="https://www.tiktok.com/@isira.official?_r=1&_t=ZS-9A9iN6zh9tc&fbclid=PAZXh0bgNhZW0CMTEAcGRvZgJzcnRjBmFwcF9pZA85MzY2MTk3NDMzOTI0NTkAAaf2IdiGocYajGF1oFTbfguV7s9NNIJDCBPw1s7FDeZjOm1VK7ZbRt75C8vvWw_aem_bF2fU6RdvUW1Uc_9ieoJgQ" target="_blank" aria-label="TikTok">
     <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 15.68a6.34 6.34 0 0 0 6.27 6.32 6.32 6.32 0 0 0 6.27-6.32V10a8.27 8.27 0 0 0 4.18 1.13V7.67a4.93 4.93 0 0 1-2.13-.98z"/></svg>
   </a>
-  <!-- WhatsApp -->
   <a class="fs-icon wa" href="#" onclick="openWhatsAppContact(event)" aria-label="WhatsApp">
     <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2zm5.2 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.8s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.6c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.1 1 2 1.3 2.3 1.4.3.1.5.1.6-.1l.9-1.1c.2-.2.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.2.1.8-.1 1.4z"/></svg>
   </a>
@@ -477,7 +488,13 @@ document.addEventListener("DOMContentLoaded", () => {
   render();
   setInterval(nextHero, 6000);
   
-  // Mostrar modal de bienvenida solo la primera vez que se entra en la sesión
+  // Cargar preferencia de Modo Noche si el usuario ya lo había activado
+  if (localStorage.getItem('isiraDarkMode') === 'true') {
+    document.body.classList.add('dark-mode');
+    updateMoonIcon(true);
+  }
+
+  // Modal de bienvenida por sesión
   if (!sessionStorage.getItem('isiraWelcomeShown')) {
     setTimeout(() => {
       document.getElementById('welcomeModal').classList.add('show');
@@ -485,9 +502,25 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
+function toggleDarkMode() {
+  document.body.classList.toggle('dark-mode');
+  const isDark = document.body.classList.contains('dark-mode');
+  localStorage.setItem('isiraDarkMode', isDark);
+  updateMoonIcon(isDark);
+  showToast(isDark ? "Modo Noche Activado" : "Modo Día Activado");
+}
+
+function updateMoonIcon(isDark) {
+  const icon = document.getElementById('moonIcon');
+  if (isDark) {
+    icon.innerHTML = `<circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>`;
+  } else {
+    icon.innerHTML = `<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>`;
+  }
+}
+
 function closeWelcomeModal() {
   document.getElementById('welcomeModal').classList.remove('show');
-  // Guardamos en la sesión que ya lo cerró
   sessionStorage.setItem('isiraWelcomeShown', 'true');
 }
 
