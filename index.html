@@ -72,7 +72,7 @@
     nav .gift { background: linear-gradient(90deg, #8c1d3a, #c2185b); color: #fff; padding: 6px 14px; border-radius: 30px; border-bottom: 0; box-shadow: 0 3px 10px #8c1d3a55; }
     nav .gift:hover { filter: brightness(1.12); color: #fff; }
 
-    /* Hero Banner - Video Fondo 1 (VICOTRIAAA7.mp4) */
+    /* Hero Banner - Video Fondo 1 */
     .hero { min-height: 60vh; display: grid; grid-template-columns: 1.1fr 0.9fr; align-items: center; padding: 6vw 8vw; background: #1a0a12; color: #fff; position: relative; overflow: hidden; gap: 40px; }
     .hero-vid { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; pointer-events: none; }
     .hero-overlay { position: absolute; inset: 0; background: rgba(21, 9, 16, 0.65); z-index: 1; pointer-events: none; }
@@ -145,7 +145,29 @@
     .add { width: 100%; border-radius: 12px; background: var(--acc); color: var(--bg); border: 0; padding: 11px; margin-top: 14px; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; font-weight: 700; transition: all .2s; }
     .add:hover { background: var(--gold); color: #1a1216; }
 
-    /* WhatsApp Group Sec - Video Fondo 2 (pene.mp4) */
+    /* SECCIÓN DE RESEÑAS / TESTIMONIOS (NUEVO) */
+    .reviews-sec { padding: 50px 5vw; background: var(--soft); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); transition: background 0.3s; }
+    .reviews-container { max-width: 900px; margin: 0 auto; }
+    .reviews-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px; margin-bottom: 40px; }
+    .review-card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.03); display: flex; flex-direction: column; justify-content: space-between; }
+    .review-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+    .review-author { font-weight: 700; font-size: 14px; color: var(--fg); }
+    .review-stars { color: var(--gold); font-size: 14px; letter-spacing: 2px; }
+    .review-text { font-size: 13px; color: var(--mut); line-height: 1.5; margin-bottom: 12px; font-style: italic; }
+    .review-date { font-size: 10px; color: var(--mut); opacity: 0.8; }
+
+    /* Formulario para dejar reseña */
+    .review-form-box { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 30px; box-shadow: 0 8px 25px rgba(0,0,0,0.05); }
+    .review-form-box h3 { font: 400 20px Georgia, serif; margin-bottom: 16px; color: var(--fg); text-align: center; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 14px; }
+    @media(max-width: 600px) { .form-row { grid-template-columns: 1fr; } }
+    .review-form-box input, .review-form-box select, .review-form-box textarea { width: 100%; border: 1px solid var(--line); background: var(--bg); color: var(--fg); padding: 12px 14px; border-radius: 10px; font-size: 13px; outline: none; transition: border-color 0.2s; font-family: inherit; margin-bottom: 14px; }
+    .review-form-box input:focus, .review-form-box select:focus, .review-form-box textarea:focus { border-color: var(--gold); }
+    .review-form-box textarea { resize: vertical; min-height: 90px; }
+    .submit-review-btn { background: var(--acc); color: var(--bg); border: none; width: 100%; padding: 14px; border-radius: 25px; font-weight: 700; font-size: 12px; letter-spacing: .1em; text-transform: uppercase; transition: all .2s; }
+    .submit-review-btn:hover { background: var(--gold); color: #1a1216; }
+
+    /* WhatsApp Group Sec - Video Fondo 2 */
     .chan { position: relative; overflow: hidden; color: #fff; text-align: center; padding: 60px 5vw; border-radius: 20px; margin: 30px 5vw; box-shadow: 0 10px 30px rgba(0,0,0,0.15); }
     .chan-vid { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; pointer-events: none; }
     .chan-overlay { position: absolute; inset: 0; background: linear-gradient(120deg, rgba(42,21,32,0.85), rgba(90,42,64,0.7) 60%, rgba(140,74,98,0.85)); z-index: 1; pointer-events: none; }
@@ -319,6 +341,36 @@
   <div class="grid" id="grid"></div>
 </section>
 
+<!-- SECCIÓN DE RESEÑAS / TESTIMONIOS INTERACTIVA (NUEVO) -->
+<section class="reviews-sec">
+  <div class="reviews-container">
+    <h2>Opiniones de nuestras clientas</h2>
+    <p style="text-align:center; color:var(--mut); font-size:13px; margin-bottom:30px;">Descubre lo que dicen quienes ya confiaron en ISIRA o déjanos tu propia experiencia.</p>
+    
+    <!-- Listado de reseñas -->
+    <div class="reviews-grid" id="reviewsGrid"></div>
+
+    <!-- Formulario para dejar reseña -->
+    <div class="review-form-box">
+      <h3>Comparte tu experiencia</h3>
+      <form id="reviewForm" onsubmit="handleReviewSubmit(event)">
+        <div class="form-row">
+          <input type="text" id="reviewName" placeholder="Tu Nombre *" required>
+          <select id="reviewRating" required>
+            <option value="5">★★★★★ (5/5 - ¡Excelente!)</option>
+            <option value="4">★★★★☆ (4/5 - Muy bueno)</option>
+            <option value="3">★★★☆☆ (3/5 - Bueno)</option>
+            <option value="2">★★☆☆☆ (2/5 - Regular)</option>
+            <option value="1">★☆☆☆☆ (1 pseudonym - Malo)</option>
+          </select>
+        </div>
+        <textarea id="reviewComment" placeholder="Cuéntanos cómo fue tu experiencia con el producto o envío... *" required></textarea>
+        <button type="submit" class="submit-review-btn">Publicar Reseña</button>
+      </form>
+    </div>
+  </div>
+</section>
+
 <!-- COMUNIDAD ISIRA con Video Fondo 2 (pene.mp4) -->
 <section class="chan">
   <video autoplay muted loop playsinline webkit-playsinline class="chan-vid">
@@ -475,6 +527,13 @@ const PRODUCTS = [
   { id: 4, name: "Auriculares SoundPro", cat: "Tecnología", price: 410, oldPrice: 0, tag: "Nuevo", img: "producto4.jpeg", desc: "Cancelación de ruido activa con sonido envolvente premium." }
 ];
 
+/* Reseñas iniciales por defecto que se combinarán con el localStorage */
+let reviewsData = [
+  { name: "Lucía M.", rating: 5, comment: "¡El perfume huele increíble y llegó súper rápido a Surco! Lo amé.", date: "Hace 2 días" },
+  { name: "Camila R.", rating: 5, comment: "Pedí un set de regalo y la presentación en caja es de puro lujo. 10/10.", date: "Hace 5 días" },
+  { name: "Valeria S.", rating: 4, comment: "Excelente atención por WhatsApp, resolvieron todas mis dudas al toque.", date: "Hace 1 semana" }
+];
+
 let currentCategory = "Todos";
 let cartState = [];
 let favState = [];
@@ -486,21 +545,73 @@ document.addEventListener("DOMContentLoaded", () => {
   renderCategories();
   renderHero();
   render();
+  loadReviews();
   setInterval(nextHero, 6000);
   
-  // Cargar preferencia de Modo Noche si el usuario ya lo había activado
   if (localStorage.getItem('isiraDarkMode') === 'true') {
     document.body.classList.add('dark-mode');
     updateMoonIcon(true);
   }
 
-  // Modal de bienvenida por sesión
   if (!sessionStorage.getItem('isiraWelcomeShown')) {
     setTimeout(() => {
       document.getElementById('welcomeModal').classList.add('show');
     }, 1500);
   }
 });
+
+/* ===== GESTIÓN DE RESEÑAS CON LOCALSTORAGE ===== */
+function loadReviews() {
+  const saved = localStorage.getItem('isiraReviews');
+  if (saved) {
+    try {
+      reviewsData = JSON.parse(saved);
+    } catch(e) { console.error(e); }
+  }
+  renderReviews();
+}
+
+function renderReviews() {
+  const grid = document.getElementById("reviewsGrid");
+  grid.innerHTML = reviewsData.map(r => {
+    const stars = "★".repeat(r.rating) + "☆".repeat(5 - r.rating);
+    return `
+      <div class="review-card">
+        <div>
+          <div class="review-header">
+            <span class="review-author">${r.name}</span>
+            <span class="review-stars">${stars}</span>
+          </div>
+          <p class="review-text">"${r.comment}"</p>
+        </div>
+        <span class="review-date">${r.date}</span>
+      </div>
+    `;
+  }).join("");
+}
+
+function handleReviewSubmit(e) {
+  e.preventDefault();
+  const name = document.getElementById("reviewName").value.trim();
+  const rating = parseInt(document.getElementById("reviewRating").value);
+  const comment = document.getElementById("reviewComment").value.trim();
+
+  if(!name || !comment) return;
+
+  const newReview = {
+    name,
+    rating,
+    comment,
+    date: "Justo ahora"
+  };
+
+  reviewsData.unshift(newReview); // Agrega al inicio
+  localStorage.setItem('isiraReviews', JSON.stringify(reviewsData));
+  
+  renderReviews();
+  document.getElementById("reviewForm").reset();
+  showToast("¡Gracias por tu reseña!");
+}
 
 function toggleDarkMode() {
   document.body.classList.toggle('dark-mode');
