@@ -179,7 +179,7 @@
     .qvb h3 { font: 400 22px Georgia, serif; margin-bottom: 6px; }
     .qvx { position: absolute; top: 10px; right: 14px; font-size: 22px; color: var(--mut); }
 
-    /* Welcome Modal (Pop-Up Inicial) */
+    /* Welcome Modal (Aparece al entrar, no molesta más, vuelve a salir si cierran y abren de nuevo la web) */
     .wm-ov { position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 150; display: none; place-items: center; padding: 20px; backdrop-filter: blur(4px); opacity: 0; transition: opacity 0.4s ease; }
     .wm-ov.show { display: grid; opacity: 1; }
     .wm-box { background: var(--bg); max-width: 800px; width: 100%; max-height: 90vh; border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; position: relative; box-shadow: 0 25px 50px rgba(0,0,0,0.3); }
@@ -267,10 +267,10 @@
   <nav id="nav"></nav>
 </header>
 
-<!-- Banner Hero con Video de Fondo (Ahora adaptado para celular con webkit-playsinline) -->
+<!-- Banner Hero con el Nuevo Video de Fondo "VICOTRIAAA7.mp4" -->
 <section class="hero" id="hero">
   <video autoplay muted loop playsinline webkit-playsinline class="hero-vid">
-    <source src="videosecret.mp4" type="video/mp4">
+    <source src="VICOTRIAAA7.mp4" type="video/mp4">
   </video>
   <div class="hero-overlay"></div>
 
@@ -470,7 +470,7 @@ document.addEventListener("DOMContentLoaded", () => {
   render();
   setInterval(nextHero, 6000);
   
-  // SOLUCIÓN AL POP-UP: Mostrar solo la primera vez que se entra en la sesión
+  // Mostrar modal de bienvenida solo la primera vez que se entra en la sesión
   if (!sessionStorage.getItem('isiraWelcomeShown')) {
     setTimeout(() => {
       document.getElementById('welcomeModal').classList.add('show');
