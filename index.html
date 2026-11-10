@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>ISIRA | Alta Perfumería & Cosmetica</title>
+  <title>ISIRA | Alta Perfumería & Tecnología</title>
   <link rel="icon" href="isidora.jpg" type="image/jpeg">
   
   <style>
@@ -61,7 +61,7 @@
     .hero { min-height: 60vh; display: grid; grid-template-columns: 1.1fr 0.9fr; align-items: center; padding: 6vw 8vw; background: radial-gradient(circle at 75% 40%, #5a2238 0%, #2f1220 50%, #150910 100%); color: #fff; position: relative; overflow: hidden; gap: 40px; }
     .hero::before { content: ""; position: absolute; inset: 0; background: radial-gradient(circle at 20% 50%, rgba(201, 162, 75, 0.08), transparent 50%); z-index: 1; pointer-events: none; }
     .hc { position: relative; z-index: 2; }
-    .hero h1 { font: 400 clamp(30px, 4.5vw, 54px)/1.15 Georgia, serif; margin-bottom: 16px; text-shadow: 0 4px 20px rgba(0,0,0,0.6); letter-spacing: 0.02em; }
+    .hero h1 { font: 400 clamp(28px, 4.5vw, 54px)/1.15 Georgia, serif; margin-bottom: 16px; text-shadow: 0 4px 20px rgba(0,0,0,0.6); letter-spacing: 0.02em; }
     .hero p { margin-bottom: 24px; max-width: 480px; opacity: .9; font-size: 16px; font-weight: 300; line-height: 1.6; }
     .btn { display: inline-block; background: #fff; color: #2a1520; padding: 14px 32px; letter-spacing: .15em; font-size: 11px; text-transform: uppercase; font-weight: 700; border-radius: 30px; text-decoration: none; transition: all .3s cubic-bezier(0.2, 0.8, 0.2, 1); box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
     .btn:hover { background: var(--gold); color: #1a1216; transform: translateY(-3px); box-shadow: 0 8px 25px rgba(201,162,75,0.4); }
@@ -76,7 +76,17 @@
     
     .ha { position: absolute; top: 50%; z-index: 3; width: 44px; height: 44px; border-radius: 50%; background: rgba(255,255,255,0.15); color: #fff; font-size: 22px; display: grid; place-items: center; backdrop-filter: blur(6px); transition: all .2s; transform: translateY(-50%); border: 1px solid rgba(255,255,255,0.1); }
     .ha:hover { background: rgba(255,255,255,0.3); transform: translateY(-50%) scale(1.05); }
-    .ha.l { left: 24px; } .ha.r { right: 24px; }
+    .ha.l { left: 16px; } .ha.r { right: 16px; }
+
+    /* FIX MÓVIL: Ajuste del Hero para que no se sobreponga */
+    @media(max-width: 767px) {
+      .hero { grid-template-columns: 1fr; padding: 25vw 5vw 12vw; text-align: center; gap: 25px; }
+      .hc { order: 2; }
+      .hp2 { order: 1; }
+      .hp2 img { max-width: 220px; }
+      .hero p { margin-left: auto; margin-right: auto; }
+      .dots { left: 50%; transform: translateX(-50%); bottom: 15px; }
+    }
 
     /* Sections */
     .sec { padding: 40px 5vw; }
@@ -118,7 +128,7 @@
     .add { width: 100%; border-radius: 12px; background: var(--acc); color: var(--bg); border: 0; padding: 11px; margin-top: 14px; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; font-weight: 700; transition: all .2s; }
     .add:hover { background: var(--gold); color: #1a1216; }
 
-    /* WhatsApp Channel Sec */
+    /* WhatsApp Group Sec */
     .chan { background: linear-gradient(120deg, #2a1520, #5a2a40 60%, #8c4a62); color: #fff; text-align: center; padding: 40px 5vw; border-radius: 20px; margin: 30px 5vw; }
     .chan .k { letter-spacing: .3em; color: var(--gold); font-size: 11px; font-weight: 700; }
     .chan h2 { font: 400 clamp(22px, 4vw, 36px)/1.15 Georgia, serif; margin: 10px 0; }
@@ -135,9 +145,9 @@
     footer p:hover { color: var(--gold); }
 
     /* Drawer / Cart */
-    .ov { position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 40; display: none; backdrop-filter: blur(2px); }
+    .ov { position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 100; display: none; backdrop-filter: blur(2px); }
     .ov.on { display: block; }
-    .drawer { position: fixed; top: 0; right: -100%; width: min(380px, 100%); height: 100%; background: var(--bg); z-index: 50; transition: right .3s ease; display: flex; flex-direction: column; box-shadow: -5px 0 25px rgba(0,0,0,0.1); }
+    .drawer { position: fixed; top: 0; right: -100%; width: min(380px, 100%); height: 100%; background: var(--bg); z-index: 110; transition: right .3s ease; display: flex; flex-direction: column; box-shadow: -5px 0 25px rgba(0,0,0,0.1); }
     .drawer.on { right: 0; }
     .dh { display: flex; justify-content: space-between; padding: 18px; border-bottom: 1px solid var(--line); font: 20px Georgia, serif; color: var(--fg); }
     .items { flex: 1; overflow-y: auto; padding: 16px; }
@@ -153,15 +163,15 @@
     .go:hover { background: var(--gold); color: #1a1216; }
 
     /* Quickview Modal */
-    .qvw { position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 55; display: none; place-items: center; padding: 12px; backdrop-filter: blur(4px); }
+    .qvw { position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 120; display: none; place-items: center; padding: 12px; backdrop-filter: blur(4px); }
     .qvw.on { display: grid; }
     .qvb { background: var(--bg); max-width: 600px; width: 100%; max-height: 90vh; overflow-y: auto; display: grid; grid-template-columns: 1fr; gap: 16px; padding: 20px; position: relative; border-radius: 16px; box-shadow: 0 15px 40px rgba(0,0,0,0.2); border: 1px solid var(--line); }
     .qvb img { width: 100%; aspect-ratio: 3/4; object-fit: cover; border-radius: 10px; }
     .qvb h3 { font: 400 22px Georgia, serif; margin-bottom: 6px; }
     .qvx { position: absolute; top: 10px; right: 14px; font-size: 22px; color: var(--mut); }
 
-    /* --- NUEVO: Welcome Modal (Pop-Up Inicial) --- */
-    .wm-ov { position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 100; display: none; place-items: center; padding: 20px; backdrop-filter: blur(4px); opacity: 0; transition: opacity 0.4s ease; }
+    /* Welcome Modal (Pop-Up) */
+    .wm-ov { position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 150; display: none; place-items: center; padding: 20px; backdrop-filter: blur(4px); opacity: 0; transition: opacity 0.4s ease; }
     .wm-ov.show { display: grid; opacity: 1; }
     .wm-box { background: var(--bg); max-width: 800px; width: 100%; max-height: 90vh; border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; position: relative; box-shadow: 0 25px 50px rgba(0,0,0,0.3); }
     .wm-close { position: absolute; top: 16px; right: 16px; font-size: 20px; color: var(--mut); z-index: 10; background: #fff; width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center; box-shadow: 0 2px 8px rgba(0,0,0,0.1); cursor: pointer; border: none; }
@@ -188,23 +198,24 @@
       .brand-img { height: 50px; }
       .brand .nm { font-size: 24px; }
       
-      /* Ajuste responsive para el nuevo Modal */
       .wm-box { flex-direction: row; }
       .wm-img { display: block; flex: 1; background: #f0f0f0; position: relative; }
       .wm-img img { width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0; }
       .wm-content { flex: 1.2; padding: 50px 40px; }
     }
 
-    /* Floating WhatsApp Button */
-    .wa { position: fixed; right: 16px; bottom: 16px; width: 52px; height: 52px; border-radius: 50%; background: #25d366; color: #fff; display: grid; place-items: center; z-index: 30; box-shadow: 0 4px 16px rgba(0,0,0,0.2); transition: transform .2s; text-decoration: none; }
-    .wa:hover { transform: scale(1.08); }
-    .wa::after { content: ""; position: absolute; inset: 0; border-radius: 50%; border: 2px solid #25d366; animation: pl 2.2s infinite; }
+    /* REDES SOCIALES FLOTANTES */
+    .floating-socials { position: fixed; right: 16px; bottom: 16px; display: flex; flex-direction: column; gap: 12px; z-index: 50; }
+    .fs-icon { width: 52px; height: 52px; border-radius: 50%; display: grid; place-items: center; color: #fff; box-shadow: 0 4px 16px rgba(0,0,0,0.2); transition: transform .2s; text-decoration: none; }
+    .fs-icon:hover { transform: scale(1.1); }
+    .fs-icon.ig { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%); }
+    .fs-icon.tk { background: #000; }
+    .fs-icon.wa { background: #25d366; position: relative; }
+    .fs-icon.wa::after { content: ""; position: absolute; inset: 0; border-radius: 50%; border: 2px solid #25d366; animation: pl 2.2s infinite; }
     @keyframes pl { 0% { transform: scale(1); opacity: .7; } 100% { transform: scale(1.6); opacity: 0; } }
-    .wa span { position: absolute; right: 60px; background: var(--acc); color: var(--bg); padding: 5px 12px; border-radius: 20px; font-size: 11px; white-space: nowrap; opacity: 0; pointer-events: none; transition: opacity .2s; font-weight: 600; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
-    .wa:hover span { opacity: 1; }
 
     /* Toast Notification */
-    .toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); background: var(--acc); color: var(--bg); padding: 10px 20px; z-index: 60; display: none; border-radius: 30px; box-shadow: 0 4px 16px rgba(0,0,0,0.2); font-size: 12px; font-weight: 600; letter-spacing: .05em; text-align: center; }
+    .toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); background: var(--acc); color: var(--bg); padding: 10px 20px; z-index: 200; display: none; border-radius: 30px; box-shadow: 0 4px 16px rgba(0,0,0,0.2); font-size: 12px; font-weight: 600; letter-spacing: .05em; text-align: center; }
   </style>
 </head>
 <body>
@@ -239,7 +250,7 @@
   <nav id="nav"></nav>
 </header>
 
-<!-- Banner Hero con la imagen grande y fondo mejorado -->
+<!-- Banner Hero Mejorado para Celulares -->
 <section class="hero" id="hero">
   <button class="ha l" aria-label="Anterior" onclick="prevHero()">‹</button>
   <button class="ha r" aria-label="Siguiente" onclick="nextHero()">›</button>
@@ -275,15 +286,15 @@
 
 <section class="chan">
   <div class="k">COMUNIDAD ISIRA</div>
-  <h2>Únete a nuestro canal exclusivo</h2>
+  <h2>Únete a nuestro grupo oficial de WhatsApp</h2>
   <p>Accede a ofertas privadas y lanzamientos anticipados.</p>
   <ul>
     <li>✦ Lanzamientos VIP</li>
     <li>✦ Descuentos Únicos</li>
   </ul>
-  <a class="wb" href="#" onclick="openWhatsAppChannel(event)">
+  <a class="wb" href="https://chat.whatsapp.com/DRZ7OgROlmn7fprNIMhRSX" target="_blank">
     <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2zm5.2 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.8s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.6c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.1 1 2 1.3 2.3 1.4.3.1.5.1.6-.1l.9-1.1c.2-.2.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.2.1.8-.1 1.4z"/></svg>
-    Unirme al Canal
+    Unirme al Grupo
   </a>
 </section>
 
@@ -333,11 +344,10 @@
   </div>
 </div>
 
-<!-- NUEVO: Welcome Modal (Suscripción/Promo al Entrar) -->
+<!-- Welcome Modal (Pop-Up Inicial y cíclico) -->
 <div class="wm-ov" id="welcomeModal" onclick="if(event.target===this)closeWelcomeModal()">
   <div class="wm-box">
     <button class="wm-close" onclick="closeWelcomeModal()">✕</button>
-    <!-- Usa una imagen que ya tienes en el proyecto -->
     <div class="wm-img">
       <img src="mujeralas.jpg" alt="Promo de Bienvenida ISIRA">
     </div>
@@ -356,7 +366,6 @@
         <input type="tel" placeholder="Tu número de teléfono">
       </div>
       
-      <!-- Se ha adaptado el texto para incluir Tecnología y Perfumes -->
       <h3 class="wm-desc">Descubre una nueva forma de comprar tu Tecnología y Perfumes favoritos online.</h3>
       
       <p class="wm-legal">Aplican Términos de uso, Política de privacidad y Aviso de incentivo financiero.</p>
@@ -366,11 +375,21 @@
   </div>
 </div>
 
-<!-- Floating WhatsApp Button -->
-<a class="wa" id="wa" href="#" onclick="openWhatsAppContact(event)" aria-label="WhatsApp">
-  <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2zm5.2 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.8s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.6c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.1 1 2 1.3 2.3 1.4.3.1.5.1.6-.1l.9-1.1c.2-.2.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.2.1.8-.1 1.4z"/></svg>
-  <span>¿Dudas? Escríbenos</span>
-</a>
+<!-- CONTENEDOR REDES SOCIALES FLOTANTES -->
+<div class="floating-socials">
+  <!-- Instagram -->
+  <a class="fs-icon ig" href="https://www.instagram.com/isiraoffical/?hl=es" target="_blank" aria-label="Instagram">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+  </a>
+  <!-- TikTok -->
+  <a class="fs-icon tk" href="https://www.tiktok.com/@isira.official?_r=1&_t=ZS-9A9iN6zh9tc&fbclid=PAZXh0bgNhZW0CMTEAcGRvZgJzcnRjBmFwcF9pZA85MzY2MTk3NDMzOTI0NTkAAaf2IdiGocYajGF1oFTbfguV7s9NNIJDCBPw1s7FDeZjOm1VK7ZbRt75C8vvWw_aem_bF2fU6RdvUW1Uc_9ieoJgQ" target="_blank" aria-label="TikTok">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 15.68a6.34 6.34 0 0 0 6.27 6.32 6.32 6.32 0 0 0 6.27-6.32V10a8.27 8.27 0 0 0 4.18 1.13V7.67a4.93 4.93 0 0 1-2.13-.98z"/></svg>
+  </a>
+  <!-- WhatsApp -->
+  <a class="fs-icon wa" href="#" onclick="openWhatsAppContact(event)" aria-label="WhatsApp">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2zm5.2 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.8s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.6c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.1 1 2 1.3 2.3 1.4.3.1.5.1.6-.1l.9-1.1c.2-.2.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.2.1.8-.1 1.4z"/></svg>
+  </a>
+</div>
 
 <div class="toast" id="toast"></div>
 
@@ -383,14 +402,15 @@ const CFG = {
   whatsapp: "51908732482"
 };
 
-const CATEGORIES = ["Todos", "Perfumes de mujer", "Perfumes de hombre", "Unisex", "Sets de regalo"];
+// CATEGORÍAS ACTUALIZADAS (Tecnología y Perfumes)
+const CATEGORIES = ["Todos", "Tecnología", "Perfumes", "Sets de regalo"];
 
 const HERO_SLIDES = [
   {
     title: "El Arte de la Fragancia",
     desc: "Notas exclusivas creadas para perdurar y destacar tu presencia.",
     btn: "Ver Colección",
-    cat: "Perfumes de mujer",
+    cat: "Perfumes",
     img: "victoria2.jpg"
   },
   {
@@ -401,20 +421,19 @@ const HERO_SLIDES = [
     img: "victoriasecret.jpg"
   },
   {
-    title: "Esencias Elegantes",
-    desc: "Intensidad y elegancia capturadas en frascos de diseño.",
-    btn: "Explorar Hombre",
-    cat: "Perfumes de hombre",
+    title: "Innovación y Estilo",
+    desc: "Lo último en tecnología y gadgets para complementar tu día a día.",
+    btn: "Explorar",
+    cat: "Tecnología",
     img: "vicotir4.jpg"
   }
 ];
 
-/* PRODUCTOS INTOCABLES (Imágenes originales exactas) */
 const PRODUCTS = [
-  { id: 1, name: "Isira Elixir Noir 100ml", cat: "Perfumes de mujer", price: 420, oldPrice: 490, tag: "Nuevo", img: "prodcuto1.jpeg", desc: "Una fragancia oriental con notas de vainilla negra y jazmín silvestre." },
-  { id: 2, name: "Velvet Rose EDP 50ml", cat: "Perfumes de mujer", price: 350, oldPrice: 0, tag: "Popular", img: "producto2.jpeg", desc: "Rosas frescas combinadas con un toque dulce de pimienta rosa." },
-  { id: 3, name: "Oud Royale Unisex 100ml", cat: "Unisex", price: 680, oldPrice: 750, tag: "Exclusivo", img: "producto3.jpeg", desc: "Madera de Oud seleccionada con matices de cuero y azafrán dorado." },
-  { id: 4, name: "Imperium Homme 100ml", cat: "Perfumes de hombre", price: 410, oldPrice: 0, tag: "Nuevo", img: "producto4.jpeg", desc: "Carácter amaderado intenso con notas cítricas de bergamota." }
+  { id: 1, name: "Isira Elixir Noir 100ml", cat: "Perfumes", price: 420, oldPrice: 490, tag: "Nuevo", img: "prodcuto1.jpeg", desc: "Una fragancia oriental con notas de vainilla negra y jazmín silvestre." },
+  { id: 2, name: "Velvet Rose EDP 50ml", cat: "Perfumes", price: 350, oldPrice: 0, tag: "Popular", img: "producto2.jpeg", desc: "Rosas frescas combinadas con un toque dulce de pimienta rosa." },
+  { id: 3, name: "Smartwatch Elite Serie", cat: "Tecnología", price: 680, oldPrice: 750, tag: "Exclusivo", img: "producto3.jpeg", desc: "Diseño elegante con monitor de salud y sincronización total." },
+  { id: 4, name: "Auriculares SoundPro", cat: "Tecnología", price: 410, oldPrice: 0, tag: "Nuevo", img: "producto4.jpeg", desc: "Cancelación de ruido activa con sonido envolvente premium." }
 ];
 
 let currentCategory = "Todos";
@@ -430,17 +449,18 @@ document.addEventListener("DOMContentLoaded", () => {
   render();
   setInterval(nextHero, 6000);
   
-  // NUEVO: Lógica para mostrar el modal de bienvenida solo una vez
-  if (!localStorage.getItem('isiraWelcomeShown')) {
-    setTimeout(() => {
-      document.getElementById('welcomeModal').classList.add('show');
-    }, 1500); // Aparece después de 1.5 segundos de entrar
-  }
+  // LÓGICA DEL MODAL: Al entrar (1.5s) y cada 5 minutos
+  setTimeout(() => {
+    document.getElementById('welcomeModal').classList.add('show');
+  }, 1500);
+
+  setInterval(() => {
+    document.getElementById('welcomeModal').classList.add('show');
+  }, 300000); // 300,000 ms = 5 minutos
 });
 
 function closeWelcomeModal() {
   document.getElementById('welcomeModal').classList.remove('show');
-  localStorage.setItem('isiraWelcomeShown', 'true'); // Guarda que ya se mostró
 }
 
 function renderNav() {
@@ -453,9 +473,8 @@ function renderNav() {
 function renderCategories() {
   const catsContainer = document.getElementById("cats");
   const catData = [
-    { name: "Perfumes de mujer", img: "mujeralas.jpg" },
-    { name: "Perfumes de hombre", img: "alashombre.jpg" },
-    { name: "Unisex", img: "mujerlabios.jpg" },
+    { name: "Tecnología", img: "mujeralas.jpg" },
+    { name: "Perfumes", img: "alashombre.jpg" },
     { name: "Sets de regalo", img: "4foto.jpg" }
   ];
 
@@ -693,11 +712,6 @@ function checkout() {
   text += `\n\n¡Hola! Quisiera coordinar el pago y envío de mi pedido.`;
 
   window.open(`https://wa.me/${CFG.whatsapp}?text=${encodeURIComponent(text)}`, "_blank");
-}
-
-function openWhatsAppChannel(e) {
-  e.preventDefault();
-  window.open(`https://wa.me/${CFG.whatsapp}?text=${encodeURIComponent("¡Hola! Me gustaría unirme al canal exclusivo de ISIRA.")}`, "_blank");
 }
 
 function openWhatsAppContact(e) {
