@@ -1,10 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   
-  <!-- Logo corregido para que aparezca en la pestaña -->
   <title>ISIRA | Alta Perfumería & Tecnología</title>
   <link rel="icon" href="isidora.jpg" type="image/jpeg">
   <link rel="apple-touch-icon" href="isidora.jpg">
@@ -60,7 +60,7 @@
     nav .gift { background: linear-gradient(90deg, #8c1d3a, #c2185b); color: #fff; padding: 6px 14px; border-radius: 30px; border-bottom: 0; box-shadow: 0 3px 10px #8c1d3a55; }
     nav .gift:hover { filter: brightness(1.12); color: #fff; }
 
-    /* Hero Banner - Video Fondo */
+    /* Hero Banner - Video Fondo 1 (VICOTRIAAA7) */
     .hero { min-height: 60vh; display: grid; grid-template-columns: 1.1fr 0.9fr; align-items: center; padding: 6vw 8vw; background: #1a0a12; color: #fff; position: relative; overflow: hidden; gap: 40px; }
     
     .hero-vid { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; pointer-events: none; }
@@ -84,17 +84,14 @@
     .ha:hover { background: rgba(255,255,255,0.4); transform: translateY(-50%) scale(1.05); }
     .ha.l { left: 16px; } .ha.r { right: 16px; }
 
-    /* FIX MÓVIL: Diseño completamente ordenado para que no se superponga */
     @media(max-width: 767px) {
       .hero { grid-template-columns: 1fr; padding: 120px 5vw 80px; text-align: center; gap: 30px; align-items: flex-start; }
-      /* Ponemos el texto arriba */
       .hc { order: 1; margin-bottom: 10px; }
-      /* Ponemos la imagen abajo */
       .hp2 { order: 2; width: 100%; }
       .hp2 img { max-width: 240px; margin: 0 auto; }
       .hero p { margin-left: auto; margin-right: auto; }
       .dots { left: 50%; transform: translateX(-50%); bottom: 15px; }
-      .ha { top: 70%; } /* Baja las flechas del slider en móvil */
+      .ha { top: 70%; }
     }
 
     /* Sections */
@@ -137,15 +134,18 @@
     .add { width: 100%; border-radius: 12px; background: var(--acc); color: var(--bg); border: 0; padding: 11px; margin-top: 14px; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; font-weight: 700; transition: all .2s; }
     .add:hover { background: var(--gold); color: #1a1216; }
 
-    /* WhatsApp Group Sec */
-    .chan { background: linear-gradient(120deg, #2a1520, #5a2a40 60%, #8c4a62); color: #fff; text-align: center; padding: 40px 5vw; border-radius: 20px; margin: 30px 5vw; }
-    .chan .k { letter-spacing: .3em; color: var(--gold); font-size: 11px; font-weight: 700; }
-    .chan h2 { font: 400 clamp(22px, 4vw, 36px)/1.15 Georgia, serif; margin: 10px 0; }
-    .chan p { opacity: .85; max-width: 480px; margin: 0 auto 20px; font-size: 14px; }
-    .chan ul { list-style: none; display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-bottom: 22px; }
-    .chan li { border: 1px solid #ffffff44; padding: 4px 12px; border-radius: 30px; font-size: 11px; letter-spacing: .08em; }
+    /* WhatsApp Group Sec - Video Fondo 2 (pene.mp4) */
+    .chan { position: relative; overflow: hidden; color: #fff; text-align: center; padding: 60px 5vw; border-radius: 20px; margin: 30px 5vw; box-shadow: 0 10px 30px rgba(0,0,0,0.15); }
+    .chan-vid { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; pointer-events: none; }
+    .chan-overlay { position: absolute; inset: 0; background: linear-gradient(120deg, rgba(42,21,32,0.85), rgba(90,42,64,0.7) 60%, rgba(140,74,98,0.85)); z-index: 1; pointer-events: none; }
+    .chan-content { position: relative; z-index: 2; }
+    .chan .k { letter-spacing: .3em; color: var(--gold); font-size: 11px; font-weight: 700; margin-bottom: 10px; display: block; }
+    .chan h2 { font: 400 clamp(22px, 4vw, 36px)/1.15 Georgia, serif; margin: 10px 0; text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
+    .chan p { opacity: .9; max-width: 480px; margin: 0 auto 20px; font-size: 14px; text-shadow: 0 2px 8px rgba(0,0,0,0.5); }
+    .chan ul { list-style: none; display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-bottom: 24px; }
+    .chan li { border: 1px solid rgba(255,255,255,0.4); padding: 4px 12px; border-radius: 30px; font-size: 11px; letter-spacing: .08em; backdrop-filter: blur(4px); }
     .chan .wb { display: inline-flex; align-items: center; gap: 8px; background: #25d366; color: #fff; padding: 12px 26px; border-radius: 30px; font-weight: 700; text-decoration: none; box-shadow: 0 4px 16px rgba(37,211,102,0.4); transition: transform .2s; font-size: 13px; }
-    .chan .wb:hover { transform: translateY(-2px); }
+    .chan .wb:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(37,211,102,0.6); }
 
     /* Footer */
     footer { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; padding: 40px 5vw; font-size: 12px; color: var(--mut); border-top: 1px solid var(--line); background: var(--soft); }
@@ -179,7 +179,7 @@
     .qvb h3 { font: 400 22px Georgia, serif; margin-bottom: 6px; }
     .qvx { position: absolute; top: 10px; right: 14px; font-size: 22px; color: var(--mut); }
 
-    /* Welcome Modal (Aparece al entrar, no molesta más, vuelve a salir si cierran y abren de nuevo la web) */
+    /* Welcome Modal */
     .wm-ov { position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 150; display: none; place-items: center; padding: 20px; backdrop-filter: blur(4px); opacity: 0; transition: opacity 0.4s ease; }
     .wm-ov.show { display: grid; opacity: 1; }
     .wm-box { background: var(--bg); max-width: 800px; width: 100%; max-height: 90vh; border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; position: relative; box-shadow: 0 25px 50px rgba(0,0,0,0.3); }
@@ -224,7 +224,6 @@
     .fs-icon.wa::after { content: ""; position: absolute; inset: 0; border-radius: 50%; border: 2px solid #25d366; animation: pl 2.2s infinite; }
     @keyframes pl { 0% { transform: scale(1); opacity: .7; } 100% { transform: scale(1.6); opacity: 0; } }
 
-    /* Fix Redes Sociales en Celular para que no tapen la barra del navegador */
     @media(max-width: 767px) {
       .floating-socials { right: 12px; bottom: 80px; gap: 10px; }
       .fs-icon { width: 44px; height: 44px; }
@@ -267,7 +266,7 @@
   <nav id="nav"></nav>
 </header>
 
-<!-- Banner Hero con el Nuevo Video de Fondo "VICOTRIAAA7.mp4" -->
+<!-- Banner Hero con Video Fondo 1 (VICOTRIAAA7.mp4) -->
 <section class="hero" id="hero">
   <video autoplay muted loop playsinline webkit-playsinline class="hero-vid">
     <source src="VICOTRIAAA7.mp4" type="video/mp4">
@@ -306,18 +305,26 @@
   <div class="grid" id="grid"></div>
 </section>
 
+<!-- COMUNIDAD ISIRA con Video Fondo 2 (pene.mp4) -->
 <section class="chan">
-  <div class="k">COMUNIDAD ISIRA</div>
-  <h2>Únete a nuestro grupo oficial de WhatsApp</h2>
-  <p>Accede a ofertas privadas y lanzamientos anticipados.</p>
-  <ul>
-    <li>✦ Lanzamientos VIP</li>
-    <li>✦ Descuentos Únicos</li>
-  </ul>
-  <a class="wb" href="https://chat.whatsapp.com/DRZ7OgROlmn7fprNIMhRSX" target="_blank">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2zm5.2 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.8s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.6c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.1 1 2 1.3 2.3 1.4.3.1.5.1.6-.1l.9-1.1c.2-.2.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.2.1.8-.1 1.4z"/></svg>
-    Unirme al Grupo
-  </a>
+  <video autoplay muted loop playsinline webkit-playsinline class="chan-vid">
+    <source src="pene.mp4" type="video/mp4">
+  </video>
+  <div class="chan-overlay"></div>
+  
+  <div class="chan-content">
+    <span class="k">COMUNIDAD ISIRA</span>
+    <h2>Únete a nuestro grupo oficial de WhatsApp</h2>
+    <p>Accede a ofertas privadas y lanzamientos anticipados.</p>
+    <ul>
+      <li>✦ Lanzamientos VIP</li>
+      <li>✦ Descuentos Únicos</li>
+    </ul>
+    <a class="wb" href="https://chat.whatsapp.com/DRZ7OgROlmn7fprNIMhRSX" target="_blank">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2zm5.2 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.8s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.6c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.1 1 2 1.3 2.3 1.4.3.1.5.1.6-.1l.9-1.1c.2-.2.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.2.1.8-.1 1.4z"/></svg>
+      Unirme al Grupo
+    </a>
+  </div>
 </section>
 
 <footer>
@@ -366,7 +373,7 @@
   </div>
 </div>
 
-<!-- Welcome Modal (Aparece al entrar, no molesta más, vuelve a salir si cierran y abren de nuevo la web) -->
+<!-- Welcome Modal (Aparece al entrar, no molesta más en la misma sesión) -->
 <div class="wm-ov" id="welcomeModal" onclick="if(event.target===this)closeWelcomeModal()">
   <div class="wm-box">
     <button class="wm-close" onclick="closeWelcomeModal()">✕</button>
