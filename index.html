@@ -77,7 +77,6 @@
     nav .gift { background: linear-gradient(90deg, #8c1d3a, #c2185b); color: #fff; padding: 6px 14px; border-radius: 30px; border-bottom: 0; box-shadow: 0 3px 10px #8c1d3a55; }
     nav .gift:hover { filter: brightness(1.12); color: #fff; }
 
-    /* Optimización estricta de cabecera en celular para evitar desborde lateral */
     @media(max-width: 767px) {
       .top { flex-wrap: wrap; padding: 10px 4vw; gap: 8px; }
       .brand .nm { font-size: 17px; letter-spacing: .18em; }
@@ -146,6 +145,83 @@
     @media(max-width: 767px) {
       .cats { grid-template-columns: repeat(3, 1fr); gap: 8px; }
       .cat { padding: 10px 8px; font-size: 9px; border-radius: 12px; letter-spacing: .05em; }
+    }
+
+    /* REPRODUCTOR DE MÚSICA PARA COMPRAR */
+    .music-lounge {
+      background: linear-gradient(135deg, var(--card), var(--soft));
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 14px 18px;
+      margin-bottom: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      box-shadow: 0 4px 18px rgba(0,0,0,0.04);
+    }
+    .music-info { display: flex; align-items: center; gap: 12px; min-width: 0; }
+    .music-disc {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: linear-gradient(135deg, #2a1520, var(--gold));
+      color: #fff; display: grid; place-items: center;
+      flex-shrink: 0; font-size: 16px;
+      box-shadow: 0 3px 10px rgba(201,162,75,0.35);
+    }
+    .music-disc.spin { animation: discSpin 4s linear infinite; }
+    @keyframes discSpin { 100% { transform: rotate(360deg); } }
+
+    .music-text { min-width: 0; }
+    .music-text .m-title { font-size: 13px; font-weight: 700; color: var(--fg); display: flex; align-items: center; gap: 6px; }
+    .music-text .m-sub { font-size: 11px; color: var(--mut); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 320px; }
+
+    .music-controls { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .track-btn {
+      padding: 7px 13px; border-radius: 20px; font-size: 11px; font-weight: 600;
+      border: 1px solid var(--line); background: var(--bg); color: var(--fg);
+      transition: all .2s; display: inline-flex; align-items: center; gap: 6px;
+    }
+    .track-btn:hover { border-color: var(--gold); color: var(--gold); }
+    .track-btn.active {
+      background: var(--acc); color: var(--bg); border-color: var(--acc);
+      box-shadow: 0 3px 10px rgba(0,0,0,0.12);
+    }
+    .m-play-btn {
+      background: var(--gold); color: #1a1216; font-weight: 700;
+      padding: 7px 15px; border-radius: 20px; font-size: 11px;
+      letter-spacing: .05em; text-transform: uppercase; transition: transform .2s;
+      display: inline-flex; align-items: center; gap: 5px;
+    }
+    .m-play-btn:hover { transform: scale(1.04); }
+
+    /* Ecualizador animado */
+    .eq-bars { display: inline-flex; align-items: flex-end; gap: 2px; height: 11px; }
+    .eq-bars i { display: block; width: 2.5px; height: 4px; background: currentColor; border-radius: 2px; }
+    .eq-bars.playing i:nth-child(1) { animation: eq 0.6s infinite alternate; }
+    .eq-bars.playing i:nth-child(2) { animation: eq 0.4s 0.2s infinite alternate; }
+    .eq-bars.playing i:nth-child(3) { animation: eq 0.5s 0.1s infinite alternate; }
+    @keyframes eq { 0% { height: 3px; } 100% { height: 11px; } }
+
+    /* Píldora flotante inferior izquierda cuando la música está activa */
+    .mini-player {
+      position: fixed; left: 14px; bottom: 16px; z-index: 48;
+      background: var(--bg); color: var(--fg); border: 1px solid var(--gold);
+      border-radius: 30px; padding: 7px 12px; display: none; align-items: center; gap: 8px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.22); max-width: calc(100vw - 85px);
+    }
+    .mini-player.show { display: flex; }
+    .mini-player span { font-size: 11px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 140px; }
+    .mini-player button { background: var(--soft); width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; font-size: 11px; flex-shrink: 0; border: 1px solid var(--line); }
+
+    @media(max-width: 767px) {
+      .music-lounge { padding: 12px; gap: 10px; }
+      .music-text .m-title { font-size: 12px; }
+      .music-text .m-sub { max-width: 240px; }
+      .track-btn { padding: 6px 10px; font-size: 10px; }
+      .m-play-btn { padding: 6px 12px; font-size: 10px; }
+      .mini-player { left: 10px; bottom: 16px; padding: 6px 10px; }
+      .mini-player span { max-width: 115px; font-size: 10px; }
     }
 
     /* Products Grid & Toolbar */
@@ -463,6 +539,26 @@
 
 <section class="sec" id="tienda">
   <h2 id="stitle">Todos los Productos</h2>
+
+  <!-- REPRODUCTOR DE MÚSICA PARA REALIZAR TUS COMPRAS -->
+  <div class="music-lounge">
+    <div class="music-info">
+      <div class="music-disc" id="musicDisc">🎵</div>
+      <div class="music-text">
+        <div class="m-title">
+          Pon una música para realizar tus compras mientras escoges
+          <span class="eq-bars" id="eqBars"><i></i><i></i><i></i></span>
+        </div>
+        <div class="m-sub" id="nowPlayingLabel">Elige una canción para ambientar tu visita en ISIRA</div>
+      </div>
+    </div>
+    <div class="music-controls">
+      <button class="track-btn" id="trackBtn0" onclick="selectTrack(0)">🎧 The Anthem - Pitbull</button>
+      <button class="track-btn" id="trackBtn1" onclick="selectTrack(1)">🔥 Como Yo Le Doy - Pitbull</button>
+      <button class="m-play-btn" id="mainPlayBtn" onclick="toggleMusicPlay()">▶ Play</button>
+    </div>
+  </div>
+
   <div class="tools">
     <div class="tools-left">
       <div class="filter-pills" id="filterPills"></div>
@@ -562,6 +658,14 @@
     <p><a href="https://www.tiktok.com/@isira.official" target="_blank" style="color:inherit;text-decoration:none;">TikTok</a></p>
   </div>
 </footer>
+
+<!-- Audio oculto + Mini reproductor flotante para cuando haces scroll -->
+<audio id="bgMusicPlayer" preload="metadata"></audio>
+<div class="mini-player" id="miniPlayer">
+  <button onclick="toggleMusicPlay()" id="miniPlayBtn" aria-label="Pausar o Reproducir">⏸</button>
+  <span id="miniTrackName">Pitbull - The Anthem</span>
+  <button onclick="nextTrack()" aria-label="Siguiente canción" title="Cambiar canción">⏭</button>
+</div>
 
 <!-- Cart Drawer -->
 <div class="ov" id="ov" onclick="toggleCart(false)"></div>
@@ -691,6 +795,20 @@ const CFG = {
   whatsapp: "51908732482"
 };
 
+/* ===== LISTA DE REPRODUCCIÓN PARA COMPRAS ===== */
+const PLAYLIST = [
+  {
+    title: "Pitbull - The Anthem ft. Lil Jon",
+    file: "Pitbull - The Anthem ft. Lil Jon (Official Video).mp3"
+  },
+  {
+    title: "Pitbull - Como Yo Le Doy ft. Don Miguelo",
+    file: "Pitbull - Como Yo Le Doy ft. Don Miguelo.mp3"
+  }
+];
+let currentTrackIndex = 0;
+let isMusicPlaying = false;
+
 function formatPrice(penAmount) {
   if (CFG.currency === "USD") {
     return `$ ${(penAmount / CFG.tasaUSD).toFixed(2)}`;
@@ -724,7 +842,7 @@ const HERO_SLIDES = [
   }
 ];
 
-/* Superposición gráfica transparente (mantiene todo el diseño, cambiando solo el azul de fondo por tus imágenes) */
+/* Superposición gráfica transparente */
 const PRIME_OVERLAY_SVG = `
 <svg class="gift-overlay-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800">
   <rect x="28" y="28" width="544" height="744" rx="28" fill="none" stroke="#00a8e1" stroke-opacity="0.45" stroke-width="2"/>
@@ -766,7 +884,7 @@ const PRODUCTS = [
   { id: 10, name: "Rose Gold Couture 100ml", cat: "Perfumes", price: 440, oldPrice: 510, tag: "Recomendado", img: "perfume3.jpeg", desc: "Elegancia femenina con acordes de frambuesa, rosa damascena y praliné." },
   { id: 11, name: "Isira Crystal Aura 100ml", cat: "Perfumes", price: 410, oldPrice: 460, tag: "Nuevo", img: "perfume1.jpeg", desc: "Fragancia luminosa y duradera con notas de pera dulce, jazmín y ámbar blanco." },
 
-  /* Sets de regalo (Exclusivos en su apartado, usando oñeto.jpg y peneto.jpg detrás de las cartillas) */
+  /* Sets de regalo */
   { id: 12, name: "PRIME VIDEO POR UN MES", cat: "Sets de regalo", price: 15, oldPrice: 25, tag: "Regalo Digital", img: "oñeto.jpg", overlaySvg: PRIME_OVERLAY_SVG, desc: "Acceso completo por 30 días a películas, series exclusivas y estrenos en alta definición. Entrega inmediata al finalizar tu compra." },
   { id: 13, name: "DISNEY PLUS POR UN MES", cat: "Sets de regalo", price: 18, oldPrice: 30, tag: "Regalo Digital", img: "peneto.jpg", overlaySvg: DISNEY_OVERLAY_SVG, desc: "Disfruta 30 días de Disney, Pixar, Marvel, Star Wars y National Geographic en máxima calidad. Entrega rápida tras confirmar pedido." }
 ];
@@ -790,6 +908,7 @@ document.addEventListener('gestureend', function (e) { e.preventDefault(); });
 document.addEventListener("DOMContentLoaded", () => {
   localStorage.removeItem("isiraReviews");
 
+  setupMusicPlayer();
   renderNav();
   renderFilterPills();
   renderCategories();
@@ -810,6 +929,86 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 1500);
   }
 });
+
+/* ===== CONTROLADOR DE MÚSICA ===== */
+function setupMusicPlayer() {
+  const audio = document.getElementById("bgMusicPlayer");
+  audio.src = encodeURI(PLAYLIST[0].file);
+  audio.volume = 0.65;
+
+  audio.addEventListener("ended", () => {
+    nextTrack();
+  });
+
+  audio.addEventListener("play", () => {
+    isMusicPlaying = true;
+    updateMusicUI();
+  });
+
+  audio.addEventListener("pause", () => {
+    isMusicPlaying = false;
+    updateMusicUI();
+  });
+}
+
+function selectTrack(index) {
+  currentTrackIndex = index;
+  const audio = document.getElementById("bgMusicPlayer");
+  audio.src = encodeURI(PLAYLIST[currentTrackIndex].file);
+  audio.play().catch(() => {
+    showToast("Toca Play para iniciar el audio");
+  });
+  updateMusicUI();
+}
+
+function toggleMusicPlay() {
+  const audio = document.getElementById("bgMusicPlayer");
+  if (!audio.src) {
+    audio.src = encodeURI(PLAYLIST[currentTrackIndex].file);
+  }
+  if (audio.paused) {
+    audio.play().catch(() => {
+      showToast("No se pudo reproducir el audio");
+    });
+  } else {
+    audio.pause();
+  }
+}
+
+function nextTrack() {
+  const nextIdx = (currentTrackIndex + 1) % PLAYLIST.length;
+  selectTrack(nextIdx);
+}
+
+function updateMusicUI() {
+  const track = PLAYLIST[currentTrackIndex];
+  const disc = document.getElementById("musicDisc");
+  const eq = document.getElementById("eqBars");
+  const label = document.getElementById("nowPlayingLabel");
+  const mainBtn = document.getElementById("mainPlayBtn");
+  const miniPlayer = document.getElementById("miniPlayer");
+  const miniPlayBtn = document.getElementById("miniPlayBtn");
+  const miniTrackName = document.getElementById("miniTrackName");
+
+  document.getElementById("trackBtn0").classList.toggle("active", currentTrackIndex === 0);
+  document.getElementById("trackBtn1").classList.toggle("active", currentTrackIndex === 1);
+
+  if (isMusicPlaying) {
+    disc.classList.add("spin");
+    eq.classList.add("playing");
+    label.innerText = `Sonando ahora: ${track.title}`;
+    mainBtn.innerText = "⏸ Pausar";
+    miniPlayer.classList.add("show");
+    miniPlayBtn.innerText = "⏸";
+    miniTrackName.innerText = track.title;
+  } else {
+    disc.classList.remove("spin");
+    eq.classList.remove("playing");
+    label.innerText = `Pausado: ${track.title}`;
+    mainBtn.innerText = "▶ Play";
+    miniPlayBtn.innerText = "▶";
+  }
+}
 
 /* ===== CAMBIO DE MONEDA (SOLES / DÓLARES) ===== */
 function toggleCurrency() {
@@ -1102,7 +1301,6 @@ function render() {
   const grid = document.getElementById("grid");
 
   let list = PRODUCTS.filter(p => {
-    /* Quitar Sets de regalo de "Todos" para que solo salgan en su propio apartado */
     const matchCat = currentCategory === "Todos"
       ? p.cat !== "Sets de regalo"
       : p.cat === currentCategory;
@@ -1296,7 +1494,6 @@ function checkout() {
   document.getElementById("purchasedSummary").innerText = lastPurchasedProducts;
   document.getElementById("generatedOrderCode").innerText = orderCode;
 
-  /* Guardar pedido localmente para consulta en Seguimiento de Envíos */
   const savedOrders = JSON.parse(localStorage.getItem(ORDERS_STORAGE_KEY) || "[]");
   savedOrders.unshift({ code: orderCode, items: lastPurchasedProducts, date: new Date().toLocaleDateString("es-PE") });
   localStorage.setItem(ORDERS_STORAGE_KEY, JSON.stringify(savedOrders));
