@@ -95,7 +95,7 @@
     .ha:hover { background: rgba(255,255,255,0.4); transform: translateY(-50%) scale(1.05); }
     .ha.l { left: 16px; } .ha.r { right: 16px; }
 
-    /* OPTIMIZACIÓN EXCLUSIVA Y LIMPIA PARA CELULAR (Sin alterar PC) */
+    /* OPTIMIZACIÓN EXCLUSIVA Y LIMPIA PARA CELULAR */
     @media(max-width: 767px) {
       .hero { grid-template-columns: 1fr; padding: 40px 5vw 50px; text-align: center; gap: 20px; min-height: auto; }
       .hc { order: 1; margin-bottom: 0; }
@@ -133,44 +133,56 @@
       .cat { padding: 12px; font-size: 10px; border-radius: 12px; }
     }
 
-    /* Products Grid */
-    .tools { display: flex; gap: 10px; justify-content: space-between; flex-wrap: wrap; margin-bottom: 24px; align-items: center; }
-    select { background: var(--soft); color: var(--fg); border: 1px solid var(--line); padding: 8px 14px; font: inherit; border-radius: 20px; outline: 0; cursor: pointer; }
+    /* Products Grid & Toolbar Mejorada */
+    .tools { display: flex; gap: 12px; justify-content: space-between; flex-wrap: wrap; margin-bottom: 24px; align-items: center; }
+    .tools-left { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+    .filter-pills { display: flex; gap: 6px; flex-wrap: wrap; }
+    .pill { padding: 6px 14px; border-radius: 20px; font-size: 11px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; border: 1px solid var(--line); background: var(--soft); color: var(--mut); transition: all .2s; }
+    .pill:hover { border-color: var(--gold); color: var(--fg); }
+    .pill.on { background: var(--acc); color: var(--bg); border-color: var(--acc); }
+    select { background: var(--soft); color: var(--fg); border: 1px solid var(--line); padding: 8px 14px; font: inherit; font-size: 13px; border-radius: 20px; outline: 0; cursor: pointer; }
     
     .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
-    .p { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 14px; position: relative; transition: all .3s ease; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 4px 15px rgba(0,0,0,0.04); }
-    .p:hover { transform: translateY(-5px); box-shadow: 0 14px 35px rgba(0,0,0,0.1); border-color: var(--gold); }
+    .p { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 14px; position: relative; transition: all .3s cubic-bezier(0.2, 0.8, 0.2, 1); display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 4px 15px rgba(0,0,0,0.04); }
+    .p:hover { transform: translateY(-6px); box-shadow: 0 16px 36px rgba(0,0,0,0.12); border-color: var(--gold); }
     
     .ph { aspect-ratio: 3/4; background: var(--soft); border-radius: 12px; overflow: hidden; position: relative; cursor: pointer; margin-bottom: 12px; }
-    .ph img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s; }
-    .p:hover .ph img { transform: scale(1.06); }
-    .ph::after { content: "Ver"; position: absolute; left: 50%; bottom: 12px; transform: translate(-50%, 10px); background: #ffffffcc; color: #1a1216; font-size: 10px; letter-spacing: .1em; text-transform: uppercase; padding: 6px 14px; border-radius: 15px; opacity: 0; transition: all .25s; pointer-events: none; white-space: nowrap; font-weight: 700; }
+    .ph img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; }
+    .p:hover .ph img { transform: scale(1.07); }
+    .ph::after { content: "Vista rápida"; position: absolute; left: 50%; bottom: 12px; transform: translate(-50%, 10px); background: rgba(255,255,255,0.92); color: #1a1216; font-size: 10px; letter-spacing: .1em; text-transform: uppercase; padding: 6px 14px; border-radius: 20px; opacity: 0; transition: all .25s; pointer-events: none; white-space: nowrap; font-weight: 700; box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
     .p:hover .ph::after { opacity: 1; transform: translate(-50%, 0); }
 
-    .tag { position: absolute; top: 20px; left: 20px; z-index: 2; background: linear-gradient(90deg, #8c1d3a, #c2185b); color: #fff; font-size: 9px; letter-spacing: .08em; padding: 3px 9px; border-radius: 20px; font-weight: 700; text-transform: uppercase; }
-    .heart { position: absolute; top: 20px; right: 20px; z-index: 2; font-size: 16px; background: #ffffff; color: #1a1216; border-radius: 50%; width: 32px; height: 32px; display: grid; place-items: center; box-shadow: 0 2px 6px rgba(0,0,0,0.1); transition: transform .2s, color .2s; }
+    .tags-wrap { position: absolute; top: 20px; left: 20px; z-index: 2; display: flex; flex-direction: column; gap: 5px; align-items: flex-start; pointer-events: none; }
+    .tag { background: linear-gradient(90deg, #8c1d3a, #c2185b); color: #fff; font-size: 9px; letter-spacing: .08em; padding: 3px 9px; border-radius: 20px; font-weight: 700; text-transform: uppercase; box-shadow: 0 2px 6px rgba(0,0,0,0.15); }
+    .tag.disc { background: var(--gold); color: #1a1216; }
+
+    .heart { position: absolute; top: 20px; right: 20px; z-index: 2; font-size: 16px; background: #ffffff; color: #1a1216; border-radius: 50%; width: 32px; height: 32px; display: grid; place-items: center; box-shadow: 0 2px 8px rgba(0,0,0,0.12); transition: transform .2s, color .2s; }
     .heart:hover { transform: scale(1.15); }
     .heart.on { color: #c2185b; }
 
-    .p h3 { font: 400 15px/1.3 Georgia, serif; margin-top: 4px; color: var(--fg); }
-    .p .pr { font-size: 16px; font-weight: 700; margin-top: 6px; color: var(--gold); }
-    .p .old { text-decoration: line-through; color: var(--mut); font-weight: 400; font-size: 12px; margin-left: 4px; }
+    .p-cat { font-size: 10px; text-transform: uppercase; letter-spacing: .12em; color: var(--mut); font-weight: 600; margin-bottom: 2px; display: block; }
+    .p h3 { font: 500 15px/1.35 Georgia, serif; color: var(--fg); }
+    .p .pr { font-size: 16px; font-weight: 700; margin-top: 8px; color: var(--gold); display: flex; align-items: baseline; gap: 6px; flex-wrap: wrap; }
+    .p .old { text-decoration: line-through; color: var(--mut); font-weight: 400; font-size: 12px; }
     
-    .add { width: 100%; border-radius: 12px; background: var(--acc); color: var(--bg); border: 0; padding: 11px; margin-top: 14px; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; font-weight: 700; transition: all .2s; }
-    .add:hover { background: var(--gold); color: #1a1216; }
+    .add { width: 100%; border-radius: 12px; background: var(--acc); color: var(--bg); border: 0; padding: 11px; margin-top: 14px; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; font-weight: 700; transition: all .2s; }
+    .add:hover { background: var(--gold); color: #1a1216; transform: translateY(-1px); }
 
     @media(max-width: 767px) {
       .grid { gap: 10px; }
-      .p { padding: 10px; border-radius: 12px; }
+      .p { padding: 10px; border-radius: 14px; }
+      .p-cat { font-size: 9px; }
       .p h3 { font-size: 13px; }
-      .p .pr { font-size: 14px; }
-      .add { padding: 8px; font-size: 10px; margin-top: 10px; border-radius: 8px; }
-      .tag { top: 10px; left: 10px; font-size: 8px; padding: 2px 6px; }
-      .heart { top: 10px; right: 10px; width: 26px; height: 26px; font-size: 13px; }
-      .tools { margin-bottom: 16px; }
+      .p .pr { font-size: 14px; margin-top: 5px; }
+      .add { padding: 9px; font-size: 10px; margin-top: 10px; border-radius: 10px; }
+      .tags-wrap { top: 14px; left: 14px; gap: 3px; }
+      .tag { font-size: 8px; padding: 2px 7px; }
+      .heart { top: 14px; right: 14px; width: 28px; height: 28px; font-size: 14px; }
+      .tools { margin-bottom: 16px; gap: 8px; }
+      .pill { padding: 5px 10px; font-size: 10px; }
     }
 
-    /* SECCIÓN DE OPINIONES DE CLIENTES (Vacía al inicio para que ingresen nuevos) */
+    /* SECCIÓN DE OPINIONES DE CLIENTES */
     .reviews-sec { padding: 50px 5vw; background: var(--soft); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); transition: background 0.3s; }
     .reviews-container { max-width: 900px; margin: 0 auto; }
     .reviews-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px; margin-bottom: 40px; }
@@ -373,18 +385,21 @@
 <section class="sec" id="tienda">
   <h2 id="stitle">Todos los Productos</h2>
   <div class="tools">
-    <span id="count" style="color:var(--mut); font-size:13px;">Cargando...</span>
+    <div class="tools-left">
+      <div class="filter-pills" id="filterPills"></div>
+      <span id="count" style="color:var(--mut); font-size:13px;">Cargando...</span>
+    </div>
     <select id="sort" onchange="render()">
-      <option value="">Ordenar</option>
+      <option value="">Ordenar por</option>
       <option value="a">Precio: menor a mayor</option>
       <option value="d">Precio: mayor a menor</option>
-      <option value="n">Nombre</option>
+      <option value="n">Nombre (A - Z)</option>
     </select>
   </div>
   <div class="grid" id="grid"></div>
 </section>
 
-<!-- SECCIÓN DE OPINIONES DE CLIENTES (Comienza vacía para que ingresen los clientes) -->
+<!-- SECCIÓN DE OPINIONES DE CLIENTES -->
 <section class="reviews-sec">
   <div class="reviews-container">
     <h2>Opiniones de nuestros clientes</h2>
@@ -537,7 +552,7 @@ const CFG = {
   whatsapp: "51908732482"
 };
 
-const CATEGORIES = ["Todos", "Tecnología", "Perfumes", "Sets de regalo"];
+const CATEGORIES = ["Todos", "Perfumes", "Sets de regalo", "Tecnología"];
 
 const HERO_SLIDES = [
   {
@@ -563,16 +578,24 @@ const HERO_SLIDES = [
   }
 ];
 
+/* ===== CATÁLOGO DE PRODUCTOS (CON LOS 7 NUEVOS PERFUMES) ===== */
 const PRODUCTS = [
   { id: 1, name: "Isira Elixir Noir 100ml", cat: "Perfumes", price: 420, oldPrice: 490, tag: "Nuevo", img: "prodcuto1.jpeg", desc: "Una fragancia oriental con notas de vainilla negra y jazmín silvestre." },
   { id: 2, name: "Velvet Rose EDP 50ml", cat: "Perfumes", price: 350, oldPrice: 0, tag: "Popular", img: "producto2.jpeg", desc: "Rosas frescas combinadas con un toque dulce de pimienta rosa." },
   { id: 3, name: "Smartwatch Elite Serie", cat: "Tecnología", price: 680, oldPrice: 750, tag: "Exclusivo", img: "producto3.jpeg", desc: "Diseño elegante con monitor de salud y sincronización total." },
-  { id: 4, name: "Auriculares SoundPro", cat: "Tecnología", price: 410, oldPrice: 0, tag: "Nuevo", img: "producto4.jpeg", desc: "Cancelación de ruido activa con sonido envolvente premium." }
+  { id: 4, name: "Auriculares SoundPro", cat: "Tecnología", price: 410, oldPrice: 0, tag: "Nuevo", img: "producto4.jpeg", desc: "Cancelación de ruido activa con sonido envolvente premium." },
+
+  /* Nuevos Perfumes Agregados */
+  { id: 5, name: "Isira Golden Whisper 100ml", cat: "Perfumes", price: 390, oldPrice: 450, tag: "Nuevo", img: "asasasasteamo.jpeg", desc: "Aroma cálido y envolvente con destellos de ámbar dorado y flor de azahar." },
+  { id: 6, name: "Victoria Shimmer Mist 250ml", cat: "Perfumes", price: 280, oldPrice: 330, tag: "Top Ventas", img: "oñooas.jpeg", desc: "Bruma corporal perfumada con sutiles destellos luminosos y notas florales." },
+  { id: 7, name: "Isira Silk Bloom EDP 100ml", cat: "Perfumes", price: 430, oldPrice: 0, tag: "Exclusivo", img: "cak.jpeg", desc: "Pétalos de peonía blanca fusionados con almizcle suave y madera de sándalo." },
+  { id: 8, name: "Midnight Oud Reserve 100ml", cat: "Perfumes", price: 470, oldPrice: 540, tag: "Edición Limitada", img: "ptotio.jpeg", desc: "Esencia intensa y seductora de madera de oud, especias dulces y vainilla." },
+  { id: 9, name: "Isira Pure Essence EDP 75ml", cat: "Perfumes", price: 360, oldPrice: 0, tag: "Popular", img: "perfume.jpeg", desc: "Frescura sofisticada con notas cítricas, lirio del valle y toque amaderado." },
+  { id: 10, name: "Rose Gold Couture 100ml", cat: "Perfumes", price: 440, oldPrice: 510, tag: "Recomendado", img: "perfume3.jpeg", desc: "Elegancia femenina con acordes de frambuesa, rosa damascena y praliné." },
+  { id: 11, name: "Isira Crystal Aura 100ml", cat: "Perfumes", price: 410, oldPrice: 460, tag: "Nuevo", img: "perfume1.jpeg", desc: "Fragancia luminosa y duradera con notas de pera dulce, jazmín y ámbar blanco." }
 ];
 
-/* Reseñas vacías al inicio para que los clientes comiencen a llenarlas */
 let reviewsData = [];
-
 let currentCategory = "Todos";
 let cartState = [];
 let favState = [];
@@ -581,6 +604,7 @@ let showingOnlyFavs = false;
 
 document.addEventListener("DOMContentLoaded", () => {
   renderNav();
+  renderFilterPills();
   renderCategories();
   renderHero();
   render();
@@ -685,12 +709,19 @@ function renderNav() {
   ).join("");
 }
 
+function renderFilterPills() {
+  const pills = document.getElementById("filterPills");
+  pills.innerHTML = CATEGORIES.map(c => 
+    `<button class="pill ${c === currentCategory && !showingOnlyFavs ? 'on' : ''}" onclick="filterCat('${c}')">${c}</button>`
+  ).join("");
+}
+
 function renderCategories() {
   const catsContainer = document.getElementById("cats");
   const catData = [
-    { name: "Tecnología", img: "mujeralas.jpg" },
     { name: "Perfumes", img: "alashombre.jpg" },
-    { name: "Sets de regalo", img: "4foto.jpg" }
+    { name: "Sets de regalo", img: "4foto.jpg" },
+    { name: "Tecnología", img: "mujeralas.jpg" }
   ];
 
   catsContainer.innerHTML = catData.map(c => `
@@ -733,13 +764,16 @@ function filterCat(cat) {
   showingOnlyFavs = false;
   document.getElementById("stitle").innerText = cat === "Todos" ? "Todos los Productos" : cat;
   renderNav();
+  renderFilterPills();
   render();
+  document.getElementById("tienda").scrollIntoView({ behavior: "smooth" });
 }
 
 function toggleFavFilter() {
   showingOnlyFavs = !showingOnlyFavs;
   document.getElementById("stitle").innerText = showingOnlyFavs ? "Mis Favoritos" : (currentCategory === "Todos" ? "Todos los Productos" : currentCategory);
   renderNav();
+  renderFilterPills();
   render();
 }
 
@@ -750,7 +784,7 @@ function render() {
 
   let list = PRODUCTS.filter(p => {
     const matchCat = (currentCategory === "Todos" || p.cat === currentCategory);
-    const matchSearch = p.name.toLowerCase().includes(q) || p.desc.toLowerCase().includes(q);
+    const matchSearch = p.name.toLowerCase().includes(q) || p.desc.toLowerCase().includes(q) || p.cat.toLowerCase().includes(q);
     const matchFav = !showingOnlyFavs || favState.includes(p.id);
     return matchCat && matchSearch && matchFav;
   });
@@ -768,14 +802,20 @@ function render() {
 
   grid.innerHTML = list.map(p => {
     const isFav = favState.includes(p.id);
+    const discPct = p.oldPrice > p.price ? Math.round(((p.oldPrice - p.price) / p.oldPrice) * 100) : 0;
+
     return `
       <div class="p">
         <div>
-          <span class="tag">${p.tag}</span>
-          <button class="heart ${isFav ? 'on' : ''}" onclick="toggleFav(${p.id})">♥</button>
-          <div class="ph" onclick="openQuickview(${p.id})">
-            <img src="${p.img}" alt="${p.name}">
+          <div class="tags-wrap">
+            ${p.tag ? `<span class="tag">${p.tag}</span>` : ''}
+            ${discPct > 0 ? `<span class="tag disc">-${discPct}%</span>` : ''}
           </div>
+          <button class="heart ${isFav ? 'on' : ''}" onclick="toggleFav(${p.id})" aria-label="Guardar en favoritos">♥</button>
+          <div class="ph" onclick="openQuickview(${p.id})">
+            <img src="${p.img}" alt="${p.name}" loading="lazy">
+          </div>
+          <span class="p-cat">${p.cat}</span>
           <h3>${p.name}</h3>
         </div>
         <div>
@@ -892,6 +932,7 @@ function openQuickview(id) {
     <p style="margin-bottom:16px; font-size:14px; line-height:1.5;">${p.desc}</p>
     <div style="font-size:20px; font-weight:700; color:var(--gold); margin-bottom:16px;">
       ${CFG.moneda} ${p.price.toFixed(2)}
+      ${p.oldPrice > 0 ? `<span style="text-decoration:line-through; color:var(--mut); font-size:14px; font-weight:400; margin-left:8px;">${CFG.moneda} ${p.oldPrice.toFixed(2)}</span>` : ''}
     </div>
     <button class="add" onclick="addToCart(${p.id}); closeQuickview();">Agregar al Carrito</button>
   `;
