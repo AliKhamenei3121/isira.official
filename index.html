@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
   
   <title>ISIRA | Alta Perfumería & Tecnología</title>
   <link rel="icon" href="isidora.jpg" type="image/jpeg">
@@ -35,45 +35,61 @@
       --card: #191016;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; scroll-padding-top: 80px; }
-    body { background: var(--bg); color: var(--fg); font: 15px/1.5 "Helvetica Neue", Arial, sans-serif; transition: background 0.3s, color 0.3s; }
-    button { font: inherit; color: inherit; cursor: pointer; background: none; border: 0; }
+    * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+    html { scroll-behavior: smooth; scroll-padding-top: 80px; max-width: 100%; overflow-x: hidden; touch-action: manipulation; }
+    body { background: var(--bg); color: var(--fg); font: 15px/1.5 "Helvetica Neue", Arial, sans-serif; transition: background 0.3s, color 0.3s; max-width: 100%; overflow-x: hidden; width: 100%; position: relative; }
+    button { font: inherit; color: inherit; cursor: pointer; background: none; border: 0; touch-action: manipulation; }
+    input, select, textarea { touch-action: manipulation; }
 
     /* Promo Bar */
-    .promo { background: var(--soft); display: flex; justify-content: space-between; align-items: center; padding: 10px 6vw; font-size: 13px; gap: 10px; border-bottom: 1px solid var(--line); }
+    .promo { background: var(--soft); display: flex; justify-content: space-between; align-items: center; padding: 8px 4vw; font-size: 12px; gap: 8px; border-bottom: 1px solid var(--line); width: 100%; }
     .promo b { letter-spacing: .04em; }
-    .promo button { border: 1px solid var(--fg); padding: 4px 12px; font-size: 11px; letter-spacing: .06em; border-radius: 20px; transition: all .2s; }
+    .promo button { border: 1px solid var(--fg); padding: 4px 12px; font-size: 10px; letter-spacing: .06em; border-radius: 20px; transition: all .2s; white-space: nowrap; flex-shrink: 0; }
     .promo button:hover { background: var(--fg); color: var(--bg); }
 
     /* Header & Nav */
-    header { border-bottom: 1px solid var(--line); position: sticky; top: env(safe-area-inset-top, 0px); background: var(--bg); z-index: 20; backdrop-filter: blur(8px); transition: background 0.3s, border-color 0.3s; }
-    .top { display: flex; justify-content: space-between; align-items: center; padding: 12px 5vw; gap: 10px; }
+    header { border-bottom: 1px solid var(--line); position: sticky; top: 0; background: var(--bg); z-index: 20; backdrop-filter: blur(8px); transition: background 0.3s, border-color 0.3s; width: 100%; }
+    .top { display: flex; justify-content: space-between; align-items: center; padding: 10px 4vw; gap: 8px; width: 100%; }
     
-    .brand { display: flex; align-items: center; gap: 10px; cursor: pointer; text-decoration: none; color: inherit; }
-    .brand-img { height: 44px; width: auto; object-fit: contain; border-radius: 50%; border: 1.5px solid var(--gold); box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
-    .brand .nm { font: 500 20px Georgia, serif; letter-spacing: .25em; text-transform: uppercase; color: var(--fg); }
+    .brand { display: flex; align-items: center; gap: 8px; cursor: pointer; text-decoration: none; color: inherit; flex-shrink: 0; }
+    .brand-img { height: 40px; width: 40px; object-fit: cover; border-radius: 50%; border: 1.5px solid var(--gold); box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+    .brand .nm { font: 500 18px Georgia, serif; letter-spacing: .2em; text-transform: uppercase; color: var(--fg); }
     
-    .right { display: flex; gap: 6px; align-items: center; }
-    .search { display: flex; align-items: center; background: var(--soft); border: 1px solid var(--line); border-radius: 30px; padding: 6px 12px; gap: 8px; transition: all .2s; }
+    .right { display: flex; gap: 4px; align-items: center; justify-content: flex-end; min-width: 0; }
+    .search { display: flex; align-items: center; background: var(--soft); border: 1px solid var(--line); border-radius: 30px; padding: 5px 10px; gap: 6px; transition: all .2s; min-width: 0; }
     .search svg { color: var(--mut); flex: none; }
-    .search input { border: 0; background: none; outline: 0; color: var(--fg); width: 100px; font: inherit; transition: width .25s; }
+    .search input { border: 0; background: none; outline: 0; color: var(--fg); width: 95px; font: inherit; transition: width .25s; min-width: 0; }
     .search:focus-within { border-color: var(--gold); box-shadow: 0 0 0 2px #c9a24b33; }
-    .search:focus-within input { width: 140px; }
+    .search:focus-within input { width: 130px; }
 
-    .ic { position: relative; padding: 6px; font-size: 18px; border-radius: 50%; transition: background .2s; color: var(--fg); display: grid; place-items: center; }
+    /* Botón Selector de Moneda */
+    .curr-btn { background: var(--soft); border: 1px solid var(--line); color: var(--fg); font-size: 11px; font-weight: 700; padding: 5px 9px; border-radius: 20px; letter-spacing: .04em; transition: all .2s; white-space: nowrap; flex-shrink: 0; }
+    .curr-btn:hover { border-color: var(--gold); color: var(--gold); }
+
+    .ic { position: relative; padding: 6px; font-size: 18px; border-radius: 50%; transition: background .2s; color: var(--fg); display: grid; place-items: center; flex-shrink: 0; }
     .ic:hover { background: var(--soft); }
     .badge { position: absolute; top: 0; right: -2px; background: var(--gold); color: #1a1216; font-size: 9px; font-weight: 700; border-radius: 50%; min-width: 16px; height: 16px; display: grid; place-items: center; }
 
-    nav { display: flex; justify-content: center; gap: clamp(10px, 2vw, 28px); padding: 10px 5vw; overflow-x: auto; white-space: nowrap; border-top: 1px solid var(--line); -webkit-overflow-scrolling: touch; }
+    nav { display: flex; justify-content: center; gap: clamp(12px, 2.5vw, 28px); padding: 10px 4vw; overflow-x: auto; white-space: nowrap; border-top: 1px solid var(--line); -webkit-overflow-scrolling: touch; width: 100%; }
     nav::-webkit-scrollbar { display: none; }
-    nav button { font-size: 11px; letter-spacing: .15em; text-transform: uppercase; padding: 6px 0; border-bottom: 2px solid transparent; font-weight: 600; transition: all .2s; color: var(--mut); }
+    nav button { font-size: 11px; letter-spacing: .14em; text-transform: uppercase; padding: 6px 0; border-bottom: 2px solid transparent; font-weight: 600; transition: all .2s; color: var(--mut); flex-shrink: 0; }
     nav button:hover, nav button.on { border-color: var(--gold); color: var(--gold); }
     nav .gift { background: linear-gradient(90deg, #8c1d3a, #c2185b); color: #fff; padding: 6px 14px; border-radius: 30px; border-bottom: 0; box-shadow: 0 3px 10px #8c1d3a55; }
     nav .gift:hover { filter: brightness(1.12); color: #fff; }
 
+    /* Optimización estricta de cabecera en celular para evitar desborde lateral */
+    @media(max-width: 767px) {
+      .top { flex-wrap: wrap; padding: 10px 4vw; gap: 8px; }
+      .brand .nm { font-size: 17px; letter-spacing: .18em; }
+      .brand-img { height: 36px; width: 36px; }
+      .right { gap: 4px; }
+      .search { order: 3; width: 100%; flex-basis: 100%; padding: 7px 14px; margin-top: 2px; }
+      .search input, .search:focus-within input { width: 100%; font-size: 16px; }
+      nav { justify-content: flex-start; padding: 8px 4vw; gap: 14px; }
+    }
+
     /* Hero Banner - Video Fondo 1 */
-    .hero { min-height: 60vh; display: grid; grid-template-columns: 1.1fr 0.9fr; align-items: center; padding: 6vw 8vw; background: #1a0a12; color: #fff; position: relative; overflow: hidden; gap: 40px; }
+    .hero { min-height: 60vh; display: grid; grid-template-columns: 1.1fr 0.9fr; align-items: center; padding: 6vw 8vw; background: #1a0a12; color: #fff; position: relative; overflow: hidden; gap: 40px; width: 100%; }
     .hero-vid { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; pointer-events: none; }
     .hero-overlay { position: absolute; inset: 0; background: rgba(21, 9, 16, 0.65); z-index: 1; pointer-events: none; }
     
@@ -95,68 +111,74 @@
     .ha:hover { background: rgba(255,255,255,0.4); transform: translateY(-50%) scale(1.05); }
     .ha.l { left: 16px; } .ha.r { right: 16px; }
 
-    /* OPTIMIZACIÓN EXCLUSIVA Y LIMPIA PARA CELULAR */
     @media(max-width: 767px) {
-      .hero { grid-template-columns: 1fr; padding: 40px 5vw 50px; text-align: center; gap: 20px; min-height: auto; }
+      .hero { grid-template-columns: 1fr; padding: 36px 5vw 48px; text-align: center; gap: 18px; min-height: auto; }
       .hc { order: 1; margin-bottom: 0; }
       .hero h1 { font-size: 24px; margin-bottom: 10px; }
       .hero p { font-size: 13px; margin-bottom: 16px; max-width: 100%; }
       .btn { padding: 10px 24px; font-size: 10px; }
-      .hp2 { order: 2; width: 100%; margin-top: 10px; }
+      .hp2 { order: 2; width: 100%; margin-top: 8px; }
       .hp2 img { max-width: 200px; aspect-ratio: 4/5; }
-      .dots { left: 50%; transform: translateX(-50%); bottom: 10px; }
-      .ha { top: 60%; width: 36px; height: 36px; font-size: 18px; }
+      .dots { left: 50%; transform: translateX(-50%); bottom: 12px; }
+      .ha { top: 60%; width: 34px; height: 34px; font-size: 18px; }
       .ha.l { left: 8px; } .ha.r { right: 8px; }
     }
 
     /* Sections */
-    .sec { padding: 40px 5vw; }
+    .sec { padding: 40px 5vw; width: 100%; }
     .sec h2 { font: 400 26px Georgia, serif; text-align: center; margin-bottom: 28px; position: relative; color: var(--fg); }
     .sec h2::after { content: ""; display: block; width: 45px; height: 2px; background: var(--gold); margin: 12px auto 0; }
 
     @media(max-width: 767px) {
-      .sec { padding: 25px 4vw; }
-      .sec h2 { font-size: 20px; margin-bottom: 16px; }
+      .sec { padding: 26px 4vw; }
+      .sec h2 { font-size: 20px; margin-bottom: 18px; }
     }
 
     /* Categories Grid */
-    .cats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .cats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; width: 100%; }
     .cat { aspect-ratio: 4/5; background: var(--card); border-radius: 16px; position: relative; overflow: hidden; color: #fff; display: flex; align-items: flex-end; padding: 16px; letter-spacing: .1em; text-transform: uppercase; font-size: 11px; cursor: pointer; border: 0; transition: transform .3s, box-shadow .3s; }
     .cat .ci { position: absolute; inset: 0; background-size: cover; background-position: center; transition: transform .5s; }
     .cat::before { content: ""; position: absolute; inset: 0; z-index: 1; background: linear-gradient(180deg, transparent 35%, #000000e6); }
-    .cat span { position: relative; z-index: 2; font-weight: 700; text-shadow: 0 2px 6px rgba(0,0,0,0.6); }
+    .cat span { position: relative; z-index: 2; font-weight: 700; text-shadow: 0 2px 6px rgba(0,0,0,0.6); text-align: left; }
     .cat:hover { transform: translateY(-4px); box-shadow: 0 12px 24px rgba(0,0,0,0.15); }
     .cat:hover .ci { transform: scale(1.08); }
 
     @media(max-width: 767px) {
-      .cats { gap: 8px; }
-      .cat { padding: 12px; font-size: 10px; border-radius: 12px; }
+      .cats { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+      .cat { padding: 10px 8px; font-size: 9px; border-radius: 12px; letter-spacing: .05em; }
     }
 
     /* Products Grid & Toolbar */
     .tools { display: flex; gap: 12px; justify-content: space-between; flex-wrap: wrap; margin-bottom: 24px; align-items: center; }
-    .tools-left { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+    .tools-left { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
     .filter-pills { display: flex; gap: 6px; flex-wrap: wrap; }
     .pill { padding: 6px 14px; border-radius: 20px; font-size: 11px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; border: 1px solid var(--line); background: var(--soft); color: var(--mut); transition: all .2s; }
     .pill:hover { border-color: var(--gold); color: var(--fg); }
     .pill.on { background: var(--acc); color: var(--bg); border-color: var(--acc); }
     select { background: var(--soft); color: var(--fg); border: 1px solid var(--line); padding: 8px 14px; font: inherit; font-size: 13px; border-radius: 20px; outline: 0; cursor: pointer; }
     
-    .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
-    .p { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 14px; position: relative; transition: all .3s cubic-bezier(0.2, 0.8, 0.2, 1); display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 4px 15px rgba(0,0,0,0.04); }
+    .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; width: 100%; }
+    .p { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 14px; position: relative; transition: all .3s cubic-bezier(0.2, 0.8, 0.2, 1); display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 4px 15px rgba(0,0,0,0.04); min-width: 0; }
     .p:hover { transform: translateY(-6px); box-shadow: 0 16px 36px rgba(0,0,0,0.12); border-color: var(--gold); }
     
     .ph { aspect-ratio: 3/4; background: var(--soft); border-radius: 12px; overflow: hidden; position: relative; cursor: pointer; margin-bottom: 12px; }
-    .ph img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; }
-    .p:hover .ph img { transform: scale(1.07); }
-    .ph::after { content: "Vista rápida"; position: absolute; left: 50%; bottom: 12px; transform: translate(-50%, 10px); background: rgba(255,255,255,0.92); color: #1a1216; font-size: 10px; letter-spacing: .1em; text-transform: uppercase; padding: 6px 14px; border-radius: 20px; opacity: 0; transition: all .25s; pointer-events: none; white-space: nowrap; font-weight: 700; box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+    .ph img.prod-img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; display: block; }
+    .p:hover .ph img.prod-img { transform: scale(1.07); }
+    .ph::after { content: "Vista rápida"; position: absolute; left: 50%; bottom: 12px; transform: translate(-50%, 10px); background: rgba(255,255,255,0.92); color: #1a1216; font-size: 10px; letter-spacing: .1em; text-transform: uppercase; padding: 6px 14px; border-radius: 20px; opacity: 0; transition: all .25s; pointer-events: none; white-space: nowrap; font-weight: 700; box-shadow: 0 4px 12px rgba(0,0,0,0.15); z-index: 3; }
     .p:hover .ph::after { opacity: 1; transform: translate(-50%, 0); }
 
-    .tags-wrap { position: absolute; top: 20px; left: 20px; z-index: 2; display: flex; flex-direction: column; gap: 5px; align-items: flex-start; pointer-events: none; }
+    /* Capas para Cartillas Digitales con fondo de imagen personalizado */
+    .gift-card-wrap { position: relative; width: 100%; height: 100%; overflow: hidden; background: #070b14; }
+    .gift-card-wrap .gift-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; }
+    .p:hover .gift-card-wrap .gift-bg { transform: scale(1.07); }
+    .gift-card-wrap .gift-shade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(4, 8, 18, 0.55) 0%, rgba(4, 8, 18, 0.48) 50%, rgba(4, 8, 18, 0.78) 100%); }
+    .gift-card-wrap .gift-overlay-svg { position: relative; z-index: 2; width: 100%; height: 100%; display: block; }
+
+    .tags-wrap { position: absolute; top: 20px; left: 20px; z-index: 4; display: flex; flex-direction: column; gap: 5px; align-items: flex-start; pointer-events: none; }
     .tag { background: linear-gradient(90deg, #8c1d3a, #c2185b); color: #fff; font-size: 9px; letter-spacing: .08em; padding: 3px 9px; border-radius: 20px; font-weight: 700; text-transform: uppercase; box-shadow: 0 2px 6px rgba(0,0,0,0.15); }
     .tag.disc { background: var(--gold); color: #1a1216; }
 
-    .heart { position: absolute; top: 20px; right: 20px; z-index: 2; font-size: 16px; background: #ffffff; color: #1a1216; border-radius: 50%; width: 32px; height: 32px; display: grid; place-items: center; box-shadow: 0 2px 8px rgba(0,0,0,0.12); transition: transform .2s, color .2s; }
+    .heart { position: absolute; top: 20px; right: 20px; z-index: 4; font-size: 16px; background: #ffffff; color: #1a1216; border-radius: 50%; width: 32px; height: 32px; display: grid; place-items: center; box-shadow: 0 2px 8px rgba(0,0,0,0.12); transition: transform .2s, color .2s; }
     .heart:hover { transform: scale(1.15); }
     .heart.on { color: #c2185b; }
 
@@ -180,6 +202,30 @@
       .heart { top: 14px; right: 14px; width: 28px; height: 28px; font-size: 14px; }
       .tools { margin-bottom: 16px; gap: 8px; }
       .pill { padding: 5px 10px; font-size: 10px; }
+      select { font-size: 16px; padding: 6px 12px; }
+    }
+
+    /* SECCIÓN DE SEGUIMIENTO DE ENVÍOS */
+    .track-sec { padding: 45px 5vw; background: var(--bg); border-top: 1px solid var(--line); }
+    .track-box { max-width: 680px; margin: 0 auto; background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 28px 24px; box-shadow: 0 8px 25px rgba(0,0,0,0.04); text-align: center; }
+    .track-box p.sub { font-size: 13px; color: var(--mut); margin-bottom: 20px; }
+    .track-form { display: flex; gap: 10px; max-width: 500px; margin: 0 auto; }
+    .track-form input { flex: 1; border: 1px solid var(--line); background: var(--bg); color: var(--fg); padding: 12px 16px; border-radius: 25px; font-size: 14px; outline: none; transition: border-color .2s; min-width: 0; }
+    .track-form input:focus { border-color: var(--gold); }
+    .track-form button { background: var(--acc); color: var(--bg); padding: 12px 24px; border-radius: 25px; font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; transition: all .2s; white-space: nowrap; }
+    .track-form button:hover { background: var(--gold); color: #1a1216; }
+    .track-result { margin-top: 22px; text-align: left; background: var(--bg); border: 1px solid var(--line); border-radius: 14px; padding: 18px; display: none; }
+    .track-steps { display: flex; justify-content: space-between; position: relative; margin-top: 16px; gap: 6px; }
+    .track-step { flex: 1; text-align: center; font-size: 11px; color: var(--mut); position: relative; }
+    .track-step .dot { width: 22px; height: 22px; border-radius: 50%; background: var(--line); color: var(--fg); display: grid; place-items: center; margin: 0 auto 6px; font-size: 10px; font-weight: 700; }
+    .track-step.done .dot { background: var(--gold); color: #1a1216; }
+    .track-step.done { color: var(--fg); font-weight: 600; }
+
+    @media(max-width: 767px) {
+      .track-box { padding: 20px 14px; }
+      .track-form { flex-direction: column; }
+      .track-form input { font-size: 16px; }
+      .track-form button { width: 100%; padding: 13px; }
     }
 
     /* SECCIÓN DE OPINIONES DE CLIENTES */
@@ -195,11 +241,10 @@
     .review-text { font-size: 13px; color: var(--mut); line-height: 1.5; margin-bottom: 12px; font-style: italic; }
     .review-date { font-size: 10px; color: var(--mut); opacity: 0.8; }
 
-    /* Formulario para dejar opinión */
     .review-form-box { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 30px; box-shadow: 0 8px 25px rgba(0,0,0,0.05); }
     .review-form-box h3 { font: 400 20px Georgia, serif; margin-bottom: 16px; color: var(--fg); text-align: center; }
     .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 14px; }
-    @media(max-width: 600px) { .form-row { grid-template-columns: 1fr; } }
+    @media(max-width: 600px) { .form-row { grid-template-columns: 1fr; gap: 0; margin-bottom: 0; } }
     .review-form-box input, .review-form-box select, .review-form-box textarea { width: 100%; border: 1px solid var(--line); background: var(--bg); color: var(--fg); padding: 12px 14px; border-radius: 10px; font-size: 13px; outline: none; transition: border-color 0.2s; font-family: inherit; margin-bottom: 14px; }
     .review-form-box input:focus, .review-form-box select:focus, .review-form-box textarea:focus { border-color: var(--gold); }
     .review-form-box textarea { resize: vertical; min-height: 90px; }
@@ -210,7 +255,7 @@
       .reviews-sec { padding: 30px 4vw; }
       .review-form-box { padding: 16px; border-radius: 12px; }
       .review-form-box h3 { font-size: 18px; }
-      .review-form-box input, .review-form-box select, .review-form-box textarea { padding: 10px; font-size: 12px; }
+      .review-form-box input, .review-form-box select, .review-form-box textarea { padding: 11px; font-size: 16px; }
       .submit-review-btn { padding: 12px; font-size: 11px; }
     }
 
@@ -228,19 +273,19 @@
     .chan .wb:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(37,211,102,0.6); }
 
     @media(max-width: 767px) {
-      .chan { padding: 40px 4vw; margin: 20px 4vw; border-radius: 14px; }
+      .chan { padding: 36px 4vw; margin: 20px 4vw; border-radius: 14px; }
       .chan h2 { font-size: 20px; }
       .chan p { font-size: 12px; }
     }
 
     /* Footer */
-    footer { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; padding: 40px 5vw; font-size: 12px; color: var(--mut); border-top: 1px solid var(--line); background: var(--soft); transition: background 0.3s; }
+    footer { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; padding: 40px 5vw; font-size: 12px; color: var(--mut); border-top: 1px solid var(--line); background: var(--soft); transition: background 0.3s; width: 100%; }
     footer h4 { color: var(--fg); letter-spacing: .12em; font-size: 11px; margin-bottom: 10px; text-transform: uppercase; font-weight: 700; }
     footer p { margin-bottom: 6px; cursor: pointer; transition: color .2s; }
     footer p:hover { color: var(--gold); }
 
     @media(max-width: 767px) {
-      footer { padding: 30px 4vw; gap: 16px; font-size: 11px; }
+      footer { padding: 30px 4vw 90px; gap: 16px; font-size: 11px; }
     }
 
     /* Drawer / Cart */
@@ -265,55 +310,57 @@
     .qvw { position: fixed; inset: 0; background: rgba(0,0,0,0.55); z-index: 120; display: none; place-items: center; padding: 12px; backdrop-filter: blur(4px); }
     .qvw.on { display: grid; }
     .qvb { background: var(--bg); color: var(--fg); max-width: 600px; width: 100%; max-height: 90vh; overflow-y: auto; display: grid; grid-template-columns: 1fr; gap: 16px; padding: 20px; position: relative; border-radius: 16px; box-shadow: 0 15px 40px rgba(0,0,0,0.25); border: 1px solid var(--line); }
-    .qvb img { width: 100%; aspect-ratio: 3/4; object-fit: cover; border-radius: 10px; }
+    .qvb img.qv-main-img { width: 100%; aspect-ratio: 3/4; object-fit: cover; border-radius: 10px; }
     .qvb h3 { font: 400 22px Georgia, serif; margin-bottom: 6px; }
-    .qvx { position: absolute; top: 10px; right: 14px; font-size: 22px; color: var(--mut); }
+    .qvx { position: absolute; top: 10px; right: 14px; font-size: 22px; color: var(--mut); z-index: 10; }
 
     .post-review-box { background: var(--bg); color: var(--fg); max-width: 460px; width: 100%; padding: 28px 24px; position: relative; border-radius: 18px; box-shadow: 0 20px 50px rgba(0,0,0,0.3); border: 1px solid var(--gold); }
     .post-review-box h3 { font: 400 22px Georgia, serif; margin-bottom: 8px; text-align: center; }
     .post-review-box p { font-size: 13px; color: var(--mut); text-align: center; margin-bottom: 18px; line-height: 1.5; }
-    .post-review-box input, .post-review-box select, .post-review-box textarea { width: 100%; border: 1px solid var(--line); background: var(--soft); color: var(--fg); padding: 11px 14px; border-radius: 10px; font-size: 13px; outline: none; font-family: inherit; margin-bottom: 12px; }
+    .post-review-box input, .post-review-box select, .post-review-box textarea { width: 100%; border: 1px solid var(--line); background: var(--soft); color: var(--fg); padding: 11px 14px; border-radius: 10px; font-size: 16px; outline: none; font-family: inherit; margin-bottom: 12px; }
     .post-review-box input:focus, .post-review-box select:focus, .post-review-box textarea:focus { border-color: var(--gold); }
     .post-review-box textarea { resize: vertical; min-height: 85px; }
 
     /* Welcome Modal */
-    .wm-ov { position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 150; display: none; place-items: center; padding: 20px; backdrop-filter: blur(4px); opacity: 0; transition: opacity 0.4s ease; }
+    .wm-ov { position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 150; display: none; place-items: center; padding: 16px; backdrop-filter: blur(4px); opacity: 0; transition: opacity 0.4s ease; }
     .wm-ov.show { display: grid; opacity: 1; }
     .wm-box { background: var(--bg); color: var(--fg); max-width: 800px; width: 100%; max-height: 90vh; border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; position: relative; box-shadow: 0 25px 50px rgba(0,0,0,0.3); }
-    .wm-close { position: absolute; top: 16px; right: 16px; font-size: 20px; color: var(--mut); z-index: 10; background: var(--soft); width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center; box-shadow: 0 2px 8px rgba(0,0,0,0.1); cursor: pointer; border: none; }
+    .wm-close { position: absolute; top: 12px; right: 12px; font-size: 18px; color: var(--mut); z-index: 10; background: var(--soft); width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center; box-shadow: 0 2px 8px rgba(0,0,0,0.1); cursor: pointer; border: none; }
     .wm-img { display: none; }
-    .wm-content { padding: 40px 30px; overflow-y: auto; flex: 1; display: flex; flex-direction: column; }
-    .wm-content h2 { font: 800 32px/1.2 "Helvetica Neue", Arial, sans-serif; margin-bottom: 12px; color: var(--fg); letter-spacing: -0.02em; }
-    .wm-sub { font-size: 13px; color: var(--mut); margin-bottom: 24px; line-height: 1.5; }
-    .wm-content label { font-size: 14px; font-weight: 600; margin-bottom: 8px; display: block; color: var(--fg); }
-    .wm-content input { width: 100%; border: 1px solid var(--line); background: var(--soft); color: var(--fg); padding: 12px 14px; border-radius: 6px; font-size: 14px; margin-bottom: 16px; outline: none; transition: border-color 0.2s; }
+    .wm-content { padding: 32px 22px; overflow-y: auto; flex: 1; display: flex; flex-direction: column; }
+    .wm-content h2 { font: 800 26px/1.2 "Helvetica Neue", Arial, sans-serif; margin-bottom: 10px; color: var(--fg); letter-spacing: -0.02em; }
+    .wm-sub { font-size: 13px; color: var(--mut); margin-bottom: 18px; line-height: 1.5; }
+    .wm-content label { font-size: 13px; font-weight: 600; margin-bottom: 6px; display: block; color: var(--fg); }
+    .wm-content input { width: 100%; border: 1px solid var(--line); background: var(--soft); color: var(--fg); padding: 12px 14px; border-radius: 6px; font-size: 16px; margin-bottom: 14px; outline: none; transition: border-color 0.2s; }
     .wm-content input:focus { border-color: var(--gold); }
-    .wm-msg { font-size: 12px; color: var(--mut); margin-bottom: 16px; }
-    .wm-phone { display: flex; gap: 10px; margin-bottom: 24px; }
-    .wm-phone select { border: 1px solid var(--line); padding: 0 10px; border-radius: 6px; background: var(--soft); outline: none; font-size: 14px; color: var(--fg); cursor: pointer; }
-    .wm-desc { font: 700 18px/1.3 "Helvetica Neue", Arial, sans-serif; margin-bottom: 12px; color: var(--fg); }
-    .wm-legal { font-size: 10px; color: var(--mut); margin-bottom: 24px; font-style: italic; }
-    .wm-btn { background: #e26a7e; color: #fff; font-weight: 700; font-size: 15px; padding: 16px; border-radius: 6px; width: 100%; transition: background 0.2s; border: none; cursor: pointer; }
+    .wm-msg { font-size: 12px; color: var(--mut); margin-bottom: 14px; }
+    .wm-phone { display: flex; gap: 8px; margin-bottom: 18px; }
+    .wm-phone select { border: 1px solid var(--line); padding: 0 10px; border-radius: 6px; background: var(--soft); outline: none; font-size: 16px; color: var(--fg); cursor: pointer; }
+    .wm-desc { font: 700 16px/1.3 "Helvetica Neue", Arial, sans-serif; margin-bottom: 10px; color: var(--fg); }
+    .wm-legal { font-size: 10px; color: var(--mut); margin-bottom: 18px; font-style: italic; }
+    .wm-btn { background: #e26a7e; color: #fff; font-weight: 700; font-size: 15px; padding: 14px; border-radius: 6px; width: 100%; transition: background 0.2s; border: none; cursor: pointer; }
     .wm-btn:hover { background: #c55365; }
 
     @media(min-width: 768px) {
-      .cats { grid-template-columns: repeat(4, 1fr); }
+      .cats { grid-template-columns: repeat(3, 1fr); }
       .grid { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 24px; }
       .qvb { grid-template-columns: 1fr 1fr; gap: 24px; padding: 24px; max-width: 720px; }
       footer { grid-template-columns: repeat(4, 1fr); }
-      .brand-img { height: 50px; }
+      .brand-img { height: 50px; width: 50px; }
       .brand .nm { font-size: 24px; }
       .wm-box { flex-direction: row; }
       .wm-img { display: block; flex: 1; background: #f0f0f0; position: relative; }
       .wm-img img { width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0; }
       .wm-content { flex: 1.2; padding: 50px 40px; }
+      .wm-content h2 { font-size: 32px; }
     }
 
-    /* REDES SOCIALES FLOTANTES */
-    .floating-socials { position: fixed; right: 16px; bottom: 16px; display: flex; flex-direction: column; gap: 12px; z-index: 50; }
-    .fs-icon { width: 52px; height: 52px; border-radius: 50%; display: grid; place-items: center; color: #fff; box-shadow: 0 4px 16px rgba(0,0,0,0.2); transition: transform .2s; text-decoration: none; }
-    .fs-icon svg { width: 24px; height: 24px; }
-    .fs-icon:hover { transform: scale(1.1); }
+    /* REDES SOCIALES FLOTANTES + ASISTENTE IA */
+    .floating-socials { position: fixed; right: 14px; bottom: 16px; display: flex; flex-direction: column; gap: 10px; z-index: 50; }
+    .fs-icon { width: 48px; height: 48px; border-radius: 50%; display: grid; place-items: center; color: #fff; box-shadow: 0 4px 16px rgba(0,0,0,0.25); transition: transform .2s; text-decoration: none; cursor: pointer; border: none; }
+    .fs-icon svg { width: 22px; height: 22px; }
+    .fs-icon:hover { transform: scale(1.08); }
+    .fs-icon.ai { background: linear-gradient(135deg, #3a2230, #c9a24b); border: 1.5px solid #fff3; }
     .fs-icon.ig { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%); }
     .fs-icon.tk { background: #000; }
     .fs-icon.wa { background: #25d366; position: relative; }
@@ -321,19 +368,40 @@
     @keyframes pl { 0% { transform: scale(1); opacity: .7; } 100% { transform: scale(1.6); opacity: 0; } }
 
     @media(max-width: 767px) {
-      .floating-socials { right: 12px; bottom: 85px; gap: 8px; }
-      .fs-icon { width: 40px; height: 40px; }
-      .fs-icon svg { width: 18px; height: 18px; }
+      .floating-socials { right: 10px; bottom: 16px; gap: 8px; }
+      .fs-icon { width: 42px; height: 42px; }
+      .fs-icon svg { width: 19px; height: 19px; }
+    }
+
+    /* Widget Chat Asistente IA */
+    .ai-chat-box { position: fixed; right: 70px; bottom: 16px; width: min(340px, calc(100vw - 24px)); background: var(--bg); color: var(--fg); border: 1px solid var(--gold); border-radius: 18px; box-shadow: 0 15px 40px rgba(0,0,0,0.28); z-index: 95; display: none; flex-direction: column; overflow: hidden; }
+    .ai-chat-box.on { display: flex; }
+    .ai-head { background: linear-gradient(90deg, #2a1520, #4a2639); color: #fff; padding: 13px 16px; display: flex; justify-content: space-between; align-items: center; font-size: 13px; }
+    .ai-head b { font-family: Georgia, serif; letter-spacing: .06em; color: var(--gold); }
+    .ai-msgs { padding: 14px; max-height: 250px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; font-size: 13px; background: var(--soft); }
+    .msg-bot, .msg-usr { padding: 9px 13px; border-radius: 14px; max-width: 86%; line-height: 1.4; }
+    .msg-bot { background: var(--card); border: 1px solid var(--line); align-self: flex-start; color: var(--fg); }
+    .msg-usr { background: var(--acc); color: var(--bg); align-self: flex-end; }
+    .ai-quick { display: flex; gap: 6px; padding: 8px 12px; overflow-x: auto; background: var(--bg); border-top: 1px solid var(--line); }
+    .ai-quick::-webkit-scrollbar { display: none; }
+    .ai-quick button { font-size: 11px; padding: 5px 10px; border-radius: 14px; border: 1px solid var(--line); background: var(--soft); white-space: nowrap; flex-shrink: 0; }
+    .ai-quick button:hover { border-color: var(--gold); }
+    .ai-input { display: flex; border-top: 1px solid var(--line); background: var(--bg); padding: 8px; gap: 6px; }
+    .ai-input input { flex: 1; border: 1px solid var(--line); background: var(--soft); color: var(--fg); border-radius: 20px; padding: 8px 12px; font-size: 16px; outline: none; min-width: 0; }
+    .ai-input button { background: var(--gold); color: #1a1216; font-weight: 700; font-size: 12px; padding: 0 14px; border-radius: 20px; }
+
+    @media(max-width: 767px) {
+      .ai-chat-box { right: 12px; bottom: 70px; width: calc(100vw - 24px); }
     }
 
     /* Toast Notification */
-    .toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); background: var(--acc); color: var(--bg); padding: 10px 20px; z-index: 200; display: none; border-radius: 30px; box-shadow: 0 4px 16px rgba(0,0,0,0.2); font-size: 12px; font-weight: 600; letter-spacing: .05em; text-align: center; }
+    .toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); background: var(--acc); color: var(--bg); padding: 10px 20px; z-index: 200; display: none; border-radius: 30px; box-shadow: 0 4px 16px rgba(0,0,0,0.2); font-size: 12px; font-weight: 600; letter-spacing: .05em; text-align: center; max-width: 90vw; }
   </style>
 </head>
 <body>
 
 <div class="promo">
-  <span><b>ENVÍO GRATIS DESDE S/. 550.00</b></span>
+  <span id="promoText"><b>ENVÍO GRATIS DESDE S/. 550.00</b></span>
   <button onclick="filterCat('Sets de regalo')">OFERTAS</button>
 </div>
 
@@ -349,16 +417,18 @@
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
         <input id="q" placeholder="Buscar..." oninput="render()">
       </div>
+      <!-- Selector de Moneda (Soles / Dólares) -->
+      <button class="curr-btn" id="currencyBtn" title="Cambiar moneda (Soles / Dólares)" onclick="toggleCurrency()">S/. PEN</button>
       <!-- Botón Modo Noche -->
       <button class="ic" id="darkModeBtn" title="Cambiar Modo Noche/Día" onclick="toggleDarkMode()">
-        <svg id="moonIcon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+        <svg id="moonIcon" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
       </button>
       <button class="ic" title="Favoritos" onclick="toggleFavFilter()">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 20.5s-7.5-4.7-9.2-9.4A5.3 5.3 0 0 1 12 6.2a5.3 5.3 0 0 1 9.2 4.9c-1.7 4.7-9.2 9.4-9.2 9.4z"/></svg>
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 20.5s-7.5-4.7-9.2-9.4A5.3 5.3 0 0 1 12 6.2a5.3 5.3 0 0 1 9.2 4.9c-1.7 4.7-9.2 9.4-9.2 9.4z"/></svg>
         <span class="badge" id="fc">0</span>
       </button>
       <button class="ic" title="Carrito" onclick="toggleCart(true)">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M5 8h14l-1 12H6L5 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M5 8h14l-1 12H6L5 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
         <span class="badge" id="cc">0</span>
       </button>
     </div>
@@ -408,13 +478,26 @@
   <div class="grid" id="grid"></div>
 </section>
 
-<!-- SECCIÓN DE OPINIONES DE CLIENTES (Inicia vacía y se llena con opiniones reales tras cada compra) -->
+<!-- SECCIÓN DE SEGUIMIENTO DE ENVÍOS -->
+<section class="track-sec" id="seguimiento">
+  <div class="track-box">
+    <h2>Seguimiento de Envíos</h2>
+    <p class="sub">Ingresa tu número de pedido (ej. <b>IS-1024</b>) o tu número de celular para consultar el estado de tu entrega en Lima o provincias.</p>
+    <form class="track-form" onsubmit="handleTracking(event)">
+      <input type="text" id="trackInput" placeholder="Ej. IS-1024 o 987654321" required>
+      <button type="submit">Rastrear</button>
+    </form>
+    <div class="track-result" id="trackResult"></div>
+  </div>
+</section>
+
+<!-- SECCIÓN DE OPINIONES DE CLIENTES -->
 <section class="reviews-sec" id="opiniones">
   <div class="reviews-container">
     <h2>Opiniones de nuestros clientes</h2>
     <p style="text-align:center; color:var(--mut); font-size:13px; margin-bottom:30px;">Reseñas reales verificadas de quienes completaron su compra en ISIRA.</p>
     
-    <!-- Listado de reseñas (Vacío al inicio) -->
+    <!-- Listado de reseñas -->
     <div class="reviews-grid" id="reviewsGrid"></div>
 
     <!-- Formulario para dejar opinión -->
@@ -463,11 +546,11 @@
 <footer>
   <div>
     <h4>ISIRA</h4>
-    <p>Sobre Nosotros</p><p>Nuestras Tiendas</p>
+    <p onclick="filterCat('Todos')">Catálogo Completo</p><p onclick="filterCat('Sets de regalo')">Sets de Regalo</p>
   </div>
   <div>
     <h4>Ayuda</h4>
-    <p>Envíos</p><p>Contacto</p>
+    <p onclick="document.getElementById('seguimiento').scrollIntoView({behavior:'smooth'})">Seguimiento de Envíos</p><p onclick="openWhatsAppContact(event)">Contacto</p>
   </div>
   <div>
     <h4>Legal</h4>
@@ -475,7 +558,8 @@
   </div>
   <div>
     <h4>Síguenos</h4>
-    <p>Instagram</p><p>TikTok</p>
+    <p><a href="https://www.instagram.com/isiraoffical/?hl=es" target="_blank" style="color:inherit;text-decoration:none;">Instagram</a></p>
+    <p><a href="https://www.tiktok.com/@isira.official" target="_blank" style="color:inherit;text-decoration:none;">TikTok</a></p>
   </div>
 </footer>
 
@@ -512,7 +596,7 @@
     <button class="qvx" onclick="closePostPurchaseModal()">✕</button>
     <div style="text-align:center; font-size:28px; margin-bottom:6px;">✨</div>
     <h3>¡Gracias por tu pedido!</h3>
-    <p>Tu solicitud fue enviada a WhatsApp. Cuéntanos tu experiencia con <b id="purchasedSummary" style="color:var(--fg);">tu compra</b> para publicarla en la tienda.</p>
+    <p>Código de seguimiento: <b id="generatedOrderCode" style="color:var(--gold);"></b>. Cuéntanos tu experiencia con <b id="purchasedSummary" style="color:var(--fg);">tu compra</b> para publicarla.</p>
     <form onsubmit="handlePostPurchaseReview(event)">
       <input type="text" id="ppName" placeholder="Tu Nombre *" required>
       <select id="ppRating" required>
@@ -559,8 +643,31 @@
   </div>
 </div>
 
-<!-- REDES SOCIALES FLOTANTES -->
+<!-- WIDGET DE CHAT / ASISTENTE IA INTEGRADO -->
+<div class="ai-chat-box" id="aiChatBox">
+  <div class="ai-head">
+    <span><b>✦ Asistente ISIRA</b> • En línea</span>
+    <button onclick="toggleAIChat()" style="color:#fff; font-size:18px;">✕</button>
+  </div>
+  <div class="ai-msgs" id="aiMsgs">
+    <div class="msg-bot">¡Hola! Soy el asistente virtual de <b>ISIRA</b>. ¿Buscas alguna recomendación de perfume, información sobre envíos o ayuda con tus sets de regalo?</div>
+  </div>
+  <div class="ai-quick">
+    <button onclick="sendQuickAI('Recomiéndame un perfume')">✨ Recomendar perfume</button>
+    <button onclick="sendQuickAI('¿Cuánto cuesta el envío?')">🚚 Envíos</button>
+    <button onclick="sendQuickAI('Sets de regalo')">🎁 Sets de regalo</button>
+  </div>
+  <form class="ai-input" onsubmit="handleAIChat(event)">
+    <input type="text" id="aiUserInput" placeholder="Escribe tu consulta..." autocomplete="off">
+    <button type="submit">Enviar</button>
+  </form>
+</div>
+
+<!-- REDES SOCIALES FLOTANTES + BOTÓN ASISTENTE IA -->
 <div class="floating-socials">
+  <button class="fs-icon ai" onclick="toggleAIChat()" aria-label="Asistente Virtual ISIRA" title="Asistente Virtual">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+  </button>
   <a class="fs-icon ig" href="https://www.instagram.com/isiraoffical/?hl=es" target="_blank" aria-label="Instagram">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
   </a>
@@ -575,13 +682,21 @@
 <div class="toast" id="toast"></div>
 
 <script>
-/* ===== CONFIGURACIÓN GLOBAL ===== */
+/* ===== CONFIGURACIÓN GLOBAL Y MONEDA ===== */
 const CFG = {
-  moneda: "S/.",
-  envioGratis: 550,
-  tarifaEnvio: 100,
+  currency: "PEN",
+  tasaUSD: 3.75,
+  envioGratisPEN: 550,
+  tarifaEnvioPEN: 100,
   whatsapp: "51908732482"
 };
+
+function formatPrice(penAmount) {
+  if (CFG.currency === "USD") {
+    return `$ ${(penAmount / CFG.tasaUSD).toFixed(2)}`;
+  }
+  return `S/. ${penAmount.toFixed(2)}`;
+}
 
 const CATEGORIES = ["Todos", "Perfumes", "Sets de regalo", "Tecnología"];
 
@@ -609,57 +724,31 @@ const HERO_SLIDES = [
   }
 ];
 
-/* Portadas gráficas integradas en alta definición para las tarjetas de Sets de regalo */
-const PRIME_VIDEO_IMG = "data:image/svg+xml;utf8," + encodeURIComponent(`
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800">
-  <defs>
-    <linearGradient id="pvBg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#050d1a"/>
-      <stop offset="50%" stop-color="#0a2342"/>
-      <stop offset="100%" stop-color="#005288"/>
-    </linearGradient>
-    <radialGradient id="pvGlow" cx="50%" cy="42%" r="48%">
-      <stop offset="0%" stop-color="#00a8e1" stop-opacity="0.45"/>
-      <stop offset="100%" stop-color="#00a8e1" stop-opacity="0"/>
-    </radialGradient>
-  </defs>
-  <rect width="600" height="800" fill="url(#pvBg)"/>
-  <circle cx="300" cy="340" r="280" fill="url(#pvGlow)"/>
-  <rect x="28" y="28" width="544" height="744" rx="28" fill="none" stroke="#00a8e1" stroke-opacity="0.35" stroke-width="2"/>
+/* Superposición gráfica transparente (mantiene todo el diseño, cambiando solo el azul de fondo por tus imágenes) */
+const PRIME_OVERLAY_SVG = `
+<svg class="gift-overlay-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800">
+  <rect x="28" y="28" width="544" height="744" rx="28" fill="none" stroke="#00a8e1" stroke-opacity="0.45" stroke-width="2"/>
   <text x="300" y="130" text-anchor="middle" fill="#c9a24b" font-family="Georgia, serif" font-size="20" letter-spacing="8">ISIRA GIFT CARD</text>
   <text x="300" y="340" text-anchor="middle" fill="#ffffff" font-family="Arial, Helvetica, sans-serif" font-weight="800" font-size="68" letter-spacing="-1">prime</text>
   <text x="300" y="405" text-anchor="middle" fill="#00a8e1" font-family="Arial, Helvetica, sans-serif" font-weight="700" font-size="52" letter-spacing="2">video</text>
   <path d="M195 438 Q300 488 405 438" fill="none" stroke="#00a8e1" stroke-width="7" stroke-linecap="round"/>
   <path d="M392 428 L412 436 L399 453" fill="none" stroke="#00a8e1" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
-  <rect x="135" y="535" width="330" height="52" rx="26" fill="#00a8e1" fill-opacity="0.18" stroke="#00a8e1" stroke-width="1.5"/>
+  <rect x="135" y="535" width="330" height="52" rx="26" fill="#00a8e1" fill-opacity="0.22" stroke="#00a8e1" stroke-width="1.5"/>
   <text x="300" y="568" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-weight="700" font-size="21" letter-spacing="3">POR UN MES</text>
-  <text x="300" y="665" text-anchor="middle" fill="#a8c7e0" font-family="Arial, sans-serif" font-size="16" letter-spacing="2">FULL HD • ENTREGA INMEDIATA</text>
-</svg>`);
+  <text x="300" y="665" text-anchor="middle" fill="#e2eff8" font-family="Arial, sans-serif" font-size="16" letter-spacing="2">FULL HD • ENTREGA INMEDIATA</text>
+</svg>`;
 
-const DISNEY_PLUS_IMG = "data:image/svg+xml;utf8," + encodeURIComponent(`
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800">
-  <defs>
-    <linearGradient id="dpBg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#040714"/>
-      <stop offset="55%" stop-color="#0b1844"/>
-      <stop offset="100%" stop-color="#17388a"/>
-    </linearGradient>
-    <radialGradient id="dpGlow" cx="50%" cy="42%" r="48%">
-      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.4"/>
-      <stop offset="100%" stop-color="#38bdf8" stop-opacity="0"/>
-    </radialGradient>
-  </defs>
-  <rect width="600" height="800" fill="url(#dpBg)"/>
-  <circle cx="300" cy="340" r="280" fill="url(#dpGlow)"/>
-  <rect x="28" y="28" width="544" height="744" rx="28" fill="none" stroke="#60a5fa" stroke-opacity="0.35" stroke-width="2"/>
+const DISNEY_OVERLAY_SVG = `
+<svg class="gift-overlay-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800">
+  <rect x="28" y="28" width="544" height="744" rx="28" fill="none" stroke="#60a5fa" stroke-opacity="0.45" stroke-width="2"/>
   <text x="300" y="130" text-anchor="middle" fill="#c9a24b" font-family="Georgia, serif" font-size="20" letter-spacing="8">ISIRA GIFT CARD</text>
-  <path d="M150 295 Q300 205 450 295" fill="none" stroke="#60a5fa" stroke-width="4" stroke-linecap="round" opacity="0.85"/>
+  <path d="M150 295 Q300 205 450 295" fill="none" stroke="#60a5fa" stroke-width="4" stroke-linecap="round" opacity="0.9"/>
   <text x="285" y="385" text-anchor="middle" fill="#ffffff" font-family="Georgia, serif" font-style="italic" font-weight="700" font-size="76">Disney</text>
   <text x="448" y="378" text-anchor="middle" fill="#38bdf8" font-family="Arial, sans-serif" font-weight="800" font-size="74">+</text>
-  <rect x="135" y="535" width="330" height="52" rx="26" fill="#38bdf8" fill-opacity="0.18" stroke="#60a5fa" stroke-width="1.5"/>
+  <rect x="135" y="535" width="330" height="52" rx="26" fill="#38bdf8" fill-opacity="0.22" stroke="#60a5fa" stroke-width="1.5"/>
   <text x="300" y="568" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-weight="700" font-size="21" letter-spacing="3">POR UN MES</text>
-  <text x="300" y="665" text-anchor="middle" fill="#bfdbfe" font-family="Arial, sans-serif" font-size="16" letter-spacing="2">4K UHD • ENTREGA INMEDIATA</text>
-</svg>`);
+  <text x="300" y="665" text-anchor="middle" fill="#dbeafe" font-family="Arial, sans-serif" font-size="16" letter-spacing="2">4K UHD • ENTREGA INMEDIATA</text>
+</svg>`;
 
 /* ===== CATÁLOGO DE PRODUCTOS ===== */
 const PRODUCTS = [
@@ -677,13 +766,13 @@ const PRODUCTS = [
   { id: 10, name: "Rose Gold Couture 100ml", cat: "Perfumes", price: 440, oldPrice: 510, tag: "Recomendado", img: "perfume3.jpeg", desc: "Elegancia femenina con acordes de frambuesa, rosa damascena y praliné." },
   { id: 11, name: "Isira Crystal Aura 100ml", cat: "Perfumes", price: 410, oldPrice: 460, tag: "Nuevo", img: "perfume1.jpeg", desc: "Fragancia luminosa y duradera con notas de pera dulce, jazmín y ámbar blanco." },
 
-  /* Sets de regalo (Cartillas Digitales) */
-  { id: 12, name: "PRIME VIDEO POR UN MES", cat: "Sets de regalo", price: 15, oldPrice: 25, tag: "Regalo Digital", img: PRIME_VIDEO_IMG, desc: "Acceso completo por 30 días a películas, series exclusivas y estrenos en alta definición. Entrega inmediata al finalizar tu compra." },
-  { id: 13, name: "DISNEY PLUS POR UN MES", cat: "Sets de regalo", price: 18, oldPrice: 30, tag: "Regalo Digital", img: DISNEY_PLUS_IMG, desc: "Disfruta 30 días de Disney, Pixar, Marvel, Star Wars y National Geographic en máxima calidad. Entrega rápida tras confirmar pedido." }
+  /* Sets de regalo (Exclusivos en su apartado, usando oñeto.jpg y peneto.jpg detrás de las cartillas) */
+  { id: 12, name: "PRIME VIDEO POR UN MES", cat: "Sets de regalo", price: 15, oldPrice: 25, tag: "Regalo Digital", img: "oñeto.jpg", overlaySvg: PRIME_OVERLAY_SVG, desc: "Acceso completo por 30 días a películas, series exclusivas y estrenos en alta definición. Entrega inmediata al finalizar tu compra." },
+  { id: 13, name: "DISNEY PLUS POR UN MES", cat: "Sets de regalo", price: 18, oldPrice: 30, tag: "Regalo Digital", img: "peneto.jpg", overlaySvg: DISNEY_OVERLAY_SVG, desc: "Disfruta 30 días de Disney, Pixar, Marvel, Star Wars y National Geographic en máxima calidad. Entrega rápida tras confirmar pedido." }
 ];
 
-/* Clave nueva para eliminar reseñas ficticias antiguas y empezar 100% vacío */
 const REVIEWS_STORAGE_KEY = "isiraReviewsVerified_v1";
+const ORDERS_STORAGE_KEY = "isiraOrders_v1";
 let reviewsData = [];
 let lastPurchasedProducts = "";
 
@@ -693,8 +782,12 @@ let favState = [];
 let heroIndex = 0;
 let showingOnlyFavs = false;
 
+/* Bloqueo adicional de gestos pinch-to-zoom en Safari iOS */
+document.addEventListener('gesturestart', function (e) { e.preventDefault(); });
+document.addEventListener('gesturechange', function (e) { e.preventDefault(); });
+document.addEventListener('gestureend', function (e) { e.preventDefault(); });
+
 document.addEventListener("DOMContentLoaded", () => {
-  /* Limpiar clave anterior de reseñas ficticias si existiera en el navegador */
   localStorage.removeItem("isiraReviews");
 
   renderNav();
@@ -702,6 +795,7 @@ document.addEventListener("DOMContentLoaded", () => {
   renderCategories();
   renderHero();
   render();
+  updateCartUI();
   loadReviews();
   setInterval(nextHero, 6000);
   
@@ -717,15 +811,102 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
+/* ===== CAMBIO DE MONEDA (SOLES / DÓLARES) ===== */
+function toggleCurrency() {
+  CFG.currency = CFG.currency === "PEN" ? "USD" : "PEN";
+  document.getElementById("currencyBtn").innerText = CFG.currency === "PEN" ? "S/. PEN" : "$ USD";
+  document.getElementById("promoText").innerHTML = `<b>ENVÍO GRATIS DESDE ${formatPrice(CFG.envioGratisPEN)}</b>`;
+  render();
+  updateCartUI();
+  showToast(`Moneda cambiada a ${CFG.currency === "PEN" ? "Soles (S/.)" : "Dólares ($)"}`);
+}
+
+/* ===== SEGUIMIENTO DE ENVÍOS ===== */
+function handleTracking(e) {
+  e.preventDefault();
+  const query = document.getElementById("trackInput").value.trim().toUpperCase();
+  const box = document.getElementById("trackResult");
+  if (!query) return;
+
+  const savedOrders = JSON.parse(localStorage.getItem(ORDERS_STORAGE_KEY) || "[]");
+  const found = savedOrders.find(o => o.code === query || o.phone === query);
+
+  box.style.display = "block";
+  if (found) {
+    box.innerHTML = `
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:6px; margin-bottom:8px;">
+        <b style="color:var(--gold); font-size:14px;">Pedido ${escapeHTML(found.code)}</b>
+        <span style="font-size:11px; background:rgba(37,211,102,0.15); color:#1b9e4b; padding:3px 10px; border-radius:12px; font-weight:700;">En preparación</span>
+      </div>
+      <div style="font-size:12px; color:var(--mut); margin-bottom:6px;">Productos: <b style="color:var(--fg);">${escapeHTML(found.items)}</b></div>
+      <div class="track-steps">
+        <div class="track-step done"><div class="dot">✓</div>Confirmado</div>
+        <div class="track-step done"><div class="dot">✓</div>Empacando</div>
+        <div class="track-step"><div class="dot">3</div>En ruta</div>
+        <div class="track-step"><div class="dot">4</div>Entregado</div>
+      </div>
+    `;
+  } else {
+    box.innerHTML = `
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:6px; margin-bottom:8px;">
+        <b style="color:var(--gold); font-size:14px;">Consulta: ${escapeHTML(query)}</b>
+        <span style="font-size:11px; background:rgba(201,162,75,0.18); color:var(--gold); padding:3px 10px; border-radius:12px; font-weight:700;">Despacho Programado</span>
+      </div>
+      <p style="font-size:12px; color:var(--mut); line-height:1.5;">Lima Metropolitana: entrega en 24h hábiles. Provincias (Olva / Shalom): 24h a 48h hábiles. Para ubicación en tiempo real escríbenos directo por WhatsApp.</p>
+      <div class="track-steps">
+        <div class="track-step done"><div class="dot">✓</div>Registrado</div>
+        <div class="track-step done"><div class="dot">✓</div>Validado</div>
+        <div class="track-step"><div class="dot">3</div>En tránsito</div>
+        <div class="track-step"><div class="dot">4</div>Entregado</div>
+      </div>
+    `;
+  }
+}
+
+/* ===== ASISTENTE IA INTEGRADO ===== */
+function toggleAIChat() {
+  document.getElementById("aiChatBox").classList.toggle("on");
+}
+
+function sendQuickAI(text) {
+  document.getElementById("aiUserInput").value = text;
+  handleAIChat(new Event("submit"));
+}
+
+function handleAIChat(e) {
+  e.preventDefault();
+  const input = document.getElementById("aiUserInput");
+  const text = input.value.trim();
+  if (!text) return;
+
+  const msgs = document.getElementById("aiMsgs");
+  msgs.innerHTML += `<div class="msg-usr">${escapeHTML(text)}</div>`;
+  input.value = "";
+
+  const q = text.toLowerCase();
+  let reply = "Con gusto te ayudo. Puedes explorar nuestros perfumes exclusivos, sets de regalo digitales o escribirnos por WhatsApp para atención personalizada.";
+
+  if (q.includes("perfume") || q.includes("recom") || q.includes("aroma") || q.includes("dulce") || q.includes("intenso")) {
+    reply = `Si buscas algo dulce y seductor te recomiendo <b>Isira Elixir Noir 100ml</b> (${formatPrice(420)}). Si prefieres algo fresco y floral, <b>Velvet Rose EDP</b> (${formatPrice(350)}) o <b>Isira Crystal Aura</b> (${formatPrice(410)}) son ideales.`;
+  } else if (q.includes("envio") || q.includes("envío") || q.includes("delivery") || q.includes("llega")) {
+    reply = `¡Tenemos <b>envío gratis</b> en pedidos desde ${formatPrice(CFG.envioGratisPEN)}! En Lima entregamos el mismo día o al día siguiente, y hacemos envíos seguros a todo el Perú.`;
+  } else if (q.includes("regalo") || q.includes("prime") || q.includes("disney") || q.includes("set")) {
+    reply = `En la pestaña <b>Sets de regalo</b> encontrarás nuestras cartillas digitales de <b>Prime Video por un mes</b> (${formatPrice(15)}) y <b>Disney Plus por un mes</b> (${formatPrice(18)}) con entrega inmediata.`;
+  } else if (q.includes("pago") || q.includes("yape") || q.includes("plin")) {
+    reply = "Aceptamos Yape, Plin, transferencia BCP/Interbank y pago contra entrega en zonas seleccionadas de Lima.";
+  }
+
+  setTimeout(() => {
+    msgs.innerHTML += `<div class="msg-bot">${reply}</div>`;
+    msgs.scrollTop = msgs.scrollHeight;
+  }, 300);
+}
+
 /* ===== GESTIÓN DE OPINIONES REALES ===== */
 function loadReviews() {
   const saved = localStorage.getItem(REVIEWS_STORAGE_KEY);
   if (saved) {
-    try {
-      reviewsData = JSON.parse(saved);
-    } catch(e) {
-      reviewsData = [];
-    }
+    try { reviewsData = JSON.parse(saved); } catch(e) { reviewsData = []; }
   } else {
     reviewsData = [];
   }
@@ -769,15 +950,7 @@ function saveNewReview({ name, rating, comment, product = "", verified = false }
   const now = new Date();
   const formattedDate = now.toLocaleDateString("es-PE", { day: "2-digit", month: "short", year: "numeric" });
 
-  const newReview = {
-    name,
-    rating,
-    comment,
-    product,
-    verified,
-    date: formattedDate
-  };
-
+  const newReview = { name, rating, comment, product, verified, date: formattedDate };
   reviewsData.unshift(newReview);
   localStorage.setItem(REVIEWS_STORAGE_KEY, JSON.stringify(reviewsData));
   renderReviews();
@@ -788,7 +961,6 @@ function handleReviewSubmit(e) {
   const name = document.getElementById("reviewName").value.trim();
   const rating = parseInt(document.getElementById("reviewRating").value);
   const comment = document.getElementById("reviewComment").value.trim();
-
   if (!name || !comment) return;
 
   saveNewReview({ name, rating, comment, verified: false });
@@ -801,17 +973,9 @@ function handlePostPurchaseReview(e) {
   const name = document.getElementById("ppName").value.trim();
   const rating = parseInt(document.getElementById("ppRating").value);
   const comment = document.getElementById("ppComment").value.trim();
-
   if (!name || !comment) return;
 
-  saveNewReview({
-    name,
-    rating,
-    comment,
-    product: lastPurchasedProducts,
-    verified: true
-  });
-
+  saveNewReview({ name, rating, comment, product: lastPurchasedProducts, verified: true });
   e.target.reset();
   closePostPurchaseModal();
   showToast("¡Opinión verificada publicada!");
@@ -919,16 +1083,32 @@ function toggleFavFilter() {
   render();
 }
 
+function getProductVisualHTML(p, isQuickview = false) {
+  if (p.overlaySvg) {
+    return `
+      <div class="gift-card-wrap" style="${isQuickview ? 'aspect-ratio:3/4; border-radius:10px;' : ''}">
+        <img class="gift-bg" src="${p.img}" alt="${p.name}" loading="lazy">
+        <div class="gift-shade"></div>
+        ${p.overlaySvg}
+      </div>
+    `;
+  }
+  return `<img class="${isQuickview ? 'qv-main-img' : 'prod-img'}" src="${p.img}" alt="${p.name}" loading="lazy">`;
+}
+
 function render() {
   const q = document.getElementById("q").value.toLowerCase();
   const sort = document.getElementById("sort").value;
   const grid = document.getElementById("grid");
 
   let list = PRODUCTS.filter(p => {
-    const matchCat = (currentCategory === "Todos" || p.cat === currentCategory);
+    /* Quitar Sets de regalo de "Todos" para que solo salgan en su propio apartado */
+    const matchCat = currentCategory === "Todos"
+      ? p.cat !== "Sets de regalo"
+      : p.cat === currentCategory;
     const matchSearch = p.name.toLowerCase().includes(q) || p.desc.toLowerCase().includes(q) || p.cat.toLowerCase().includes(q);
     const matchFav = !showingOnlyFavs || favState.includes(p.id);
-    return matchCat && matchSearch && matchFav;
+    return (showingOnlyFavs ? true : matchCat) && matchSearch && matchFav;
   });
 
   if (sort === "a") list.sort((a, b) => a.price - b.price);
@@ -955,15 +1135,15 @@ function render() {
           </div>
           <button class="heart ${isFav ? 'on' : ''}" onclick="toggleFav(${p.id})" aria-label="Guardar en favoritos">♥</button>
           <div class="ph" onclick="openQuickview(${p.id})">
-            <img src="${p.img}" alt="${p.name}" loading="lazy">
+            ${getProductVisualHTML(p, false)}
           </div>
           <span class="p-cat">${p.cat}</span>
           <h3>${p.name}</h3>
         </div>
         <div>
           <div class="pr">
-            ${CFG.moneda} ${p.price.toFixed(2)}
-            ${p.oldPrice > 0 ? `<span class="old">${CFG.moneda} ${p.oldPrice.toFixed(2)}</span>` : ''}
+            ${formatPrice(p.price)}
+            ${p.oldPrice > 0 ? `<span class="old">${formatPrice(p.oldPrice)}</span>` : ''}
           </div>
           <button class="add" onclick="addToCart(${p.id})">Agregar</button>
         </div>
@@ -1024,14 +1204,14 @@ function updateCartUI() {
         <img src="${p.img}" alt="${p.name}">
         <div>
           <b>${p.name}</b>
-          <div>${CFG.moneda} ${p.price.toFixed(2)}</div>
+          <div>${formatPrice(p.price)}</div>
           <div class="q">
             <button onclick="changeQty(${p.id}, -1)">-</button>
             <span>${item.qty}</span>
             <button onclick="changeQty(${p.id}, 1)">+</button>
           </div>
         </div>
-        <div style="font-weight:700; color:var(--gold);">${CFG.moneda} ${itemSub.toFixed(2)}</div>
+        <div style="font-weight:700; color:var(--gold);">${formatPrice(itemSub)}</div>
       </div>
     `;
   }).join("");
@@ -1040,23 +1220,23 @@ function updateCartUI() {
     container.innerHTML = `<div style="text-align:center; padding: 40px; color:var(--mut);">Tu carrito está vacío.</div>`;
   }
 
-  const envío = subtotal >= CFG.envioGratis || subtotal === 0 ? 0 : CFG.tarifaEnvio;
-  const total = subtotal + envío;
+  const envio = subtotal >= CFG.envioGratisPEN || subtotal === 0 ? 0 : CFG.tarifaEnvioPEN;
+  const total = subtotal + envio;
 
-  document.getElementById("sub").innerText = `${CFG.moneda} ${subtotal.toFixed(2)}`;
-  document.getElementById("ship").innerText = envío === 0 ? "¡Gratis!" : `${CFG.moneda} ${envío.toFixed(2)}`;
-  document.getElementById("tot").innerText = `${CFG.moneda} ${total.toFixed(2)}`;
+  document.getElementById("sub").innerText = formatPrice(subtotal);
+  document.getElementById("ship").innerText = envio === 0 ? "¡Gratis!" : formatPrice(envio);
+  document.getElementById("tot").innerText = formatPrice(total);
   document.getElementById("cc").innerText = totalItems;
 
-  const pct = Math.min(100, (subtotal / CFG.envioGratis) * 100);
+  const pct = Math.min(100, (subtotal / CFG.envioGratisPEN) * 100);
   document.getElementById("bar").style.width = pct + "%";
   
   const msg = document.getElementById("shipmsg");
-  if (subtotal >= CFG.envioGratis) {
+  if (subtotal >= CFG.envioGratisPEN) {
     msg.innerText = "¡Felicidades! Tienes Envío Gratis.";
   } else {
-    const rest = CFG.envioGratis - subtotal;
-    msg.innerText = `Agrega ${CFG.moneda} ${rest.toFixed(2)} más para Envío Gratis.`;
+    const rest = CFG.envioGratisPEN - subtotal;
+    msg.innerText = `Agrega ${formatPrice(rest)} más para Envío Gratis.`;
   }
 }
 
@@ -1067,14 +1247,14 @@ function toggleCart(open) {
 
 function openQuickview(id) {
   const p = PRODUCTS.find(item => item.id === id);
-  document.getElementById("qvi").innerHTML = `<img src="${p.img}" alt="${p.name}">`;
+  document.getElementById("qvi").innerHTML = getProductVisualHTML(p, true);
   document.getElementById("qvt").innerHTML = `
     <h3>${p.name}</h3>
     <p style="color:var(--mut); margin-bottom:10px; font-size:12px; text-transform:uppercase;">${p.cat}</p>
     <p style="margin-bottom:16px; font-size:14px; line-height:1.5;">${p.desc}</p>
     <div style="font-size:20px; font-weight:700; color:var(--gold); margin-bottom:16px;">
-      ${CFG.moneda} ${p.price.toFixed(2)}
-      ${p.oldPrice > 0 ? `<span style="text-decoration:line-through; color:var(--mut); font-size:14px; font-weight:400; margin-left:8px;">${CFG.moneda} ${p.oldPrice.toFixed(2)}</span>` : ''}
+      ${formatPrice(p.price)}
+      ${p.oldPrice > 0 ? `<span style="text-decoration:line-through; color:var(--mut); font-size:14px; font-weight:400; margin-left:8px;">${formatPrice(p.oldPrice)}</span>` : ''}
     </div>
     <button class="add" onclick="addToCart(${p.id}); closeQuickview();">Agregar al Carrito</button>
   `;
@@ -1091,7 +1271,8 @@ function checkout() {
     return;
   }
 
-  let text = "*NUEVO PEDIDO - ISIRA*\n\n";
+  const orderCode = "IS-" + Math.floor(1000 + Math.random() * 9000);
+  let text = `*NUEVO PEDIDO - ISIRA*\n*Código:* ${orderCode}\n\n`;
   let subtotal = 0;
   let productNames = [];
 
@@ -1100,23 +1281,28 @@ function checkout() {
     const itemSub = p.price * item.qty;
     subtotal += itemSub;
     productNames.push(p.name);
-    text += `• ${p.name} x${item.qty} - ${CFG.moneda} ${itemSub.toFixed(2)}\n`;
+    text += `• ${p.name} x${item.qty} - ${formatPrice(itemSub)}\n`;
   });
 
-  const envío = subtotal >= CFG.envioGratis ? 0 : CFG.tarifaEnvio;
-  const total = subtotal + envío;
+  const envio = subtotal >= CFG.envioGratisPEN ? 0 : CFG.tarifaEnvioPEN;
+  const total = subtotal + envio;
 
-  text += `\n*Subtotal:* ${CFG.moneda} ${subtotal.toFixed(2)}`;
-  text += `\n*Envío:* ${envío === 0 ? 'Gratis' : CFG.moneda + ' ' + envío.toFixed(2)}`;
-  text += `\n*TOTAL:* ${CFG.moneda} ${total.toFixed(2)}`;
+  text += `\n*Subtotal:* ${formatPrice(subtotal)}`;
+  text += `\n*Envío:* ${envio === 0 ? 'Gratis' : formatPrice(envio)}`;
+  text += `\n*TOTAL:* ${formatPrice(total)}`;
   text += `\n\n¡Hola! Quisiera coordinar el pago y envío de mi pedido.`;
 
   lastPurchasedProducts = productNames.join(", ");
   document.getElementById("purchasedSummary").innerText = lastPurchasedProducts;
+  document.getElementById("generatedOrderCode").innerText = orderCode;
+
+  /* Guardar pedido localmente para consulta en Seguimiento de Envíos */
+  const savedOrders = JSON.parse(localStorage.getItem(ORDERS_STORAGE_KEY) || "[]");
+  savedOrders.unshift({ code: orderCode, items: lastPurchasedProducts, date: new Date().toLocaleDateString("es-PE") });
+  localStorage.setItem(ORDERS_STORAGE_KEY, JSON.stringify(savedOrders));
 
   window.open(`https://wa.me/${CFG.whatsapp}?text=${encodeURIComponent(text)}`, "_blank");
 
-  /* Vaciar carrito tras finalizar y abrir solicitud de opinión real */
   cartState = [];
   updateCartUI();
   toggleCart(false);
