@@ -133,7 +133,7 @@
       .cat { padding: 12px; font-size: 10px; border-radius: 12px; }
     }
 
-    /* Products Grid & Toolbar Mejorada */
+    /* Products Grid & Toolbar */
     .tools { display: flex; gap: 12px; justify-content: space-between; flex-wrap: wrap; margin-bottom: 24px; align-items: center; }
     .tools-left { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
     .filter-pills { display: flex; gap: 6px; flex-wrap: wrap; }
@@ -187,9 +187,11 @@
     .reviews-container { max-width: 900px; margin: 0 auto; }
     .reviews-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px; margin-bottom: 40px; }
     .review-card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.03); display: flex; flex-direction: column; justify-content: space-between; }
-    .review-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
-    .review-author { font-weight: 700; font-size: 14px; color: var(--fg); }
-    .review-stars { color: var(--gold); font-size: 14px; letter-spacing: 2px; }
+    .review-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; gap: 8px; }
+    .review-author { font-weight: 700; font-size: 14px; color: var(--fg); display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+    .verified-badge { font-size: 9px; background: rgba(37, 211, 102, 0.15); color: #1b9e4b; border: 1px solid rgba(37, 211, 102, 0.35); padding: 2px 7px; border-radius: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; }
+    .review-stars { color: var(--gold); font-size: 14px; letter-spacing: 2px; flex-shrink: 0; }
+    .review-product { font-size: 11px; color: var(--gold); font-weight: 600; margin-bottom: 6px; }
     .review-text { font-size: 13px; color: var(--mut); line-height: 1.5; margin-bottom: 12px; font-style: italic; }
     .review-date { font-size: 10px; color: var(--mut); opacity: 0.8; }
 
@@ -259,13 +261,20 @@
     .go { width: 100%; background: var(--acc); color: var(--bg); padding: 13px; letter-spacing: .12em; text-transform: uppercase; font-size: 12px; font-weight: 700; margin-top: 10px; border-radius: 25px; transition: all .2s; }
     .go:hover { background: var(--gold); color: #1a1216; }
 
-    /* Quickview Modal */
-    .qvw { position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 120; display: none; place-items: center; padding: 12px; backdrop-filter: blur(4px); }
+    /* Quickview Modal & Post-Purchase Review Modal */
+    .qvw { position: fixed; inset: 0; background: rgba(0,0,0,0.55); z-index: 120; display: none; place-items: center; padding: 12px; backdrop-filter: blur(4px); }
     .qvw.on { display: grid; }
-    .qvb { background: var(--bg); color: var(--fg); max-width: 600px; width: 100%; max-height: 90vh; overflow-y: auto; display: grid; grid-template-columns: 1fr; gap: 16px; padding: 20px; position: relative; border-radius: 16px; box-shadow: 0 15px 40px rgba(0,0,0,0.2); border: 1px solid var(--line); }
+    .qvb { background: var(--bg); color: var(--fg); max-width: 600px; width: 100%; max-height: 90vh; overflow-y: auto; display: grid; grid-template-columns: 1fr; gap: 16px; padding: 20px; position: relative; border-radius: 16px; box-shadow: 0 15px 40px rgba(0,0,0,0.25); border: 1px solid var(--line); }
     .qvb img { width: 100%; aspect-ratio: 3/4; object-fit: cover; border-radius: 10px; }
     .qvb h3 { font: 400 22px Georgia, serif; margin-bottom: 6px; }
     .qvx { position: absolute; top: 10px; right: 14px; font-size: 22px; color: var(--mut); }
+
+    .post-review-box { background: var(--bg); color: var(--fg); max-width: 460px; width: 100%; padding: 28px 24px; position: relative; border-radius: 18px; box-shadow: 0 20px 50px rgba(0,0,0,0.3); border: 1px solid var(--gold); }
+    .post-review-box h3 { font: 400 22px Georgia, serif; margin-bottom: 8px; text-align: center; }
+    .post-review-box p { font-size: 13px; color: var(--mut); text-align: center; margin-bottom: 18px; line-height: 1.5; }
+    .post-review-box input, .post-review-box select, .post-review-box textarea { width: 100%; border: 1px solid var(--line); background: var(--soft); color: var(--fg); padding: 11px 14px; border-radius: 10px; font-size: 13px; outline: none; font-family: inherit; margin-bottom: 12px; }
+    .post-review-box input:focus, .post-review-box select:focus, .post-review-box textarea:focus { border-color: var(--gold); }
+    .post-review-box textarea { resize: vertical; min-height: 85px; }
 
     /* Welcome Modal */
     .wm-ov { position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 150; display: none; place-items: center; padding: 20px; backdrop-filter: blur(4px); opacity: 0; transition: opacity 0.4s ease; }
@@ -399,13 +408,13 @@
   <div class="grid" id="grid"></div>
 </section>
 
-<!-- SECCIÓN DE OPINIONES DE CLIENTES -->
-<section class="reviews-sec">
+<!-- SECCIÓN DE OPINIONES DE CLIENTES (Inicia vacía y se llena con opiniones reales tras cada compra) -->
+<section class="reviews-sec" id="opiniones">
   <div class="reviews-container">
     <h2>Opiniones de nuestros clientes</h2>
-    <p style="text-align:center; color:var(--mut); font-size:13px; margin-bottom:30px;">Descubre lo que dicen quienes ya confiaron en ISIRA o déjanos tu propia experiencia.</p>
+    <p style="text-align:center; color:var(--mut); font-size:13px; margin-bottom:30px;">Reseñas reales verificadas de quienes completaron su compra en ISIRA.</p>
     
-    <!-- Listado de reseñas (Dinámico) -->
+    <!-- Listado de reseñas (Vacío al inicio) -->
     <div class="reviews-grid" id="reviewsGrid"></div>
 
     <!-- Formulario para dejar opinión -->
@@ -422,7 +431,7 @@
             <option value="1">★☆☆☆☆ (1/5 - Malo)</option>
           </select>
         </div>
-        <textarea id="reviewComment" placeholder="Cuéntanos cómo fue tu experiencia con el producto o envío... *" required></textarea>
+        <textarea id="reviewComment" placeholder="Cuéntanos cómo fue tu experiencia con tu compra... *" required></textarea>
         <button type="submit" class="submit-review-btn">Publicar Opinión</button>
       </form>
     </div>
@@ -494,6 +503,28 @@
     <button class="qvx" onclick="closeQuickview()">✕</button>
     <div id="qvi"></div>
     <div id="qvt"></div>
+  </div>
+</div>
+
+<!-- Modal Post-Compra para dejar Opinión Real -->
+<div class="qvw" id="postPurchaseModal" onclick="if(event.target===this)closePostPurchaseModal()">
+  <div class="post-review-box">
+    <button class="qvx" onclick="closePostPurchaseModal()">✕</button>
+    <div style="text-align:center; font-size:28px; margin-bottom:6px;">✨</div>
+    <h3>¡Gracias por tu pedido!</h3>
+    <p>Tu solicitud fue enviada a WhatsApp. Cuéntanos tu experiencia con <b id="purchasedSummary" style="color:var(--fg);">tu compra</b> para publicarla en la tienda.</p>
+    <form onsubmit="handlePostPurchaseReview(event)">
+      <input type="text" id="ppName" placeholder="Tu Nombre *" required>
+      <select id="ppRating" required>
+        <option value="5">★★★★★ (5/5 - ¡Excelente atención!)</option>
+        <option value="4">★★★★☆ (4/5 - Muy bueno)</option>
+        <option value="3">★★★☆☆ (3/5 - Bueno)</option>
+        <option value="2">★★☆☆☆ (2/5 - Regular)</option>
+        <option value="1">★☆☆☆☆ (1/5 - Malo)</option>
+      </select>
+      <textarea id="ppComment" placeholder="Escribe aquí tu opinión sobre el pedido o la atención... *" required></textarea>
+      <button type="submit" class="submit-review-btn">Publicar Opinión Verificada</button>
+    </form>
   </div>
 </div>
 
@@ -578,24 +609,84 @@ const HERO_SLIDES = [
   }
 ];
 
-/* ===== CATÁLOGO DE PRODUCTOS (CON LOS 7 NUEVOS PERFUMES) ===== */
+/* Portadas gráficas integradas en alta definición para las tarjetas de Sets de regalo */
+const PRIME_VIDEO_IMG = "data:image/svg+xml;utf8," + encodeURIComponent(`
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800">
+  <defs>
+    <linearGradient id="pvBg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#050d1a"/>
+      <stop offset="50%" stop-color="#0a2342"/>
+      <stop offset="100%" stop-color="#005288"/>
+    </linearGradient>
+    <radialGradient id="pvGlow" cx="50%" cy="42%" r="48%">
+      <stop offset="0%" stop-color="#00a8e1" stop-opacity="0.45"/>
+      <stop offset="100%" stop-color="#00a8e1" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="600" height="800" fill="url(#pvBg)"/>
+  <circle cx="300" cy="340" r="280" fill="url(#pvGlow)"/>
+  <rect x="28" y="28" width="544" height="744" rx="28" fill="none" stroke="#00a8e1" stroke-opacity="0.35" stroke-width="2"/>
+  <text x="300" y="130" text-anchor="middle" fill="#c9a24b" font-family="Georgia, serif" font-size="20" letter-spacing="8">ISIRA GIFT CARD</text>
+  <text x="300" y="340" text-anchor="middle" fill="#ffffff" font-family="Arial, Helvetica, sans-serif" font-weight="800" font-size="68" letter-spacing="-1">prime</text>
+  <text x="300" y="405" text-anchor="middle" fill="#00a8e1" font-family="Arial, Helvetica, sans-serif" font-weight="700" font-size="52" letter-spacing="2">video</text>
+  <path d="M195 438 Q300 488 405 438" fill="none" stroke="#00a8e1" stroke-width="7" stroke-linecap="round"/>
+  <path d="M392 428 L412 436 L399 453" fill="none" stroke="#00a8e1" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="135" y="535" width="330" height="52" rx="26" fill="#00a8e1" fill-opacity="0.18" stroke="#00a8e1" stroke-width="1.5"/>
+  <text x="300" y="568" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-weight="700" font-size="21" letter-spacing="3">POR UN MES</text>
+  <text x="300" y="665" text-anchor="middle" fill="#a8c7e0" font-family="Arial, sans-serif" font-size="16" letter-spacing="2">FULL HD • ENTREGA INMEDIATA</text>
+</svg>`);
+
+const DISNEY_PLUS_IMG = "data:image/svg+xml;utf8," + encodeURIComponent(`
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800">
+  <defs>
+    <linearGradient id="dpBg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#040714"/>
+      <stop offset="55%" stop-color="#0b1844"/>
+      <stop offset="100%" stop-color="#17388a"/>
+    </linearGradient>
+    <radialGradient id="dpGlow" cx="50%" cy="42%" r="48%">
+      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#38bdf8" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="600" height="800" fill="url(#dpBg)"/>
+  <circle cx="300" cy="340" r="280" fill="url(#dpGlow)"/>
+  <rect x="28" y="28" width="544" height="744" rx="28" fill="none" stroke="#60a5fa" stroke-opacity="0.35" stroke-width="2"/>
+  <text x="300" y="130" text-anchor="middle" fill="#c9a24b" font-family="Georgia, serif" font-size="20" letter-spacing="8">ISIRA GIFT CARD</text>
+  <path d="M150 295 Q300 205 450 295" fill="none" stroke="#60a5fa" stroke-width="4" stroke-linecap="round" opacity="0.85"/>
+  <text x="285" y="385" text-anchor="middle" fill="#ffffff" font-family="Georgia, serif" font-style="italic" font-weight="700" font-size="76">Disney</text>
+  <text x="448" y="378" text-anchor="middle" fill="#38bdf8" font-family="Arial, sans-serif" font-weight="800" font-size="74">+</text>
+  <rect x="135" y="535" width="330" height="52" rx="26" fill="#38bdf8" fill-opacity="0.18" stroke="#60a5fa" stroke-width="1.5"/>
+  <text x="300" y="568" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-weight="700" font-size="21" letter-spacing="3">POR UN MES</text>
+  <text x="300" y="665" text-anchor="middle" fill="#bfdbfe" font-family="Arial, sans-serif" font-size="16" letter-spacing="2">4K UHD • ENTREGA INMEDIATA</text>
+</svg>`);
+
+/* ===== CATÁLOGO DE PRODUCTOS ===== */
 const PRODUCTS = [
   { id: 1, name: "Isira Elixir Noir 100ml", cat: "Perfumes", price: 420, oldPrice: 490, tag: "Nuevo", img: "prodcuto1.jpeg", desc: "Una fragancia oriental con notas de vainilla negra y jazmín silvestre." },
   { id: 2, name: "Velvet Rose EDP 50ml", cat: "Perfumes", price: 350, oldPrice: 0, tag: "Popular", img: "producto2.jpeg", desc: "Rosas frescas combinadas con un toque dulce de pimienta rosa." },
   { id: 3, name: "Smartwatch Elite Serie", cat: "Tecnología", price: 680, oldPrice: 750, tag: "Exclusivo", img: "producto3.jpeg", desc: "Diseño elegante con monitor de salud y sincronización total." },
   { id: 4, name: "Auriculares SoundPro", cat: "Tecnología", price: 410, oldPrice: 0, tag: "Nuevo", img: "producto4.jpeg", desc: "Cancelación de ruido activa con sonido envolvente premium." },
 
-  /* Nuevos Perfumes Agregados */
+  /* Perfumes */
   { id: 5, name: "Isira Golden Whisper 100ml", cat: "Perfumes", price: 390, oldPrice: 450, tag: "Nuevo", img: "asasasasteamo.jpeg", desc: "Aroma cálido y envolvente con destellos de ámbar dorado y flor de azahar." },
   { id: 6, name: "Victoria Shimmer Mist 250ml", cat: "Perfumes", price: 280, oldPrice: 330, tag: "Top Ventas", img: "oñooas.jpeg", desc: "Bruma corporal perfumada con sutiles destellos luminosos y notas florales." },
   { id: 7, name: "Isira Silk Bloom EDP 100ml", cat: "Perfumes", price: 430, oldPrice: 0, tag: "Exclusivo", img: "cak.jpeg", desc: "Pétalos de peonía blanca fusionados con almizcle suave y madera de sándalo." },
   { id: 8, name: "Midnight Oud Reserve 100ml", cat: "Perfumes", price: 470, oldPrice: 540, tag: "Edición Limitada", img: "ptotio.jpeg", desc: "Esencia intensa y seductora de madera de oud, especias dulces y vainilla." },
   { id: 9, name: "Isira Pure Essence EDP 75ml", cat: "Perfumes", price: 360, oldPrice: 0, tag: "Popular", img: "perfume.jpeg", desc: "Frescura sofisticada con notas cítricas, lirio del valle y toque amaderado." },
   { id: 10, name: "Rose Gold Couture 100ml", cat: "Perfumes", price: 440, oldPrice: 510, tag: "Recomendado", img: "perfume3.jpeg", desc: "Elegancia femenina con acordes de frambuesa, rosa damascena y praliné." },
-  { id: 11, name: "Isira Crystal Aura 100ml", cat: "Perfumes", price: 410, oldPrice: 460, tag: "Nuevo", img: "perfume1.jpeg", desc: "Fragancia luminosa y duradera con notas de pera dulce, jazmín y ámbar blanco." }
+  { id: 11, name: "Isira Crystal Aura 100ml", cat: "Perfumes", price: 410, oldPrice: 460, tag: "Nuevo", img: "perfume1.jpeg", desc: "Fragancia luminosa y duradera con notas de pera dulce, jazmín y ámbar blanco." },
+
+  /* Sets de regalo (Cartillas Digitales) */
+  { id: 12, name: "PRIME VIDEO POR UN MES", cat: "Sets de regalo", price: 15, oldPrice: 25, tag: "Regalo Digital", img: PRIME_VIDEO_IMG, desc: "Acceso completo por 30 días a películas, series exclusivas y estrenos en alta definición. Entrega inmediata al finalizar tu compra." },
+  { id: 13, name: "DISNEY PLUS POR UN MES", cat: "Sets de regalo", price: 18, oldPrice: 30, tag: "Regalo Digital", img: DISNEY_PLUS_IMG, desc: "Disfruta 30 días de Disney, Pixar, Marvel, Star Wars y National Geographic en máxima calidad. Entrega rápida tras confirmar pedido." }
 ];
 
+/* Clave nueva para eliminar reseñas ficticias antiguas y empezar 100% vacío */
+const REVIEWS_STORAGE_KEY = "isiraReviewsVerified_v1";
 let reviewsData = [];
+let lastPurchasedProducts = "";
+
 let currentCategory = "Todos";
 let cartState = [];
 let favState = [];
@@ -603,6 +694,9 @@ let heroIndex = 0;
 let showingOnlyFavs = false;
 
 document.addEventListener("DOMContentLoaded", () => {
+  /* Limpiar clave anterior de reseñas ficticias si existiera en el navegador */
+  localStorage.removeItem("isiraReviews");
+
   renderNav();
   renderFilterPills();
   renderCategories();
@@ -623,13 +717,17 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-/* ===== GESTIÓN DE RESEÑAS CON LOCALSTORAGE ===== */
+/* ===== GESTIÓN DE OPINIONES REALES ===== */
 function loadReviews() {
-  const saved = localStorage.getItem('isiraReviews');
+  const saved = localStorage.getItem(REVIEWS_STORAGE_KEY);
   if (saved) {
     try {
       reviewsData = JSON.parse(saved);
-    } catch(e) { console.error(e); }
+    } catch(e) {
+      reviewsData = [];
+    }
+  } else {
+    reviewsData = [];
   }
   renderReviews();
 }
@@ -637,7 +735,7 @@ function loadReviews() {
 function renderReviews() {
   const grid = document.getElementById("reviewsGrid");
   if (reviewsData.length === 0) {
-    grid.innerHTML = `<div style="grid-column: 1/-1; text-align:center; padding: 30px; color:var(--mut); font-size:13px;">Aún no hay opiniones de clientes. ¡Sé el primero en compartir tu experiencia!</div>`;
+    grid.innerHTML = `<div style="grid-column: 1/-1; text-align:center; padding: 34px 20px; border: 1px dashed var(--line); border-radius: 16px; color:var(--mut); font-size:13px;">Aún no hay opiniones registradas. ¡Completa tu compra o sé el primero en compartir tu experiencia!</div>`;
     return;
   }
   grid.innerHTML = reviewsData.map(r => {
@@ -646,15 +744,43 @@ function renderReviews() {
       <div class="review-card">
         <div>
           <div class="review-header">
-            <span class="review-author">${r.name}</span>
+            <span class="review-author">
+              ${escapeHTML(r.name)}
+              ${r.verified ? `<span class="verified-badge">✓ Compra Verificada</span>` : ''}
+            </span>
             <span class="review-stars">${stars}</span>
           </div>
-          <p class="review-text">"${r.comment}"</p>
+          ${r.product ? `<div class="review-product">Compró: ${escapeHTML(r.product)}</div>` : ''}
+          <p class="review-text">"${escapeHTML(r.comment)}"</p>
         </div>
-        <span class="review-date">${r.date}</span>
+        <span class="review-date">${escapeHTML(r.date)}</span>
       </div>
     `;
   }).join("");
+}
+
+function escapeHTML(str) {
+  return String(str).replace(/[&<>"']/g, m => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+  }[m]));
+}
+
+function saveNewReview({ name, rating, comment, product = "", verified = false }) {
+  const now = new Date();
+  const formattedDate = now.toLocaleDateString("es-PE", { day: "2-digit", month: "short", year: "numeric" });
+
+  const newReview = {
+    name,
+    rating,
+    comment,
+    product,
+    verified,
+    date: formattedDate
+  };
+
+  reviewsData.unshift(newReview);
+  localStorage.setItem(REVIEWS_STORAGE_KEY, JSON.stringify(reviewsData));
+  renderReviews();
 }
 
 function handleReviewSubmit(e) {
@@ -663,21 +789,37 @@ function handleReviewSubmit(e) {
   const rating = parseInt(document.getElementById("reviewRating").value);
   const comment = document.getElementById("reviewComment").value.trim();
 
-  if(!name || !comment) return;
+  if (!name || !comment) return;
 
-  const newReview = {
+  saveNewReview({ name, rating, comment, verified: false });
+  document.getElementById("reviewForm").reset();
+  showToast("¡Gracias por publicar tu opinión!");
+}
+
+function handlePostPurchaseReview(e) {
+  e.preventDefault();
+  const name = document.getElementById("ppName").value.trim();
+  const rating = parseInt(document.getElementById("ppRating").value);
+  const comment = document.getElementById("ppComment").value.trim();
+
+  if (!name || !comment) return;
+
+  saveNewReview({
     name,
     rating,
     comment,
-    date: "Justo ahora"
-  };
+    product: lastPurchasedProducts,
+    verified: true
+  });
 
-  reviewsData.unshift(newReview);
-  localStorage.setItem('isiraReviews', JSON.stringify(reviewsData));
-  
-  renderReviews();
-  document.getElementById("reviewForm").reset();
-  showToast("¡Gracias por tu opinión!");
+  e.target.reset();
+  closePostPurchaseModal();
+  showToast("¡Opinión verificada publicada!");
+  document.getElementById("opiniones").scrollIntoView({ behavior: "smooth" });
+}
+
+function closePostPurchaseModal() {
+  document.getElementById("postPurchaseModal").classList.remove("on");
 }
 
 function toggleDarkMode() {
@@ -951,11 +1093,13 @@ function checkout() {
 
   let text = "*NUEVO PEDIDO - ISIRA*\n\n";
   let subtotal = 0;
+  let productNames = [];
 
   cartState.forEach(item => {
     const p = PRODUCTS.find(prod => prod.id === item.id);
     const itemSub = p.price * item.qty;
     subtotal += itemSub;
+    productNames.push(p.name);
     text += `• ${p.name} x${item.qty} - ${CFG.moneda} ${itemSub.toFixed(2)}\n`;
   });
 
@@ -967,7 +1111,18 @@ function checkout() {
   text += `\n*TOTAL:* ${CFG.moneda} ${total.toFixed(2)}`;
   text += `\n\n¡Hola! Quisiera coordinar el pago y envío de mi pedido.`;
 
+  lastPurchasedProducts = productNames.join(", ");
+  document.getElementById("purchasedSummary").innerText = lastPurchasedProducts;
+
   window.open(`https://wa.me/${CFG.whatsapp}?text=${encodeURIComponent(text)}`, "_blank");
+
+  /* Vaciar carrito tras finalizar y abrir solicitud de opinión real */
+  cartState = [];
+  updateCartUI();
+  toggleCart(false);
+  setTimeout(() => {
+    document.getElementById("postPurchaseModal").classList.add("on");
+  }, 600);
 }
 
 function openWhatsAppContact(e) {
