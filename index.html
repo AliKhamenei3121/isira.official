@@ -76,8 +76,6 @@
     nav button:hover, nav button.on { border-color: var(--gold); color: var(--gold); }
     nav .gift { background: linear-gradient(90deg, #8c1d3a, #c2185b); color: #fff; padding: 6px 14px; border-radius: 30px; border-bottom: 0; box-shadow: 0 3px 10px #8c1d3a55; }
     nav .gift:hover { filter: brightness(1.12); color: #fff; }
-    nav .vip-nav-btn { background: linear-gradient(135deg, #2a1829, #5a344c); color: #fbd38d; border: 1px solid #f6ad5599; padding: 6px 14px; border-radius: 30px; border-bottom: 1px solid #f6ad5599; box-shadow: 0 3px 12px rgba(246,173,85,0.25); }
-    nav .vip-nav-btn:hover { background: linear-gradient(135deg, #f6ad55, #fbd38d); color: #1a1019; }
 
     @media(max-width: 767px) {
       .top { flex-wrap: wrap; padding: 10px 4vw; gap: 8px; }
@@ -396,200 +394,6 @@
     .post-review-box input:focus, .post-review-box select:focus, .post-review-box textarea:focus { border-color: var(--gold); }
     .post-review-box textarea { resize: vertical; min-height: 85px; }
 
-    /* ===== CUADRO DE ACCESO VIP CON IMAGEN DE FONDO (fc36ed8a2616ccd3db41fe998a1a8576.jpg) ===== */
-    .vip-login-box {
-      background:
-        linear-gradient(160deg, rgba(44, 22, 48, 0.72), rgba(74, 34, 62, 0.68) 55%, rgba(30, 18, 38, 0.82)),
-        url('fc36ed8a2616ccd3db41fe998a1a8576.jpg') center/cover no-repeat;
-      color: #fffaf5; max-width: 420px; width: 100%;
-      padding: 36px 26px; position: relative; border-radius: 26px;
-      border: 1.5px solid #fbd38d; text-align: center;
-      box-shadow: 0 20px 60px rgba(246, 173, 85, 0.28), 0 15px 40px rgba(0,0,0,0.55);
-      backdrop-filter: blur(4px);
-    }
-    .vip-login-box h3 {
-      font: 700 24px Georgia, serif; color: #fbd38d; margin-bottom: 8px;
-      letter-spacing: .03em; text-shadow: 0 2px 10px rgba(0,0,0,0.6);
-    }
-    .vip-login-box p {
-      font-size: 13.5px; color: #f7e9f4; margin-bottom: 20px; line-height: 1.55;
-      text-shadow: 0 1px 6px rgba(0,0,0,0.65);
-    }
-    .vip-login-box input {
-      width: 100%; background: rgba(255, 255, 255, 0.16);
-      backdrop-filter: blur(6px);
-      border: 1.5px solid #fbd38d; color: #fff;
-      padding: 13px 14px; border-radius: 16px; font-size: 16px; text-align: center;
-      letter-spacing: .16em; outline: none; margin-bottom: 14px; font-weight: 700;
-    }
-    .vip-login-box input::placeholder { color: rgba(255,255,255,0.75); font-weight: 400; }
-    .vip-login-box input:focus { box-shadow: 0 0 0 3px rgba(251, 211, 141, 0.35); }
-    .vip-enter-btn {
-      width: 100%; background: linear-gradient(90deg, #ed8936, #f6ad55, #fbd38d);
-      color: #1f121d; font-weight: 800; padding: 13px; border-radius: 25px;
-      font-size: 12px; letter-spacing: .12em; text-transform: uppercase;
-      box-shadow: 0 6px 20px rgba(246, 173, 85, 0.4);
-      transition: transform .2s;
-    }
-    .vip-enter-btn:hover { transform: translateY(-2px); }
-
-    /* ===== PANTALLA ESPECIAL VIP: DISEÑO EDITORIAL HERMOSO Y LUMINOSO ===== */
-    .vip-space-modal {
-      position: fixed; inset: 0; background: rgba(22, 11, 26, 0.85);
-      z-index: 140; display: none; place-items: center; padding: 12px;
-      backdrop-filter: blur(10px);
-    }
-    .vip-space-modal.on { display: grid; }
-    .vip-world {
-      background:
-        radial-gradient(circle at 10% 8%, rgba(251, 211, 141, 0.24), transparent 44%),
-        radial-gradient(circle at 90% 15%, rgba(237, 100, 166, 0.22), transparent 46%),
-        radial-gradient(circle at 50% 92%, rgba(129, 230, 217, 0.16), transparent 50%),
-        linear-gradient(160deg, #23132b 0%, #311938 52%, #1d1124 100%);
-      color: #fff9f7; width: 100%; max-width: 900px; max-height: 92vh;
-      overflow-y: auto; border-radius: 28px; border: 1.5px solid rgba(251, 211, 141, 0.72);
-      padding: 26px 22px 34px; position: relative;
-      box-shadow: 0 28px 85px rgba(0,0,0,0.75), inset 0 0 50px rgba(251, 211, 141, 0.1);
-    }
-    .vip-close {
-      position: sticky; top: 0; float: right;
-      background: rgba(255,255,255,0.14); backdrop-filter: blur(6px);
-      color: #fbd38d; border: 1px solid rgba(251, 211, 141, 0.6); width: 38px; height: 38px;
-      border-radius: 50%; display: grid; place-items: center; font-size: 16px; z-index: 15;
-      transition: transform .2s, background .2s;
-    }
-    .vip-close:hover { transform: scale(1.08); background: #fbd38d; color: #23132b; }
-
-    .vip-badge {
-      display: inline-flex; align-items: center; gap: 6px;
-      background: linear-gradient(90deg, rgba(251,211,141,0.22), rgba(237,100,166,0.22));
-      border: 1px solid rgba(251, 211, 141, 0.65);
-      color: #fbd38d; padding: 6px 16px; border-radius: 24px;
-      font-size: 10px; font-weight: 700; letter-spacing: .15em; text-transform: uppercase;
-      margin-bottom: 12px;
-    }
-    .vip-header { text-align: center; margin-bottom: 24px; clear: both; }
-    .vip-header h2 {
-      font: 700 clamp(23px, 4.2vw, 35px)/1.22 Georgia, serif;
-      color: #fff; margin-bottom: 10px;
-      text-shadow: 0 4px 22px rgba(251, 211, 141, 0.28);
-    }
-    .vip-header h2 span {
-      background: linear-gradient(90deg, #fbd38d, #fbb6ce, #fbd38d);
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-    }
-    .vip-header p { font-size: 14px; color: #f1e3ef; max-width: 620px; margin: 0 auto; line-height: 1.6; }
-
-    .vip-card-sec {
-      background: rgba(255, 255, 255, 0.07);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(251, 211, 141, 0.34);
-      border-radius: 22px; padding: 20px; margin-bottom: 20px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.22);
-    }
-    .vip-card-sec h4 {
-      font-size: 12px; text-transform: uppercase; letter-spacing: .13em;
-      color: #fbd38d; margin-bottom: 14px; display: flex; align-items: center; gap: 6px;
-    }
-
-    /* Galería Grande y Hermosa de Pitbull (pitbul5.jpg y pitbk2.jpg) */
-    .pitbull-showcase {
-      display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px;
-      max-width: 720px; margin: 0 auto;
-    }
-    @media(max-width: 620px) {
-      .pitbull-showcase { grid-template-columns: 1fr; gap: 16px; max-width: 360px; }
-    }
-    .pb-hero-card {
-      aspect-ratio: 3/4; border-radius: 22px; overflow: hidden; position: relative;
-      background: linear-gradient(160deg, #3b2042, #1f1226);
-      border: 2px solid rgba(251, 211, 141, 0.72);
-      box-shadow: 0 16px 40px rgba(0,0,0,0.45), 0 0 25px rgba(251, 211, 141, 0.16);
-      transition: transform .35s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow .35s ease;
-    }
-    .pb-hero-card:hover {
-      transform: translateY(-6px) scale(1.015);
-      box-shadow: 0 22px 48px rgba(246, 173, 85, 0.32);
-    }
-    .pb-hero-card img {
-      position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 2;
-      transition: transform .6s ease;
-    }
-    .pb-hero-card:hover img { transform: scale(1.05); }
-    .pb-top-pill {
-      position: absolute; top: 14px; left: 14px; z-index: 4;
-      background: rgba(24, 13, 28, 0.72); backdrop-filter: blur(6px);
-      border: 1px solid rgba(251, 211, 141, 0.6);
-      color: #fbd38d; font-size: 10px; font-weight: 700;
-      padding: 4px 11px; border-radius: 20px; letter-spacing: .1em;
-    }
-    .pb-bottom-bar {
-      position: absolute; bottom: 0; left: 0; right: 0; z-index: 4;
-      background: linear-gradient(transparent, rgba(18, 9, 22, 0.94));
-      padding: 28px 16px 14px; text-align: center;
-    }
-    .pb-bottom-bar strong {
-      display: block; color: #fbd38d; font-family: Georgia, serif;
-      font-size: 16px; letter-spacing: .08em; margin-bottom: 2px;
-    }
-    .pb-bottom-bar span {
-      color: #f3dfef; font-size: 11px; letter-spacing: .06em;
-    }
-
-    /* Reproductor VIP Pitbull */
-    .vip-music-row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
-    .vip-song-btn {
-      flex: 1; min-width: 200px; background: rgba(26, 15, 32, 0.72);
-      border: 1px solid rgba(251, 211, 141, 0.42);
-      color: #fff; padding: 12px 15px; border-radius: 16px; font-size: 12.5px;
-      font-weight: 600; text-align: left; display: flex; justify-content: space-between; align-items: center;
-      transition: all .2s;
-    }
-    .vip-song-btn:hover, .vip-song-btn.active {
-      background: linear-gradient(90deg, #ed8936, #f6ad55);
-      color: #1f121d; border-color: #fbd38d;
-      box-shadow: 0 5px 18px rgba(246,173,85,0.38);
-    }
-    .vip-action-btn {
-      background: linear-gradient(90deg, #ed8936, #f6ad55);
-      color: #1f121d; font-size: 11px; font-weight: 800; padding: 11px 16px; border-radius: 16px;
-      text-transform: uppercase; letter-spacing: .06em; box-shadow: 0 4px 14px rgba(246,173,85,0.32);
-    }
-
-    /* Frases Bonitas para Ingeniería de Minas (Amistad & Admiración) */
-    .quotes-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 14px; }
-    @media(max-width: 620px) { .quotes-grid { grid-template-columns: 1fr; } }
-    .quote-pill-card {
-      background: linear-gradient(145deg, rgba(255,255,255,0.09), rgba(251,211,141,0.06));
-      border: 1px solid rgba(251, 211, 141, 0.36);
-      border-radius: 16px; padding: 15px 16px;
-      display: flex; flex-direction: column; gap: 6px;
-    }
-    .quote-pill-card .q-tag {
-      font-size: 10px; font-weight: 700; letter-spacing: .1em;
-      text-transform: uppercase; color: #fbb6ce;
-    }
-    .quote-pill-card p {
-      font-size: 13.5px; line-height: 1.55; color: #fff7f9; font-style: italic;
-    }
-
-    .spotlight-quote-box {
-      background: linear-gradient(120deg, rgba(246,173,85,0.18), rgba(237,100,166,0.18));
-      border: 1px solid rgba(251, 211, 141, 0.55);
-      border-radius: 18px; padding: 18px; text-align: center;
-    }
-    .spotlight-quote-box p {
-      font: 400 15.5px/1.6 Georgia, serif; color: #fff; margin-bottom: 12px;
-    }
-    .vip-badges-row {
-      display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; margin-top: 14px;
-    }
-    .vip-mini-charm {
-      background: rgba(24, 13, 28, 0.65); border: 1px solid rgba(251, 211, 141, 0.45);
-      color: #fbd38d; font-size: 11px; font-weight: 600;
-      padding: 6px 13px; border-radius: 20px;
-    }
-
     /* Welcome Modal */
     .wm-ov { position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 150; display: none; place-items: center; padding: 16px; backdrop-filter: blur(4px); opacity: 0; transition: opacity 0.4s ease; }
     .wm-ov.show { display: grid; opacity: 1; }
@@ -642,7 +446,7 @@
       .fs-icon svg { width: 19px; height: 19px; }
     }
 
-    /* ===== WIDGET CHAT ASISTENTE IA CON FONDO PERSONALIZADO (gamoeeee.jpg) ===== */
+    /* WIDGET CHAT ASISTENTE IA CON FONDO PERSONALIZADO */
     .ai-chat-box {
       position: fixed; right: 70px; bottom: 16px;
       width: min(345px, calc(100vw - 24px));
@@ -882,105 +686,6 @@
   <button onclick="nextTrack()" aria-label="Siguiente canción" title="Cambiar canción">⏭</button>
 </div>
 
-<!-- MODAL DE ACCESO CON CLAVE SECRETA (Clave: 123 + Fondo fc36ed8a2616ccd3db41fe998a1a8576.jpg) -->
-<div class="qvw" id="vipLoginModal" onclick="if(event.target===this)closeVipLogin()">
-  <div class="vip-login-box">
-    <button class="qvx" onclick="closeVipLogin()" style="color:#fbd38d;">✕</button>
-    <div style="font-size:34px; margin-bottom:6px;">✨⛏️🕶️</div>
-    <h3>Acceso Zona VIP</h3>
-    <p>Ingresa tu clave secreta para entrar a tu espacio exclusivo <b>Mr. Worldwide × Ingeniería de Minas</b>.</p>
-    <form onsubmit="verifyVipPassword(event)">
-      <input type="password" id="vipPassInput" placeholder="Clave secreta..." autocomplete="off" required>
-      <button type="submit" class="vip-enter-btn">Entrar • ¡Dale!</button>
-    </form>
-  </div>
-</div>
-
-<!-- PANTALLA ESPECIAL: BIENVENIDA FUTURA INGENIERA DE MINAS -->
-<div class="vip-space-modal" id="vipSpaceModal" onclick="if(event.target===this)closeVipSpace()">
-  <div class="vip-world">
-    <button class="vip-close" onclick="closeVipSpace()" title="Salir">✕</button>
-    
-    <div class="vip-header">
-      <div class="vip-badge">✨ MR. WORLDWIDE × INGENIERÍA DE MINAS ⛏️</div>
-      <h2>Bienvenida futura <span>Ingeniera de Minas</span>, esta es tu Zona VIP</h2>
-      <p>Un rincón especial creado con mucha buena vibra, energía positiva y admiración por la increíble carrera que estudias, acompañado del estilo inconfundible de <b>Pitbull</b>. <b>¡Dale!</b></p>
-    </div>
-
-    <!-- 1. GALERÍA GRANDE Y HERMOSA DE PITBULL (pitbul5.jpg y pitbk2.jpg) -->
-    <div class="vip-card-sec">
-      <h4>🕶️ Galería Especial • Mr. Worldwide</h4>
-      <div class="pitbull-showcase">
-        <div class="pb-hero-card">
-          <span class="pb-top-pill">✦ MR. 305</span>
-          <img src="pitbul5.jpg" alt="Pitbull Mr. Worldwide">
-          <div class="pb-bottom-bar">
-            <strong>MR. WORLDWIDE</strong>
-            <span>Energía, actitud y buena vibra • ¡Dale!</span>
-          </div>
-        </div>
-        <div class="pb-hero-card">
-          <span class="pb-top-pill">✦ VIP EDITION</span>
-          <img src="pitbk2.jpg" alt="Pitbull en escena">
-          <div class="pb-bottom-bar">
-            <strong>305 POWER</strong>
-            <span>Ritmo imparable para tus días de estudio</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 2. CABINA MUSICAL DE PITBULL -->
-    <div class="vip-card-sec">
-      <h4>🎧 Cabina Musical • Dale Play a tu Día</h4>
-      <div class="vip-music-row">
-        <button class="vip-song-btn" id="vipSong0" onclick="selectTrack(0)">
-          <span>▶ Pitbull - The Anthem ft. Lil Jon</span>
-          <span>🔥</span>
-        </button>
-        <button class="vip-song-btn" id="vipSong1" onclick="selectTrack(1)">
-          <span>▶ Pitbull - Como Yo Le Doy</span>
-          <span>⚡</span>
-        </button>
-        <button class="vip-action-btn" onclick="toggleMusicPlay()" id="vipPauseBtn">⏯ Play / Pausa</button>
-      </div>
-    </div>
-
-    <!-- 3. FRASES BONITAS Y DETALLES PARA UNA FUTURA INGENIERA DE MINAS -->
-    <div class="vip-card-sec" style="margin-bottom:0;">
-      <h4>💎 Palabras Bonitas para una Futura Ingeniera de Minas</h4>
-      <div class="quotes-grid">
-        <div class="quote-pill-card">
-          <span class="q-tag">✦ Fuerza & Brillo</span>
-          <p>"Así como los diamantes más valiosos se forman bajo presión, cada hora de estudio y esfuerzo te está convirtiendo en una ingeniera extraordinaria."</p>
-        </div>
-        <div class="quote-pill-card">
-          <span class="q-tag">✦ Tu Propia Veta</span>
-          <p>"No necesitas buscar oro afuera cuando llevas inteligencia, carácter y determinación en todo lo que haces. ¡El mundo es tuyo, futura ingeniera!"</p>
-        </div>
-        <div class="quote-pill-card">
-          <span class="q-tag">✦ Energía Mr. Worldwide</span>
-          <p>"Que nunca te falte una sonrisa, buena música para recargar ánimos y la seguridad de saber que vas a llegar lejísimos en tu carrera."</p>
-        </div>
-        <div class="quote-pill-card">
-          <span class="q-tag">✦ Admiración Sincera</span>
-          <p>"Estudiar Ingeniería de Minas requiere valentía y mente brillante; qué genial ver cómo construyes tu futuro con tanta dedicación."</p>
-        </div>
-      </div>
-
-      <div class="spotlight-quote-box">
-        <p id="dailyMineQuote">"Cada meta que te propones es una veta de éxito esperando ser descubierta por tu talento."</p>
-        <button class="vip-action-btn" onclick="nextMineQuote()">✨ Ver otra frase bonita</button>
-        <div class="vip-badges-row">
-          <span class="vip-mini-charm">⛏️ Futura Ingeniera de Minas</span>
-          <span class="vip-mini-charm">💎 Mente Brillante</span>
-          <span class="vip-mini-charm">🕶️ Actitud 100% ¡Dale!</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
 <!-- Cart Drawer -->
 <div class="ov" id="ov" onclick="toggleCart(false)"></div>
 <aside class="drawer" id="dr">
@@ -1100,7 +805,7 @@
 <div class="toast" id="toast"></div>
 
 <script>
-/* ===== CONFIGURACIÓN GLOBAL, MONEDA Y CLAVE VIP ===== */
+/* ===== CONFIGURACIÓN GLOBAL Y MONEDA ===== */
 const CFG = {
   currency: "PEN",
   tasaUSD: 3.75,
@@ -1108,9 +813,6 @@ const CFG = {
   tarifaEnvioPEN: 10,
   whatsapp: "51908732482"
 };
-
-/* Nueva clave secreta: 123 */
-const VIP_PASSWORDS = ["123"];
 
 /* ===== LISTA DE REPRODUCCIÓN ===== */
 const PLAYLIST = [
@@ -1203,9 +905,11 @@ const PRODUCTS = [
 
 const REVIEWS_STORAGE_KEY = "isiraReviewsVerified_v1";
 const ORDERS_STORAGE_KEY = "isiraOrders_v1";
+const CART_STORAGE_KEY = "isiraCart_v1";
+const FAV_STORAGE_KEY = "isiraFavs_v1";
+
 let reviewsData = [];
 let lastPurchasedProducts = "";
-
 let currentCategory = "Todos";
 let cartState = [];
 let favState = [];
@@ -1218,6 +922,14 @@ document.addEventListener('gestureend', function (e) { e.preventDefault(); });
 
 document.addEventListener("DOMContentLoaded", () => {
   localStorage.removeItem("isiraReviews");
+
+  try {
+    cartState = JSON.parse(localStorage.getItem(CART_STORAGE_KEY) || "[]");
+    favState = JSON.parse(localStorage.getItem(FAV_STORAGE_KEY) || "[]");
+  } catch (e) {
+    cartState = [];
+    favState = [];
+  }
 
   setupMusicPlayer();
   renderNav();
@@ -1241,46 +953,9 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-/* ===== ZONA VIP: ACCESO CON CLAVE & FRASES MOTIVACIONALES ===== */
-function openVipLogin() {
-  document.getElementById("vipPassInput").value = "";
-  document.getElementById("vipLoginModal").classList.add("on");
-  setTimeout(() => document.getElementById("vipPassInput").focus(), 100);
-}
-
-function closeVipLogin() {
-  document.getElementById("vipLoginModal").classList.remove("on");
-}
-
-function verifyVipPassword(e) {
-  e.preventDefault();
-  const val = document.getElementById("vipPassInput").value.trim().toLowerCase();
-  if (VIP_PASSWORDS.includes(val)) {
-    closeVipLogin();
-    document.getElementById("vipSpaceModal").classList.add("on");
-    showToast("¡Bienvenida futura Ingeniera de Minas!");
-  } else {
-    showToast("Clave incorrecta. Intenta de nuevo.");
-    document.getElementById("vipPassInput").value = "";
-  }
-}
-
-function closeVipSpace() {
-  document.getElementById("vipSpaceModal").classList.remove("on");
-}
-
-const MINE_QUOTES = [
-  "\"Cada meta que te propones es una veta de éxito esperando ser descubierta por tu talento.\"",
-  "\"Las rocas más firmes sostienen las montañas más altas; tu disciplina sostiene todos tus sueños.\"",
-  "\"Sigue avanzando paso a paso en Ingeniería de Minas: el futuro pertenece a quienes se atreven a explorar.\"",
-  "\"Incluso en los días pesados de exámenes, recuerda que tienes la energía y el brillo para lograrlo todo.\"",
-  "\"Una futura ingeniera con actitud Mr. Worldwide nunca se rinde: transforma cada reto en una oportunidad. ¡Dale!\""
-];
-let currentMineQuoteIdx = 0;
-
-function nextMineQuote() {
-  currentMineQuoteIdx = (currentMineQuoteIdx + 1) % MINE_QUOTES.length;
-  document.getElementById("dailyMineQuote").innerText = MINE_QUOTES[currentMineQuoteIdx];
+function persistState() {
+  localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cartState));
+  localStorage.setItem(FAV_STORAGE_KEY, JSON.stringify(favState));
 }
 
 /* ===== CONTROLADOR DE MÚSICA ===== */
@@ -1345,13 +1020,6 @@ function updateMusicUI() {
 
   document.getElementById("trackBtn0").classList.toggle("active", currentTrackIndex === 0);
   document.getElementById("trackBtn1").classList.toggle("active", currentTrackIndex === 1);
-
-  const vipSong0 = document.getElementById("vipSong0");
-  const vipSong1 = document.getElementById("vipSong1");
-  if (vipSong0 && vipSong1) {
-    vipSong0.classList.toggle("active", currentTrackIndex === 0 && isMusicPlaying);
-    vipSong1.classList.toggle("active", currentTrackIndex === 1 && isMusicPlaying);
-  }
 
   if (isMusicPlaying) {
     disc.classList.add("spin");
@@ -1569,10 +1237,9 @@ function closeWelcomeModal() {
 
 function renderNav() {
   const nav = document.getElementById("nav");
-  const catBtns = CATEGORIES.map(c => 
+  nav.innerHTML = CATEGORIES.map(c => 
     `<button class="${c === currentCategory && !showingOnlyFavs ? 'on' : ''} ${c === 'Sets de regalo' ? 'gift' : ''}" onclick="filterCat('${c}')">${c}</button>`
   ).join("");
-  nav.innerHTML = catBtns + `<button class="vip-nav-btn" onclick="openVipLogin()">✨ Zona VIP</button>`;
 }
 
 function renderFilterPills() {
@@ -1647,13 +1314,13 @@ function getProductVisualHTML(p, isQuickview = false) {
   if (p.overlaySvg) {
     return `
       <div class="gift-card-wrap" style="${isQuickview ? 'aspect-ratio:3/4; border-radius:10px;' : ''}">
-        <img class="gift-bg" src="${p.img}" alt="${p.name}" loading="lazy">
+        <img class="gift-bg" src="${p.img}" alt="${escapeHTML(p.name)}" loading="lazy">
         <div class="gift-shade"></div>
         ${p.overlaySvg}
       </div>
     `;
   }
-  return `<img class="${isQuickview ? 'qv-main-img' : 'prod-img'}" src="${p.img}" alt="${p.name}" loading="lazy">`;
+  return `<img class="${isQuickview ? 'qv-main-img' : 'prod-img'}" src="${p.img}" alt="${escapeHTML(p.name)}" loading="lazy">`;
 }
 
 function render() {
@@ -1689,15 +1356,15 @@ function render() {
       <div class="p">
         <div>
           <div class="tags-wrap">
-            ${p.tag ? `<span class="tag">${p.tag}</span>` : ''}
+            ${p.tag ? `<span class="tag">${escapeHTML(p.tag)}</span>` : ''}
             ${discPct > 0 ? `<span class="tag disc">-${discPct}%</span>` : ''}
           </div>
           <button class="heart ${isFav ? 'on' : ''}" onclick="toggleFav(${p.id})" aria-label="Guardar en favoritos">♥</button>
           <div class="ph" onclick="openQuickview(${p.id})">
             ${getProductVisualHTML(p, false)}
           </div>
-          <span class="p-cat">${p.cat}</span>
-          <h3>${p.name}</h3>
+          <span class="p-cat">${escapeHTML(p.cat)}</span>
+          <h3>${escapeHTML(p.name)}</h3>
         </div>
         <div>
           <div class="pr">
@@ -1721,6 +1388,7 @@ function toggleFav(id) {
     favState.push(id);
     showToast("Guardado en favoritos");
   }
+  persistState();
   render();
 }
 
@@ -1731,6 +1399,7 @@ function addToCart(id) {
   } else {
     cartState.push({ id, qty: 1 });
   }
+  persistState();
   updateCartUI();
   toggleCart(true);
   showToast("Añadido al carrito");
@@ -1744,6 +1413,7 @@ function changeQty(id, delta) {
       cartState = cartState.filter(i => i.id !== id);
     }
   }
+  persistState();
   updateCartUI();
 }
 
@@ -1754,15 +1424,16 @@ function updateCartUI() {
 
   container.innerHTML = cartState.map(item => {
     const p = PRODUCTS.find(prod => prod.id === item.id);
+    if (!p) return "";
     const itemSub = p.price * item.qty;
     subtotal += itemSub;
     totalItems += item.qty;
 
     return `
       <div class="it">
-        <img src="${p.img}" alt="${p.name}">
+        <img src="${p.img}" alt="${escapeHTML(p.name)}">
         <div>
-          <b>${p.name}</b>
+          <b>${escapeHTML(p.name)}</b>
           <div>${formatPrice(p.price)}</div>
           <div class="q">
             <button onclick="changeQty(${p.id}, -1)">-</button>
@@ -1806,11 +1477,12 @@ function toggleCart(open) {
 
 function openQuickview(id) {
   const p = PRODUCTS.find(item => item.id === id);
+  if (!p) return;
   document.getElementById("qvi").innerHTML = getProductVisualHTML(p, true);
   document.getElementById("qvt").innerHTML = `
-    <h3>${p.name}</h3>
-    <p style="color:var(--mut); margin-bottom:10px; font-size:12px; text-transform:uppercase;">${p.cat}</p>
-    <p style="margin-bottom:16px; font-size:14px; line-height:1.5;">${p.desc}</p>
+    <h3>${escapeHTML(p.name)}</h3>
+    <p style="color:var(--mut); margin-bottom:10px; font-size:12px; text-transform:uppercase;">${escapeHTML(p.cat)}</p>
+    <p style="margin-bottom:16px; font-size:14px; line-height:1.5;">${escapeHTML(p.desc)}</p>
     <div style="font-size:20px; font-weight:700; color:var(--gold); margin-bottom:16px;">
       ${formatPrice(p.price)}
       ${p.oldPrice > 0 ? `<span style="text-decoration:line-through; color:var(--mut); font-size:14px; font-weight:400; margin-left:8px;">${formatPrice(p.oldPrice)}</span>` : ''}
@@ -1837,6 +1509,7 @@ function checkout() {
 
   cartState.forEach(item => {
     const p = PRODUCTS.find(prod => prod.id === item.id);
+    if (!p) return;
     const itemSub = p.price * item.qty;
     subtotal += itemSub;
     productNames.push(p.name);
@@ -1862,6 +1535,7 @@ function checkout() {
   window.open(`https://wa.me/${CFG.whatsapp}?text=${encodeURIComponent(text)}`, "_blank");
 
   cartState = [];
+  persistState();
   updateCartUI();
   toggleCart(false);
   setTimeout(() => {
