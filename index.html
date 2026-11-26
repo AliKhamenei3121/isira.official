@@ -1043,6 +1043,10 @@ const STORE_DATA_KEY = "isiraStoreCMS_v1";
 const FIREBASE_URL_KEY = "isiraFirebaseUrl_v1";
 const ADMIN_SESSION_KEY = "isiraAdminLogged_v1";
 
+const DEFAULT_FIREBASE_URL = "https://isira-c75f3-default-rtdb.firebaseio.com";
+if (!localStorage.getItem(FIREBASE_URL_KEY) && DEFAULT_FIREBASE_URL) {
+  localStorage.setItem(FIREBASE_URL_KEY, DEFAULT_FIREBASE_URL);
+}
 /* ===== CONFIGURACIÓN GLOBAL POR DEFECTO ===== */
 const DEFAULT_CFG = {
   currency: "PEN",
