@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
   
   <title>ISIRA | Alta Perfumería & Tecnología</title>
-  <link rel="icon" href="isidora.jpg" type="image/jpeg">
-  <link rel="apple-touch-icon" href="isidora.jpg">
+  <link rel="icon" id="faviconLink" href="isidora.jpg" type="image/jpeg">
+  <link rel="apple-touch-icon" id="appleIconLink" href="isidora.jpg">
   
   <style>
     :root {
@@ -51,7 +51,7 @@
     header { border-bottom: 1px solid var(--line); position: sticky; top: 0; background: var(--bg); z-index: 20; backdrop-filter: blur(8px); transition: background 0.3s, border-color 0.3s; width: 100%; }
     .top { display: flex; justify-content: space-between; align-items: center; padding: 10px 4vw; gap: 8px; width: 100%; }
     
-    .brand { display: flex; align-items: center; gap: 8px; cursor: pointer; text-decoration: none; color: inherit; flex-shrink: 0; }
+    .brand { display: flex; align-items: center; gap: 8px; cursor: pointer; text-decoration: none; color: inherit; flex-shrink: 0; user-select: none; }
     .brand-img { height: 40px; width: 40px; object-fit: cover; border-radius: 50%; border: 1.5px solid var(--gold); box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
     .brand .nm { font: 500 18px Georgia, serif; letter-spacing: .2em; text-transform: uppercase; color: var(--fg); }
     
@@ -392,7 +392,144 @@
     }
 
     /* Toast Notification */
-    .toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); background: var(--acc); color: var(--bg); padding: 10px 20px; z-index: 200; display: none; border-radius: 30px; box-shadow: 0 4px 16px rgba(0,0,0,0.2); font-size: 12px; font-weight: 600; letter-spacing: .05em; text-align: center; max-width: 90vw; }
+    .toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); background: var(--acc); color: var(--bg); padding: 10px 20px; z-index: 300; display: none; border-radius: 30px; box-shadow: 0 4px 16px rgba(0,0,0,0.2); font-size: 12px; font-weight: 600; letter-spacing: .05em; text-align: center; max-width: 90vw; }
+
+    /* =========================================================================
+       ESTILOS DEL PANEL ADMINISTRADOR SECRETO (CINDY1)
+       ========================================================================= */
+    .admin-fab {
+      position: fixed; left: 14px; bottom: 16px; z-index: 90;
+      background: linear-gradient(135deg, #2a1520, #c9a24b);
+      color: #fff; border: 1.5px solid #fff5;
+      padding: 10px 16px; border-radius: 30px;
+      font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+      display: none; align-items: center; gap: 7px;
+    }
+    .admin-fab.show { display: inline-flex; }
+
+    .adm-ov {
+      position: fixed; inset: 0; background: rgba(12, 6, 10, 0.78);
+      z-index: 220; display: none; place-items: center; padding: 12px;
+      backdrop-filter: blur(6px);
+    }
+    .adm-ov.on { display: grid; }
+
+    .adm-login-box {
+      background: var(--bg); color: var(--fg);
+      width: 100%; max-width: 390px; padding: 28px 24px;
+      border-radius: 20px; border: 1.5px solid var(--gold);
+      box-shadow: 0 25px 60px rgba(0,0,0,0.45); position: relative;
+    }
+    .adm-login-box h3 { font: 400 22px Georgia, serif; text-align: center; margin-bottom: 6px; }
+    .adm-login-box p { font-size: 12px; color: var(--mut); text-align: center; margin-bottom: 18px; }
+
+    .adm-panel {
+      background: var(--bg); color: var(--fg);
+      width: 100%; max-width: 1020px; height: 92vh;
+      border-radius: 20px; border: 1.5px solid var(--gold);
+      box-shadow: 0 25px 70px rgba(0,0,0,0.5);
+      display: flex; flex-direction: column; overflow: hidden;
+    }
+    .adm-top {
+      background: linear-gradient(90deg, #2a1520, #4a2236);
+      color: #fff; padding: 14px 20px;
+      display: flex; justify-content: space-between; align-items: center; gap: 10px;
+    }
+    .adm-top h3 { font: 400 18px Georgia, serif; color: var(--gold); letter-spacing: .05em; }
+    .adm-status {
+      font-size: 10px; padding: 3px 9px; border-radius: 20px;
+      background: rgba(255,255,255,0.14); color: #fff; font-weight: 700;
+    }
+    .adm-tabs {
+      display: flex; gap: 6px; padding: 10px 16px;
+      background: var(--soft); border-bottom: 1px solid var(--line);
+      overflow-x: auto; flex-shrink: 0;
+    }
+    .adm-tabs::-webkit-scrollbar { display: none; }
+    .adm-tab {
+      padding: 8px 14px; border-radius: 20px; font-size: 11px; font-weight: 700;
+      letter-spacing: .05em; text-transform: uppercase;
+      border: 1px solid var(--line); background: var(--bg); color: var(--mut);
+      white-space: nowrap; flex-shrink: 0; transition: all .2s;
+    }
+    .adm-tab.on { background: var(--acc); color: var(--bg); border-color: var(--acc); }
+
+    .adm-body { flex: 1; overflow-y: auto; padding: 20px; }
+    .adm-sec { display: none; }
+    .adm-sec.on { display: block; }
+
+    .adm-grid-2 { display: grid; grid-template-columns: 1.25fr 0.75fr; gap: 24px; align-items: start; }
+    @media(max-width: 767px) {
+      .adm-grid-2 { grid-template-columns: 1fr; }
+      .adm-body { padding: 14px; }
+    }
+
+    .adm-field { margin-bottom: 12px; }
+    .adm-field label { display: block; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--mut); margin-bottom: 5px; }
+    .adm-field input, .adm-field select, .adm-field textarea {
+      width: 100%; border: 1px solid var(--line); background: var(--soft);
+      color: var(--fg); padding: 10px 12px; border-radius: 10px;
+      font-size: 16px; outline: none; font-family: inherit;
+    }
+    .adm-field input:focus, .adm-field select:focus, .adm-field textarea:focus { border-color: var(--gold); }
+    .adm-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+    .file-upload-btn {
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      width: 100%; padding: 11px 14px; border-radius: 12px;
+      border: 1.5px dashed var(--gold); background: rgba(201, 162, 75, 0.08);
+      color: var(--fg); font-size: 12px; font-weight: 700; cursor: pointer;
+      transition: all .2s; text-align: center;
+    }
+    .file-upload-btn:hover { background: rgba(201, 162, 75, 0.18); }
+
+    .adm-btn {
+      background: var(--acc); color: var(--bg);
+      padding: 12px 20px; border-radius: 25px;
+      font-size: 11px; font-weight: 700; letter-spacing: .1em;
+      text-transform: uppercase; transition: all .2s; display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+    }
+    .adm-btn:hover { background: var(--gold); color: #1a1216; }
+    .adm-btn.gold { background: var(--gold); color: #1a1216; }
+    .adm-btn.danger { background: #b91c1c; color: #fff; padding: 7px 12px; font-size: 10px; }
+    .adm-btn.sm { padding: 7px 13px; font-size: 10px; }
+
+    /* Plantilla Preview en Vivo (Idéntica a la tarjeta de la tienda) */
+    .tpl-preview-wrap {
+      background: var(--soft); border: 1px solid var(--line);
+      border-radius: 18px; padding: 16px;
+    }
+    .tpl-preview-title {
+      font-size: 11px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: .1em; color: var(--gold); text-align: center; margin-bottom: 12px;
+    }
+    .tpl-card-demo { max-width: 260px; margin: 0 auto; pointer-events: none; }
+
+    /* Lista de productos en Admin */
+    .adm-prod-list { display: flex; flex-direction: column; gap: 12px; }
+    .adm-prod-item {
+      display: grid; grid-template-columns: 64px 1fr auto; gap: 12px;
+      align-items: center; background: var(--card);
+      border: 1px solid var(--line); border-radius: 14px; padding: 10px 12px;
+    }
+    .adm-prod-item img { width: 64px; height: 80px; object-fit: cover; border-radius: 8px; }
+    .adm-prod-actions { display: flex; flex-direction: column; gap: 6px; }
+    @media(max-width: 550px) {
+      .adm-prod-item { grid-template-columns: 56px 1fr; }
+      .adm-prod-actions { grid-column: 1 / -1; flex-direction: row; justify-content: flex-end; }
+    }
+
+    .adm-card-box {
+      background: var(--card); border: 1px solid var(--line);
+      border-radius: 16px; padding: 16px; margin-bottom: 16px;
+    }
+    .adm-card-box h4 {
+      font: 400 17px Georgia, serif; color: var(--gold);
+      margin-bottom: 12px; border-bottom: 1px solid var(--line); padding-bottom: 8px;
+    }
+    .img-mini-row { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+    .img-mini-row img { width: 54px; height: 54px; object-fit: cover; border-radius: 10px; border: 1px solid var(--gold); flex-shrink: 0; }
   </style>
 </head>
 <body>
@@ -404,9 +541,9 @@
 
 <header>
   <div class="top">
-    <!-- Logo -->
-    <a class="brand" onclick="filterCat('Todos')">
-      <img src="isidora.jpg" alt="Logo ISIRA" class="brand-img">
+    <!-- Logo (5 toques abre el Panel Secreto de Cindy) -->
+    <a class="brand" id="secretBrandTrigger" onclick="handleBrandTap(event)" title="ISIRA">
+      <img src="isidora.jpg" alt="Logo ISIRA" class="brand-img" id="headerLogoImg">
       <span class="nm">ISIRA</span>
     </a>
     <div class="right">
@@ -605,11 +742,11 @@
   <div class="wm-box">
     <button class="wm-close" onclick="closeWelcomeModal()">✕</button>
     <div class="wm-img">
-      <img src="mujeralas.jpg" alt="Promo de Bienvenida ISIRA">
+      <img id="welcomeModalImg" src="mujeralas.jpg" alt="Promo de Bienvenida ISIRA">
     </div>
     <div class="wm-content">
-      <h2>Obtén 15 % OFF en tu pedido</h2>
-      <p class="wm-sub">Al registrarte con tu correo electrónico. Solo para nuevos suscriptores. Aplican exclusiones.</p>
+      <h2 id="wmTitle">Obtén 15 % OFF en tu pedido</h2>
+      <p class="wm-sub" id="wmSub">Al registrarte con tu correo electrónico. Solo para nuevos suscriptores. Aplican exclusiones.</p>
       
       <label>Correo Electrónico *</label>
       <input type="email" placeholder="john.doe@example.com">
@@ -667,28 +804,271 @@
   </a>
 </div>
 
+<!-- BOTÓN FLOTANTE DE ACCESO RÁPIDO MIENTRAS LA SESIÓN ADMIN ESTÁ ACTIVA -->
+<button class="admin-fab" id="adminFabBtn" onclick="openAdminPanel()">⚙️ Panel Cindy</button>
+
+<!-- MODAL LOGIN SECRETO -->
+<div class="adm-ov" id="adminLoginModal" onclick="if(event.target===this)closeAdminLogin()">
+  <div class="adm-login-box">
+    <button class="qvx" onclick="closeAdminLogin()">✕</button>
+    <div style="text-align:center; font-size:28px; margin-bottom:6px;">🔐</div>
+    <h3>Acceso Propietaria ISIRA</h3>
+    <p>Ingresa tus credenciales privadas para editar productos, precios e imágenes de la tienda.</p>
+    <form onsubmit="handleAdminLogin(event)">
+      <div class="adm-field">
+        <label>Usuario</label>
+        <input type="text" id="admUser" placeholder="Ingresa tu usuario" autocomplete="username" required>
+      </div>
+      <div class="adm-field">
+        <label>Contraseña</label>
+        <input type="password" id="admPass" placeholder="••••••••••••" autocomplete="current-password" required>
+      </div>
+      <button type="submit" class="adm-btn gold" style="width:100%; margin-top:6px;">Entrar al Panel</button>
+    </form>
+  </div>
+</div>
+
+<!-- PANEL ADMINISTRADOR COMPLETO -->
+<div class="adm-ov" id="adminPanelModal">
+  <div class="adm-panel">
+    <div class="adm-top">
+      <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+        <h3>✦ Panel Editor ISIRA — Hola, Cindy</h3>
+        <span class="adm-status" id="cloudSyncBadge">🟡 Guardado Local</span>
+      </div>
+      <button onclick="closeAdminPanel()" style="color:#fff; font-size:22px; padding:4px 8px;">✕</button>
+    </div>
+
+    <div class="adm-tabs">
+      <button class="adm-tab on" onclick="switchAdminTab('tabAdd', this)">➕ Agregar Producto (Plantilla)</button>
+      <button class="adm-tab" onclick="switchAdminTab('tabCatalog', this)">📦 Editar / Borrar Productos</button>
+      <button class="adm-tab" onclick="switchAdminTab('tabSite', this)">🖼️ Imágenes y Textos Web</button>
+      <button class="adm-tab" onclick="switchAdminTab('tabCloud', this)">☁️ Nube Firebase y Respaldo</button>
+    </div>
+
+    <div class="adm-body">
+      <!-- TAB 1: AGREGAR PRODUCTO CON PLANTILLA VISUAL EN VIVO -->
+      <div class="adm-sec on" id="tabAdd">
+        <div class="adm-grid-2">
+          <div>
+            <h4 style="font: 400 18px Georgia, serif; margin-bottom:14px; color:var(--gold);" id="formProdHeading">Crear Nuevo Producto en el Catálogo</h4>
+            <input type="hidden" id="editProdId" value="">
+
+            <div class="adm-field">
+              <label>1. Foto del Producto (Sube desde tu galería o pega nombre/URL)</label>
+              <label class="file-upload-btn" style="margin-bottom:8px;">
+                📸 Seleccionar foto desde galería / cámara
+                <input type="file" accept="image/*" style="display:none;" onchange="handleProductPhotoUpload(event)">
+              </label>
+              <input type="text" id="prodImgInput" value="121313.jpg" placeholder="Ej. perfume1.jpeg o foto subida" oninput="updateTemplatePreview()">
+            </div>
+
+            <div class="adm-row-2">
+              <div class="adm-field">
+                <label>2. Categoría</label>
+                <select id="prodCatInput" onchange="updateTemplatePreview()">
+                  <option value="Perfumes">Perfumes</option>
+                  <option value="Sets de regalo">Sets de regalo</option>
+                  <option value="Tecnología">Tecnología</option>
+                </select>
+              </div>
+              <div class="adm-field">
+                <label>3. Etiqueta Superior</label>
+                <input type="text" id="prodTagInput" value="Nuevo" placeholder="Ej. Nuevo, Exclusivo, Popular" oninput="updateTemplatePreview()">
+              </div>
+            </div>
+
+            <div class="adm-field">
+              <label>4. Nombre del Producto *</label>
+              <input type="text" id="prodNameInput" placeholder="Ej. Isira Rose Velvet 100ml" oninput="updateTemplatePreview()">
+            </div>
+
+            <div class="adm-row-2">
+              <div class="adm-field">
+                <label>5. Precio Actual (S/.) *</label>
+                <input type="number" step="0.10" id="prodPriceInput" value="50" oninput="updateTemplatePreview()">
+              </div>
+              <div class="adm-field">
+                <label>6. Precio Anterior (S/.) (Opcional para % desc.)</label>
+                <input type="number" step="0.10" id="prodOldPriceInput" value="65" oninput="updateTemplatePreview()">
+              </div>
+            </div>
+
+            <div class="adm-field">
+              <label>7. Descripción corta (Vista rápida)</label>
+              <textarea id="prodDescInput" rows="2" placeholder="Describe las notas o características del producto..."></textarea>
+            </div>
+
+            <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:14px;">
+              <button type="button" class="adm-btn gold" onclick="saveProductFromTemplate()" id="saveProdBtn">✨ Publicar en la Tienda</button>
+              <button type="button" class="adm-btn" onclick="resetProductTemplateForm()" id="cancelEditProdBtn" style="display:none;">Cancelar edición</button>
+            </div>
+          </div>
+
+          <!-- VISTA PREVIA DE LA PLANTILLA EXACTA -->
+          <div class="tpl-preview-wrap">
+            <div class="tpl-preview-title">👁️ Vista Previa de Plantilla</div>
+            <div class="tpl-card-demo" id="templatePreviewContainer"></div>
+            <p style="font-size:11px; color:var(--mut); text-align:center; margin-top:12px;">Así es exactamente como tus clientes verán este producto en el catálogo.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 2: EDITAR / ELIMINAR CATÁLOGO -->
+      <div class="adm-sec" id="tabCatalog">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:16px;">
+          <h4 style="font: 400 18px Georgia, serif; color:var(--gold);">Productos Activos en Tienda (<span id="admProdCount">0</span>)</h4>
+          <button type="button" class="adm-btn sm" onclick="restoreDefaultCatalog()">↺ Restaurar catálogo original</button>
+        </div>
+        <div class="adm-prod-list" id="admProdList"></div>
+      </div>
+
+      <!-- TAB 3: EDITAR IMÁGENES Y TEXTOS DE TODA LA WEB -->
+      <div class="adm-sec" id="tabSite">
+        <div class="adm-card-box">
+          <h4>1. Barra Promocional, Envíos y WhatsApp</h4>
+          <div class="adm-field">
+            <label>Texto Barra Superior</label>
+            <input type="text" id="sitePromoInput" placeholder="ENVÍO GRATIS DESDE S/. 70.00">
+          </div>
+          <div class="adm-row-2">
+            <div class="adm-field">
+              <label>Envío Gratis desde (S/.)</label>
+              <input type="number" step="1" id="siteFreeShipInput">
+            </div>
+            <div class="adm-field">
+              <label>Costo de Envío (S/.)</label>
+              <input type="number" step="1" id="siteShipCostInput">
+            </div>
+          </div>
+          <div class="adm-field">
+            <label>Número de WhatsApp de Pedidos (con código 51)</label>
+            <input type="text" id="siteWaInput" placeholder="51908732482">
+          </div>
+        </div>
+
+        <div class="adm-card-box">
+          <h4>2. Logo Principal y Anuncio de Bienvenida (15% OFF)</h4>
+          <div class="img-mini-row">
+            <img id="admLogoPreview" src="isidora.jpg" alt="Logo">
+            <div style="flex:1;">
+              <label class="file-upload-btn">
+                📸 Cambiar foto del Logo ISIRA
+                <input type="file" accept="image/*" style="display:none;" onchange="handleSiteImageUpload(event, 'logo')">
+              </label>
+            </div>
+          </div>
+          <div class="img-mini-row" style="margin-top:14px;">
+            <img id="admWelcomePreview" src="mujeralas.jpg" alt="Bienvenida">
+            <div style="flex:1;">
+              <label class="file-upload-btn">
+                📸 Cambiar foto del Popup de Bienvenida
+                <input type="file" accept="image/*" style="display:none;" onchange="handleSiteImageUpload(event, 'welcome')">
+              </label>
+            </div>
+          </div>
+          <div class="adm-row-2" style="margin-top:10px;">
+            <div class="adm-field">
+              <label>Título Popup Bienvenida</label>
+              <input type="text" id="siteWmTitleInput">
+            </div>
+            <div class="adm-field">
+              <label>Subtítulo Popup Bienvenida</label>
+              <input type="text" id="siteWmSubInput">
+            </div>
+          </div>
+        </div>
+
+        <div class="adm-card-box">
+          <h4>3. Imágenes de las 3 Categorías</h4>
+          <div id="admCatImagesEditor"></div>
+        </div>
+
+        <div class="adm-card-box">
+          <h4>4. Banners Principales (Carrusel Hero)</h4>
+          <div id="admHeroSlidesEditor"></div>
+        </div>
+
+        <button type="button" class="adm-btn gold" style="width:100%;" onclick="saveSiteSettingsFromAdmin()">💾 Guardar Todos los Cambios de la Web</button>
+      </div>
+
+      <!-- TAB 4: NUBE FIREBASE Y RESPALDO -->
+      <div class="adm-sec" id="tabCloud">
+        <div class="adm-card-box">
+          <h4>☁️ Sincronización en la Nube (Para que todos los clientes vean tus cambios)</h4>
+          <p style="font-size:13px; color:var(--mut); line-height:1.6; margin-bottom:14px;">
+            Para que cada precio o foto que edites desde tu celular se actualice automáticamente en todos los dispositivos de tus clientes:
+          </p>
+          <ol style="font-size:12px; color:var(--fg); line-height:1.7; padding-left:18px; margin-bottom:16px;">
+            <li>Entra gratis a <b>console.firebase.google.com</b> con tu cuenta de Google y crea un proyecto (ej. <i>isira-tienda</i>).</li>
+            <li>En el menú izquierdo entra a <b>Compilación → Realtime Database</b>, haz clic en <b>Crear base de datos</b> y elige <b>Modo de prueba</b>.</li>
+            <li>Copia el enlace que termina en <code>.firebaseio.com</code> y pégalo aquí abajo:</li>
+          </ol>
+          <div class="adm-field">
+            <label>URL de Firebase Realtime Database</label>
+            <input type="url" id="firebaseUrlInput" placeholder="https://tu-proyecto-default-rtdb.firebaseio.com">
+          </div>
+          <div style="display:flex; gap:10px; flex-wrap:wrap;">
+            <button type="button" class="adm-btn gold" onclick="saveAndSyncFirebase()">🔗 Conectar y Subir Cambios a la Nube</button>
+            <button type="button" class="adm-btn" onclick="pullFromFirebase(true)">🔄 Descargar datos de la Nube</button>
+          </div>
+        </div>
+
+        <div class="adm-card-box">
+          <h4>📥 Respaldo Directo del Archivo HTML</h4>
+          <p style="font-size:12px; color:var(--mut); margin-bottom:12px;">
+            Descarga una copia completa de tu página con todos los productos y fotos actuales ya guardados dentro del código.
+          </p>
+          <button type="button" class="adm-btn" onclick="downloadUpdatedHTML()">⬇️ Descargar index.html actualizado</button>
+        </div>
+
+        <div style="text-align:right; margin-top:16px;">
+          <button type="button" class="adm-btn danger" onclick="logoutAdmin()">Cerrar sesión de Cindy</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="toast" id="toast"></div>
 
 <script>
-/* ===== CONFIGURACIÓN GLOBAL Y MONEDA ===== */
-const CFG = {
+/* ===== CREDENCIALES Y CLAVES DE ALMACENAMIENTO ===== */
+const ADMIN_CREDS = {
+  user: "Cindy1",
+  pass: "ingeneriademinas"
+};
+
+const STORE_DATA_KEY = "isiraStoreCMS_v1";
+const FIREBASE_URL_KEY = "isiraFirebaseUrl_v1";
+const ADMIN_SESSION_KEY = "isiraAdminLogged_v1";
+
+/* ===== CONFIGURACIÓN GLOBAL POR DEFECTO ===== */
+const DEFAULT_CFG = {
   currency: "PEN",
   tasaUSD: 3.75,
   envioGratisPEN: 70,
   tarifaEnvioPEN: 10,
-  whatsapp: "51908732482"
+  whatsapp: "51908732482",
+  promoText: "ENVÍO GRATIS DESDE S/. 70.00",
+  logoImg: "isidora.jpg",
+  welcomeImg: "mujeralas.jpg",
+  wmTitle: "Obtén 15 % OFF en tu pedido",
+  wmSub: "Al registrarte con tu correo electrónico. Solo para nuevos suscriptores. Aplican exclusiones."
 };
 
-function formatPrice(penAmount) {
-  if (CFG.currency === "USD") {
-    return `$ ${(penAmount / CFG.tasaUSD).toFixed(2)}`;
-  }
-  return `S/. ${penAmount.toFixed(2)}`;
-}
+let CFG = { ...DEFAULT_CFG };
 
 const CATEGORIES = ["Todos", "Perfumes", "Sets de regalo", "Tecnología"];
 
-const HERO_SLIDES = [
+const DEFAULT_CAT_CARDS = [
+  { name: "Perfumes", img: "alashombre.jpg" },
+  { name: "Sets de regalo", img: "4foto.jpg" },
+  { name: "Tecnología", img: "mujeralas.jpg" }
+];
+let CAT_CARDS = JSON.parse(JSON.stringify(DEFAULT_CAT_CARDS));
+
+const DEFAULT_HERO_SLIDES = [
   {
     title: "El Arte de la Fragancia",
     desc: "Notas exclusivas creadas para perdurar y destacar tu presencia.",
@@ -711,6 +1091,7 @@ const HERO_SLIDES = [
     img: "vicotir4.jpg"
   }
 ];
+let HERO_SLIDES = JSON.parse(JSON.stringify(DEFAULT_HERO_SLIDES));
 
 const PRIME_OVERLAY_SVG = `
 <svg class="gift-overlay-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800">
@@ -737,8 +1118,8 @@ const DISNEY_OVERLAY_SVG = `
   <text x="300" y="665" text-anchor="middle" fill="#dbeafe" font-family="Arial, sans-serif" font-size="16" letter-spacing="2">4K UHD • ENTREGA INMEDIATA</text>
 </svg>`;
 
-/* ===== CATÁLOGO DE PRODUCTOS ===== */
-const PRODUCTS = [
+/* ===== CATÁLOGO BASE DE PRODUCTOS ===== */
+const DEFAULT_PRODUCTS = [
   { id: 1, name: "Isira Elixir Noir 100ml", cat: "Perfumes", price: 50, oldPrice: 68, tag: "Nuevo", img: "prodcuto1.jpeg", desc: "Una fragancia oriental con notas de vainilla negra y jazmín silvestre." },
   { id: 2, name: "Velvet Rose EDP 50ml", cat: "Perfumes", price: 49, oldPrice: 0, tag: "Popular", img: "producto2.jpeg", desc: "Rosas frescas combinadas con un toque dulce de pimienta rosa." },
   { id: 3, name: "Smartwatch Elite Serie", cat: "Tecnología", price: 120, oldPrice: 150, tag: "Exclusivo", img: "producto3.jpeg", desc: "Diseño elegante con monitor de salud y sincronización total." },
@@ -750,10 +1131,20 @@ const PRODUCTS = [
   { id: 9, name: "Isira Pure Essence EDP 75ml", cat: "Perfumes", price: 49, oldPrice: 0, tag: "Popular", img: "perfume.jpeg", desc: "Frescura sofisticada con notas cítricas, lirio del valle y toque amaderado." },
   { id: 10, name: "Rose Gold Couture 100ml", cat: "Perfumes", price: 49.50, oldPrice: 65, tag: "Recomendado", img: "perfume3.jpeg", desc: "Elegancia femenina con acordes de frambuesa, rosa damascena y praliné." },
   { id: 11, name: "Isira Crystal Aura 100ml", cat: "Perfumes", price: 50, oldPrice: 65, tag: "Nuevo", img: "perfume1.jpeg", desc: "Fragancia luminosa y duradera con notas de pera dulce, jazmín y ámbar blanco." },
-  { id: 12, name: "PRIME VIDEO POR UN MES", cat: "Sets de regalo", price: 15, oldPrice: 25, tag: "Regalo Digital", img: "oñeto.jpg", overlaySvg: PRIME_OVERLAY_SVG, desc: "Acceso completo por 30 días a películas, series exclusivas y estrenos en alta definición. Entrega inmediata al finalizar tu compra." },
-  { id: 13, name: "DISNEY PLUS POR UN MES", cat: "Sets de regalo", price: 18, oldPrice: 30, tag: "Regalo Digital", img: "peneto.jpg", overlaySvg: DISNEY_OVERLAY_SVG, desc: "Disfruta 30 días de Disney, Pixar, Marvel, Star Wars y National Geographic en máxima calidad. Entrega rápida tras confirmar pedido." },
+  { id: 12, name: "PRIME VIDEO POR UN MES", cat: "Sets de regalo", price: 15, oldPrice: 25, tag: "Regalo Digital", img: "oñeto.jpg", overlayType: "prime", desc: "Acceso completo por 30 días a películas, series exclusivas y estrenos en alta definición. Entrega inmediata al finalizar tu compra." },
+  { id: 13, name: "DISNEY PLUS POR UN MES", cat: "Sets de regalo", price: 18, oldPrice: 30, tag: "Regalo Digital", img: "peneto.jpg", overlayType: "disney", desc: "Disfruta 30 días de Disney, Pixar, Marvel, Star Wars y National Geographic en máxima calidad. Entrega rápida tras confirmar pedido." },
   { id: 14, name: "Isira Velvet Night 100ml", cat: "Perfumes", price: 50, oldPrice: 68, tag: "Nuevo", img: "121313.jpg", desc: "Nueva edición exclusiva ISIRA con estela sofisticada, cálida y de larga duración." }
 ];
+
+let PRODUCTS = JSON.parse(JSON.stringify(DEFAULT_PRODUCTS));
+
+function formatPrice(penAmount) {
+  const val = Number(penAmount) || 0;
+  if (CFG.currency === "USD") {
+    return `$ ${(val / CFG.tasaUSD).toFixed(2)}`;
+  }
+  return `S/. ${val.toFixed(2)}`;
+}
 
 const REVIEWS_STORAGE_KEY = "isiraReviewsVerified_v1";
 const CART_STORAGE_KEY = "isiraCart_v1";
@@ -771,8 +1162,11 @@ document.addEventListener('gesturestart', function (e) { e.preventDefault(); });
 document.addEventListener('gesturechange', function (e) { e.preventDefault(); });
 document.addEventListener('gestureend', function (e) { e.preventDefault(); });
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
   localStorage.removeItem("isiraReviews");
+
+  // Cargar datos guardados localmente primero
+  loadStoreCMSFromLocal();
 
   try {
     cartState = JSON.parse(localStorage.getItem(CART_STORAGE_KEY) || "[]");
@@ -782,6 +1176,7 @@ document.addEventListener("DOMContentLoaded", () => {
     favState = [];
   }
 
+  applySiteVisualSettings();
   renderNav();
   renderFilterPills();
   renderCategories();
@@ -790,6 +1185,16 @@ document.addEventListener("DOMContentLoaded", () => {
   updateCartUI();
   loadReviews();
   setInterval(nextHero, 6000);
+
+  // Si existe URL de Firebase conectada, sincronizar automáticamente
+  if (localStorage.getItem(FIREBASE_URL_KEY)) {
+    await pullFromFirebase(false);
+  }
+
+  // Verificar si Cindy dejó su sesión abierta
+  if (sessionStorage.getItem(ADMIN_SESSION_KEY) === "true") {
+    document.getElementById("adminFabBtn").classList.add("show");
+  }
   
   if (localStorage.getItem('isiraDarkMode') === 'true') {
     document.body.classList.add('dark-mode');
@@ -808,11 +1213,542 @@ function persistState() {
   localStorage.setItem(FAV_STORAGE_KEY, JSON.stringify(favState));
 }
 
+/* =========================================================================
+   MOTOR CMS & SINCRONIZACIÓN (LOCAL + FIREBASE REST API)
+   ========================================================================= */
+function loadStoreCMSFromLocal() {
+  try {
+    const raw = localStorage.getItem(STORE_DATA_KEY);
+    if (!raw) return;
+    const data = JSON.parse(raw);
+    if (data.cfg) CFG = { ...DEFAULT_CFG, ...data.cfg, currency: CFG.currency };
+    if (Array.isArray(data.products) && data.products.length > 0) PRODUCTS = data.products;
+    if (Array.isArray(data.catCards) && data.catCards.length === 3) CAT_CARDS = data.catCards;
+    if (Array.isArray(data.heroSlides) && data.heroSlides.length > 0) HERO_SLIDES = data.heroSlides;
+  } catch (err) {
+    console.warn("Error leyendo configuración local:", err);
+  }
+}
+
+async function saveStoreCMS(showNotice = true) {
+  const payload = {
+    cfg: {
+      envioGratisPEN: Number(CFG.envioGratisPEN) || 70,
+      tarifaEnvioPEN: Number(CFG.tarifaEnvioPEN) || 10,
+      whatsapp: CFG.whatsapp,
+      promoText: CFG.promoText,
+      logoImg: CFG.logoImg,
+      welcomeImg: CFG.welcomeImg,
+      wmTitle: CFG.wmTitle,
+      wmSub: CFG.wmSub
+    },
+    products: PRODUCTS,
+    catCards: CAT_CARDS,
+    heroSlides: HERO_SLIDES,
+    updatedAt: Date.now()
+  };
+
+  try {
+    localStorage.setItem(STORE_DATA_KEY, JSON.stringify(payload));
+  } catch (e) {
+    showToast("Aviso: Imagen muy pesada para memoria local");
+  }
+
+  applySiteVisualSettings();
+  renderCategories();
+  renderHero();
+  render();
+  updateCartUI();
+
+  const fbUrl = (localStorage.getItem(FIREBASE_URL_KEY) || "").trim().replace(/\/+$/, "");
+  if (fbUrl) {
+    try {
+      const res = await fetch(`${fbUrl}/isiraStore.json`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      });
+      if (res.ok) {
+        updateCloudBadge(true);
+        if (showNotice) showToast("✓ Guardado y sincronizado en la nube");
+        return;
+      }
+    } catch (err) {
+      updateCloudBadge(false);
+    }
+  }
+  if (showNotice) showToast("✓ Cambios guardados en la tienda");
+}
+
+async function pullFromFirebase(manual = false) {
+  const fbUrl = (localStorage.getItem(FIREBASE_URL_KEY) || "").trim().replace(/\/+$/, "");
+  if (!fbUrl) {
+    if (manual) showToast("Primero pega tu URL de Firebase");
+    return;
+  }
+  try {
+    const res = await fetch(`${fbUrl}/isiraStore.json`);
+    if (!res.ok) throw new Error("Error HTTP");
+    const data = await res.json();
+    if (data && data.products) {
+      if (data.cfg) CFG = { ...DEFAULT_CFG, ...data.cfg, currency: CFG.currency };
+      if (Array.isArray(data.products)) PRODUCTS = data.products;
+      if (Array.isArray(data.catCards)) CAT_CARDS = data.catCards;
+      if (Array.isArray(data.heroSlides)) HERO_SLIDES = data.heroSlides;
+      localStorage.setItem(STORE_DATA_KEY, JSON.stringify(data));
+      applySiteVisualSettings();
+      renderCategories();
+      renderHero();
+      render();
+      updateCartUI();
+      updateCloudBadge(true);
+      if (manual) showToast("✓ Tienda actualizada desde la nube");
+    } else if (manual) {
+      showToast("Nube conectada (aún sin datos previos)");
+      updateCloudBadge(true);
+    }
+  } catch (err) {
+    updateCloudBadge(false);
+    if (manual) showToast("No se pudo conectar con esa URL de Firebase");
+  }
+}
+
+function updateCloudBadge(connected) {
+  const badge = document.getElementById("cloudSyncBadge");
+  if (!badge) return;
+  if (connected) {
+    badge.innerText = "🟢 Nube Firebase Activa";
+    badge.style.background = "rgba(37, 211, 102, 0.25)";
+  } else {
+    badge.innerText = "🟡 Guardado Local";
+    badge.style.background = "rgba(255,255,255,0.14)";
+  }
+}
+
+function applySiteVisualSettings() {
+  const promoEl = document.getElementById("promoText");
+  if (promoEl) {
+    promoEl.innerHTML = `<b>${escapeHTML(CFG.promoText)}</b>`;
+  }
+  const logoEl = document.getElementById("headerLogoImg");
+  if (logoEl && CFG.logoImg) logoEl.src = CFG.logoImg;
+
+  const wmImgEl = document.getElementById("welcomeModalImg");
+  if (wmImgEl && CFG.welcomeImg) wmImgEl.src = CFG.welcomeImg;
+
+  const wmTitleEl = document.getElementById("wmTitle");
+  if (wmTitleEl && CFG.wmTitle) wmTitleEl.innerText = CFG.wmTitle;
+
+  const wmSubEl = document.getElementById("wmSub");
+  if (wmSubEl && CFG.wmSub) wmSubEl.innerText = CFG.wmSub;
+}
+
+/* =========================================================================
+   ACCESO SECRETO (5 TOQUES EN EL LOGO ISIRA -> USUARIO CINDY1)
+   ========================================================================= */
+let brandTapCount = 0;
+let brandTapTimer = null;
+
+function handleBrandTap(e) {
+  e.preventDefault();
+  brandTapCount++;
+  clearTimeout(brandTapTimer);
+  brandTapTimer = setTimeout(() => { brandTapCount = 0; }, 2200);
+
+  if (brandTapCount >= 5) {
+    brandTapCount = 0;
+    if (sessionStorage.getItem(ADMIN_SESSION_KEY) === "true") {
+      openAdminPanel();
+    } else {
+      document.getElementById("adminLoginModal").classList.add("on");
+      setTimeout(() => document.getElementById("admUser").focus(), 100);
+    }
+    return;
+  }
+  filterCat('Todos');
+}
+
+function closeAdminLogin() {
+  document.getElementById("adminLoginModal").classList.remove("on");
+}
+
+function handleAdminLogin(e) {
+  e.preventDefault();
+  const u = document.getElementById("admUser").value.trim();
+  const p = document.getElementById("admPass").value.trim();
+
+  if (u === ADMIN_CREDS.user && p === ADMIN_CREDS.pass) {
+    sessionStorage.setItem(ADMIN_SESSION_KEY, "true");
+    closeAdminLogin();
+    document.getElementById("adminFabBtn").classList.add("show");
+    openAdminPanel();
+    showToast("¡Bienvenida, Cindy! Modo Editor activado");
+  } else {
+    showToast("Usuario o contraseña incorrectos");
+  }
+}
+
+function logoutAdmin() {
+  sessionStorage.removeItem(ADMIN_SESSION_KEY);
+  document.getElementById("adminFabBtn").classList.remove("show");
+  closeAdminPanel();
+  showToast("Sesión de editor cerrada");
+}
+
+function openAdminPanel() {
+  document.getElementById("adminPanelModal").classList.add("on");
+  updateTemplatePreview();
+  renderAdminCatalogList();
+  populateSiteSettingsEditor();
+  const fbUrl = localStorage.getItem(FIREBASE_URL_KEY) || "";
+  document.getElementById("firebaseUrlInput").value = fbUrl;
+  updateCloudBadge(Boolean(fbUrl));
+}
+
+function closeAdminPanel() {
+  document.getElementById("adminPanelModal").classList.remove("on");
+}
+
+function switchAdminTab(tabId, btn) {
+  document.querySelectorAll(".adm-sec").forEach(s => s.classList.remove("on"));
+  document.querySelectorAll(".adm-tab").forEach(t => t.classList.remove("on"));
+  document.getElementById(tabId).classList.add("on");
+  btn.classList.add("on");
+}
+
+/* ===== COMPRESIÓN AUTOMÁTICA DE FOTOS DESDE GALERÍA ===== */
+function compressImageFile(file, maxWidth = 720, quality = 0.82) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = ev => {
+      const img = new Image();
+      img.onload = () => {
+        const scale = Math.min(1, maxWidth / img.width);
+        const w = Math.round(img.width * scale);
+        const h = Math.round(img.height * scale);
+        const canvas = document.createElement("canvas");
+        canvas.width = w;
+        canvas.height = h;
+        const ctx = canvas.getContext("2d");
+        ctx.drawImage(img, 0, 0, w, h);
+        resolve(canvas.toDataURL("image/jpeg", quality));
+      };
+      img.onerror = reject;
+      img.src = ev.target.result;
+    };
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+}
+
+async function handleProductPhotoUpload(e) {
+  const file = e.target.files[0];
+  if (!file) return;
+  showToast("Procesando imagen...");
+  try {
+    const compressedDataUrl = await compressImageFile(file, 720, 0.82);
+    document.getElementById("prodImgInput").value = compressedDataUrl;
+    updateTemplatePreview();
+    showToast("✓ Foto cargada en la plantilla");
+  } catch (err) {
+    showToast("Error al procesar la foto");
+  }
+}
+
+/* ===== PLANTILLA VISUAL DE PRODUCTO EN VIVO ===== */
+function buildProductCardHTML(p, isPreview = false) {
+  const discPct = p.oldPrice > p.price ? Math.round(((p.oldPrice - p.price) / p.oldPrice) * 100) : 0;
+  return `
+    <div class="p">
+      <div>
+        <div class="tags-wrap">
+          ${p.tag ? `<span class="tag">${escapeHTML(p.tag)}</span>` : ''}
+          ${discPct > 0 ? `<span class="tag disc">-${discPct}%</span>` : ''}
+        </div>
+        <button class="heart ${!isPreview && favState.includes(p.id) ? 'on' : ''}" ${isPreview ? '' : `onclick="toggleFav(${p.id})"`} aria-label="Guardar en favoritos">♥</button>
+        <div class="ph" ${isPreview ? '' : `onclick="openQuickview(${p.id})"`}>
+          ${getProductVisualHTML(p, false)}
+        </div>
+        <span class="p-cat">${escapeHTML(p.cat)}</span>
+        <h3>${escapeHTML(p.name || "Nombre del Producto")}</h3>
+      </div>
+      <div>
+        <div class="pr">
+          ${formatPrice(p.price)}
+          ${p.oldPrice > 0 ? `<span class="old">${formatPrice(p.oldPrice)}</span>` : ''}
+        </div>
+        <button class="add" ${isPreview ? '' : `onclick="addToCart(${p.id})"`}>Agregar</button>
+      </div>
+    </div>
+  `;
+}
+
+function updateTemplatePreview() {
+  const demoProduct = {
+    id: 9999,
+    name: document.getElementById("prodNameInput").value.trim() || "Nuevo Perfume ISIRA",
+    cat: document.getElementById("prodCatInput").value || "Perfumes",
+    price: parseFloat(document.getElementById("prodPriceInput").value) || 0,
+    oldPrice: parseFloat(document.getElementById("prodOldPriceInput").value) || 0,
+    tag: document.getElementById("prodTagInput").value.trim(),
+    img: document.getElementById("prodImgInput").value.trim() || "121313.jpg"
+  };
+  document.getElementById("templatePreviewContainer").innerHTML = buildProductCardHTML(demoProduct, true);
+}
+
+async function saveProductFromTemplate() {
+  const editId = parseInt(document.getElementById("editProdId").value);
+  const name = document.getElementById("prodNameInput").value.trim();
+  const cat = document.getElementById("prodCatInput").value;
+  const price = parseFloat(document.getElementById("prodPriceInput").value);
+  const oldPrice = parseFloat(document.getElementById("prodOldPriceInput").value) || 0;
+  const tag = document.getElementById("prodTagInput").value.trim();
+  const img = document.getElementById("prodImgInput").value.trim() || "121313.jpg";
+  const desc = document.getElementById("prodDescInput").value.trim() || "Producto exclusivo de la colección ISIRA.";
+
+  if (!name || isNaN(price) || price <= 0) {
+    showToast("Escribe el nombre y un precio válido");
+    return;
+  }
+
+  if (editId) {
+    const idx = PRODUCTS.findIndex(p => p.id === editId);
+    if (idx !== -1) {
+      PRODUCTS[idx] = { ...PRODUCTS[idx], name, cat, price, oldPrice, tag, img, desc };
+    }
+  } else {
+    const maxId = PRODUCTS.reduce((max, p) => Math.max(max, p.id), 0);
+    PRODUCTS.unshift({
+      id: maxId + 1,
+      name,
+      cat,
+      price,
+      oldPrice,
+      tag,
+      img,
+      desc
+    });
+  }
+
+  await saveStoreCMS(true);
+  resetProductTemplateForm();
+  renderAdminCatalogList();
+}
+
+function resetProductTemplateForm() {
+  document.getElementById("editProdId").value = "";
+  document.getElementById("formProdHeading").innerText = "Crear Nuevo Producto en el Catálogo";
+  document.getElementById("saveProdBtn").innerText = "✨ Publicar en la Tienda";
+  document.getElementById("cancelEditProdBtn").style.display = "none";
+  document.getElementById("prodNameInput").value = "";
+  document.getElementById("prodCatInput").value = "Perfumes";
+  document.getElementById("prodTagInput").value = "Nuevo";
+  document.getElementById("prodPriceInput").value = "50";
+  document.getElementById("prodOldPriceInput").value = "65";
+  document.getElementById("prodImgInput").value = "121313.jpg";
+  document.getElementById("prodDescInput").value = "";
+  updateTemplatePreview();
+}
+
+/* ===== GESTIÓN DEL CATÁLOGO EN ADMIN ===== */
+function renderAdminCatalogList() {
+  document.getElementById("admProdCount").innerText = PRODUCTS.length;
+  const listEl = document.getElementById("admProdList");
+  listEl.innerHTML = PRODUCTS.map(p => `
+    <div class="adm-prod-item">
+      <img src="${p.img}" alt="${escapeHTML(p.name)}">
+      <div style="min-width:0;">
+        <div style="font-size:10px; text-transform:uppercase; color:var(--mut); font-weight:700;">${escapeHTML(p.cat)} ${p.tag ? `• ${escapeHTML(p.tag)}` : ''}</div>
+        <div style="font-weight:700; font-size:14px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${escapeHTML(p.name)}</div>
+        <div style="color:var(--gold); font-weight:700; font-size:13px;">
+          S/. ${Number(p.price).toFixed(2)}
+          ${p.oldPrice > 0 ? `<span style="text-decoration:line-through; color:var(--mut); font-weight:400; font-size:11px; margin-left:6px;">S/. ${Number(p.oldPrice).toFixed(2)}</span>` : ''}
+        </div>
+      </div>
+      <div class="adm-prod-actions">
+        <button type="button" class="adm-btn sm gold" onclick="loadProductIntoTemplate(${p.id})">✏️ Editar</button>
+        <button type="button" class="adm-btn danger" onclick="deleteProductAdmin(${p.id})">🗑️ Borrar</button>
+      </div>
+    </div>
+  `).join("");
+}
+
+function loadProductIntoTemplate(id) {
+  const p = PRODUCTS.find(item => item.id === id);
+  if (!p) return;
+  document.getElementById("editProdId").value = p.id;
+  document.getElementById("formProdHeading").innerText = `Editando: ${p.name}`;
+  document.getElementById("saveProdBtn").innerText = "💾 Guardar Cambios del Producto";
+  document.getElementById("cancelEditProdBtn").style.display = "inline-flex";
+
+  document.getElementById("prodNameInput").value = p.name;
+  document.getElementById("prodCatInput").value = p.cat;
+  document.getElementById("prodTagInput").value = p.tag || "";
+  document.getElementById("prodPriceInput").value = p.price;
+  document.getElementById("prodOldPriceInput").value = p.oldPrice || 0;
+  document.getElementById("prodImgInput").value = p.img;
+  document.getElementById("prodDescInput").value = p.desc || "";
+
+  updateTemplatePreview();
+  const firstTabBtn = document.querySelector(".adm-tabs .adm-tab");
+  switchAdminTab("tabAdd", firstTabBtn);
+}
+
+async function deleteProductAdmin(id) {
+  if (!confirm("¿Segura que quieres eliminar este producto de la tienda?")) return;
+  PRODUCTS = PRODUCTS.filter(p => p.id !== id);
+  await saveStoreCMS(true);
+  renderAdminCatalogList();
+}
+
+async function restoreDefaultCatalog() {
+  if (!confirm("¿Restaurar todos los productos y precios originales de fábrica?")) return;
+  PRODUCTS = JSON.parse(JSON.stringify(DEFAULT_PRODUCTS));
+  await saveStoreCMS(true);
+  renderAdminCatalogList();
+}
+
+/* ===== EDITOR DE IMÁGENES Y TEXTOS DE TODA LA WEB ===== */
+function populateSiteSettingsEditor() {
+  document.getElementById("sitePromoInput").value = CFG.promoText;
+  document.getElementById("siteFreeShipInput").value = CFG.envioGratisPEN;
+  document.getElementById("siteShipCostInput").value = CFG.tarifaEnvioPEN;
+  document.getElementById("siteWaInput").value = CFG.whatsapp;
+
+  document.getElementById("admLogoPreview").src = CFG.logoImg;
+  document.getElementById("admWelcomePreview").src = CFG.welcomeImg;
+  document.getElementById("siteWmTitleInput").value = CFG.wmTitle;
+  document.getElementById("siteWmSubInput").value = CFG.wmSub;
+
+  // Categorías
+  const catEd = document.getElementById("admCatImagesEditor");
+  catEd.innerHTML = CAT_CARDS.map((c, idx) => `
+    <div class="img-mini-row">
+      <img id="admCatPrev_${idx}" src="${c.img}" alt="${escapeHTML(c.name)}">
+      <div style="flex:1;">
+        <div style="font-size:12px; font-weight:700; margin-bottom:4px;">Categoría: ${escapeHTML(c.name)}</div>
+        <label class="file-upload-btn" style="padding:7px 10px; font-size:11px;">
+          📸 Cambiar foto de ${escapeHTML(c.name)}
+          <input type="file" accept="image/*" style="display:none;" onchange="handleCatImageUpload(event, ${idx})">
+        </label>
+      </div>
+    </div>
+  `).join("");
+
+  // Hero slides
+  const heroEd = document.getElementById("admHeroSlidesEditor");
+  heroEd.innerHTML = HERO_SLIDES.map((s, idx) => `
+    <div style="border:1px solid var(--line); border-radius:12px; padding:12px; margin-bottom:12px; background:var(--bg);">
+      <div style="font-size:12px; font-weight:700; color:var(--gold); margin-bottom:8px;">Banner #${idx + 1} (${escapeHTML(s.cat)})</div>
+      <div class="img-mini-row">
+        <img id="admHeroPrev_${idx}" src="${s.img}" alt="Banner ${idx + 1}">
+        <div style="flex:1;">
+          <label class="file-upload-btn" style="padding:7px 10px; font-size:11px;">
+            📸 Cambiar foto del Banner #${idx + 1}
+            <input type="file" accept="image/*" style="display:none;" onchange="handleHeroImageUpload(event, ${idx})">
+          </label>
+        </div>
+      </div>
+      <div class="adm-row-2">
+        <div class="adm-field">
+          <label>Título</label>
+          <input type="text" id="admHeroTitle_${idx}" value="${escapeHTML(s.title)}">
+        </div>
+        <div class="adm-field">
+          <label>Texto del Botón</label>
+          <input type="text" id="admHeroBtn_${idx}" value="${escapeHTML(s.btn)}">
+        </div>
+      </div>
+      <div class="adm-field" style="margin-bottom:0;">
+        <label>Descripción</label>
+        <input type="text" id="admHeroDesc_${idx}" value="${escapeHTML(s.desc)}">
+      </div>
+    </div>
+  `).join("");
+}
+
+async function handleSiteImageUpload(e, target) {
+  const file = e.target.files[0];
+  if (!file) return;
+  const dataUrl = await compressImageFile(file, 720, 0.82);
+  if (target === "logo") {
+    CFG.logoImg = dataUrl;
+    document.getElementById("admLogoPreview").src = dataUrl;
+  } else if (target === "welcome") {
+    CFG.welcomeImg = dataUrl;
+    document.getElementById("admWelcomePreview").src = dataUrl;
+  }
+  showToast("Imagen lista (presiona Guardar abajo)");
+}
+
+async function handleCatImageUpload(e, idx) {
+  const file = e.target.files[0];
+  if (!file) return;
+  const dataUrl = await compressImageFile(file, 640, 0.82);
+  CAT_CARDS[idx].img = dataUrl;
+  document.getElementById(`admCatPrev_${idx}`).src = dataUrl;
+  showToast("Foto de categoría lista");
+}
+
+async function handleHeroImageUpload(e, idx) {
+  const file = e.target.files[0];
+  if (!file) return;
+  const dataUrl = await compressImageFile(file, 720, 0.82);
+  HERO_SLIDES[idx].img = dataUrl;
+  document.getElementById(`admHeroPrev_${idx}`).src = dataUrl;
+  showToast(`Foto de Banner #${idx + 1} lista`);
+}
+
+async function saveSiteSettingsFromAdmin() {
+  CFG.promoText = document.getElementById("sitePromoInput").value.trim() || DEFAULT_CFG.promoText;
+  CFG.envioGratisPEN = parseFloat(document.getElementById("siteFreeShipInput").value) || 70;
+  CFG.tarifaEnvioPEN = parseFloat(document.getElementById("siteShipCostInput").value) || 10;
+  CFG.whatsapp = document.getElementById("siteWaInput").value.trim() || DEFAULT_CFG.whatsapp;
+  CFG.wmTitle = document.getElementById("siteWmTitleInput").value.trim() || DEFAULT_CFG.wmTitle;
+  CFG.wmSub = document.getElementById("siteWmSubInput").value.trim() || DEFAULT_CFG.wmSub;
+
+  HERO_SLIDES.forEach((s, idx) => {
+    s.title = document.getElementById(`admHeroTitle_${idx}`).value.trim() || s.title;
+    s.btn = document.getElementById(`admHeroBtn_${idx}`).value.trim() || s.btn;
+    s.desc = document.getElementById(`admHeroDesc_${idx}`).value.trim() || s.desc;
+  });
+
+  await saveStoreCMS(true);
+}
+
+/* ===== CONEXIÓN FIREBASE Y DESCARGA DE HTML ===== */
+async function saveAndSyncFirebase() {
+  const url = document.getElementById("firebaseUrlInput").value.trim().replace(/\/+$/, "");
+  if (!url || !url.startsWith("https://")) {
+    showToast("Ingresa una URL válida de Firebase (https://...)");
+    return;
+  }
+  localStorage.setItem(FIREBASE_URL_KEY, url);
+  await saveStoreCMS(true);
+}
+
+function downloadUpdatedHTML() {
+  // Genera una copia limpia de la página actual con los datos embebidos como respaldo
+  const docClone = document.documentElement.cloneNode(true);
+  // Cerrar modales en el clon antes de descargar
+  docClone.querySelectorAll(".adm-ov, .ov, .qvw, .wm-ov, .ai-chat-box").forEach(el => el.classList.remove("on", "show"));
+  const fab = docClone.querySelector("#adminFabBtn");
+  if (fab) fab.classList.remove("show");
+
+  const htmlContent = "<!DOCTYPE html>\n" + docClone.outerHTML;
+  const blob = new Blob([htmlContent], { type: "text/html;charset=utf-8" });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "index.html";
+  a.click();
+  URL.revokeObjectURL(a.href);
+  showToast("✓ Archivo index.html descargado");
+}
+
 /* ===== CAMBIO DE MONEDA (SOLES / DÓLARES) ===== */
 function toggleCurrency() {
   CFG.currency = CFG.currency === "PEN" ? "USD" : "PEN";
   document.getElementById("currencyBtn").innerText = CFG.currency === "PEN" ? "S/. PEN" : "$ USD";
-  document.getElementById("promoText").innerHTML = `<b>ENVÍO GRATIS DESDE ${formatPrice(CFG.envioGratisPEN)}</b>`;
   render();
   updateCartUI();
   showToast(`Moneda cambiada a ${CFG.currency === "PEN" ? "Soles (S/.)" : "Dólares ($)"}`);
@@ -839,14 +1775,19 @@ function handleAIChat(e) {
   input.value = "";
 
   const q = text.toLowerCase();
-  let reply = "Con gusto te ayudo. Puedes explorar nuestros perfumes exclusivos (desde S/. 49.00), sets de regalo digitales o escribirnos por WhatsApp.";
+  let reply = "Con gusto te ayudo. Puedes explorar nuestros perfumes exclusivos, sets de regalo digitales o escribirnos por WhatsApp.";
 
   if (q.includes("perfume") || q.includes("recom") || q.includes("aroma") || q.includes("dulce") || q.includes("intenso")) {
-    reply = `Todos nuestros perfumes están entre <b>${formatPrice(49)}</b> y <b>${formatPrice(50)}</b>. Te recomiendo <b>Isira Elixir Noir 100ml</b> (${formatPrice(50)}) o nuestro nuevo lanzamiento <b>Isira Velvet Night 100ml</b> (${formatPrice(50)}).`;
+    const perfumes = PRODUCTS.filter(p => p.cat === "Perfumes").slice(0, 2);
+    if (perfumes.length >= 2) {
+      reply = `Te recomiendo <b>${escapeHTML(perfumes[0].name)}</b> (${formatPrice(perfumes[0].price)}) o <b>${escapeHTML(perfumes[1].name)}</b> (${formatPrice(perfumes[1].price)}).`;
+    } else {
+      reply = `Explora nuestra colección de perfumes exclusivos en el catálogo.`;
+    }
   } else if (q.includes("envio") || q.includes("envío") || q.includes("delivery") || q.includes("llega")) {
     reply = `¡Tenemos <b>envío gratis</b> en pedidos desde <b>${formatPrice(CFG.envioGratisPEN)}</b>! En Lima entregamos el mismo día o al día siguiente, y hacemos envíos seguros a todo el Perú.`;
   } else if (q.includes("regalo") || q.includes("prime") || q.includes("disney") || q.includes("set")) {
-    reply = `En la pestaña <b>Sets de regalo</b> encontrarás nuestras cartillas digitales de <b>Prime Video por un mes</b> (${formatPrice(15)}) y <b>Disney Plus por un mes</b> (${formatPrice(18)}) con entrega inmediata.`;
+    reply = `En la pestaña <b>Sets de regalo</b> encontrarás nuestras cartillas digitales y sets especiales con entrega inmediata.`;
   } else if (q.includes("pago") || q.includes("yape") || q.includes("plin")) {
     reply = "Aceptamos Yape, Plin, transferencia BCP/Interbank y pago contra entrega en zonas seleccionadas de Lima.";
   }
@@ -979,13 +1920,7 @@ function renderFilterPills() {
 
 function renderCategories() {
   const catsContainer = document.getElementById("cats");
-  const catData = [
-    { name: "Perfumes", img: "alashombre.jpg" },
-    { name: "Sets de regalo", img: "4foto.jpg" },
-    { name: "Tecnología", img: "mujeralas.jpg" }
-  ];
-
-  catsContainer.innerHTML = catData.map(c => `
+  catsContainer.innerHTML = CAT_CARDS.map(c => `
     <button class="cat" onclick="filterCat('${c.name}')">
       <div class="ci" style="background-image:url('${c.img}')"></div>
       <span>${c.name}</span>
@@ -994,7 +1929,7 @@ function renderCategories() {
 }
 
 function renderHero() {
-  const slide = HERO_SLIDES[heroIndex];
+  const slide = HERO_SLIDES[heroIndex] || HERO_SLIDES[0];
   document.getElementById("ht").innerText = slide.title;
   document.getElementById("hp").innerText = slide.desc;
   document.getElementById("hb").innerText = slide.btn;
@@ -1039,12 +1974,13 @@ function toggleFavFilter() {
 }
 
 function getProductVisualHTML(p, isQuickview = false) {
-  if (p.overlaySvg) {
+  const svgOverlay = p.overlayType === "prime" ? PRIME_OVERLAY_SVG : (p.overlayType === "disney" ? DISNEY_OVERLAY_SVG : p.overlaySvg);
+  if (svgOverlay) {
     return `
       <div class="gift-card-wrap" style="${isQuickview ? 'aspect-ratio:3/4; border-radius:10px;' : ''}">
         <img class="gift-bg" src="${p.img}" alt="${escapeHTML(p.name)}" loading="lazy">
         <div class="gift-shade"></div>
-        ${p.overlaySvg}
+        ${svgOverlay}
       </div>
     `;
   }
@@ -1060,7 +1996,7 @@ function render() {
     const matchCat = currentCategory === "Todos"
       ? p.cat !== "Sets de regalo"
       : p.cat === currentCategory;
-    const matchSearch = p.name.toLowerCase().includes(q) || p.desc.toLowerCase().includes(q) || p.cat.toLowerCase().includes(q);
+    const matchSearch = p.name.toLowerCase().includes(q) || (p.desc || "").toLowerCase().includes(q) || p.cat.toLowerCase().includes(q);
     const matchFav = !showingOnlyFavs || favState.includes(p.id);
     return (showingOnlyFavs ? true : matchCat) && matchSearch && matchFav;
   });
@@ -1076,35 +2012,7 @@ function render() {
     return;
   }
 
-  grid.innerHTML = list.map(p => {
-    const isFav = favState.includes(p.id);
-    const discPct = p.oldPrice > p.price ? Math.round(((p.oldPrice - p.price) / p.oldPrice) * 100) : 0;
-
-    return `
-      <div class="p">
-        <div>
-          <div class="tags-wrap">
-            ${p.tag ? `<span class="tag">${escapeHTML(p.tag)}</span>` : ''}
-            ${discPct > 0 ? `<span class="tag disc">-${discPct}%</span>` : ''}
-          </div>
-          <button class="heart ${isFav ? 'on' : ''}" onclick="toggleFav(${p.id})" aria-label="Guardar en favoritos">♥</button>
-          <div class="ph" onclick="openQuickview(${p.id})">
-            ${getProductVisualHTML(p, false)}
-          </div>
-          <span class="p-cat">${escapeHTML(p.cat)}</span>
-          <h3>${escapeHTML(p.name)}</h3>
-        </div>
-        <div>
-          <div class="pr">
-            ${formatPrice(p.price)}
-            ${p.oldPrice > 0 ? `<span class="old">${formatPrice(p.oldPrice)}</span>` : ''}
-          </div>
-          <button class="add" onclick="addToCart(${p.id})">Agregar</button>
-        </div>
-      </div>
-    `;
-  }).join("");
-
+  grid.innerHTML = list.map(p => buildProductCardHTML(p, false)).join("");
   document.getElementById("fc").innerText = favState.length;
 }
 
@@ -1210,7 +2118,7 @@ function openQuickview(id) {
   document.getElementById("qvt").innerHTML = `
     <h3>${escapeHTML(p.name)}</h3>
     <p style="color:var(--mut); margin-bottom:10px; font-size:12px; text-transform:uppercase;">${escapeHTML(p.cat)}</p>
-    <p style="margin-bottom:16px; font-size:14px; line-height:1.5;">${escapeHTML(p.desc)}</p>
+    <p style="margin-bottom:16px; font-size:14px; line-height:1.5;">${escapeHTML(p.desc || "")}</p>
     <div style="font-size:20px; font-weight:700; color:var(--gold); margin-bottom:16px;">
       ${formatPrice(p.price)}
       ${p.oldPrice > 0 ? `<span style="text-decoration:line-through; color:var(--mut); font-size:14px; font-weight:400; margin-left:8px;">${formatPrice(p.oldPrice)}</span>` : ''}
